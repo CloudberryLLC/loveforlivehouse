@@ -1,0 +1,21 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+    こんにちは、<%= @email %>さん
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+    <% if @resource.try(:unconfirmed_email?) %>
+      <p>登録メールアドレスが <%= @resource.unconfirmed_email %> に変更されようとしていますのでお知らせ致します。</p>
+    <% else %>
+      <p>登録メールアドレスが <%= @resource.email %> に変更されましたのでお知らせ致します。</p>
+    <% end %>
+  </td>
+</tr>
+
+<%= render 'partial/mailer_footer' %>

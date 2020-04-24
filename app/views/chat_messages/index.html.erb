@@ -1,0 +1,13 @@
+<div id='chat_messages'>
+  <% @chat_messages.each do |chat_message| %>
+    <div><%= "#{chat_message.user_name}: #{chat_message.body}" %></div>
+  <% end %>
+</div>
+
+<br/>
+
+<form>
+  <label>
+    発言する: <input type="text" data-behavior="speak_chat_messages">
+  </label>
+</form>

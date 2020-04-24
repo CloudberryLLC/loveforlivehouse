@@ -1,0 +1,22 @@
+<div class="namecard__preview_frame">
+  <p>
+    <span class="namecard__preview__qrcode__wrapper"><%= qrcode_tag performer_profile_url(@performer), module_size: 2.4 %></span>
+    <span id="partname-preview" class="namecard__preview__partname"><%= @namecard.your_part %></span>
+    <span id="performername-preview" class="namecard__preview__performername"><%= @namecard.your_name %></span>
+    <span id="performernamesub-preview" class="namecard__preview__performername__sub"><%= @namecard.your_name_kana %></span>
+  </p>
+  <p>
+    <span id="units-preview" class="namecard__preview__units"><%= @namecard.your_group %></span>
+  </p>
+  <p>
+    <span class="namecard__preview__servicename">
+      ※お仕事のお問合せは、パフォーマー支援型マッチングサイト<br>
+      「MUSICIANBOOK」からお受けしています。<br>
+      お気軽にQRコードからアクセスしてお尋ね下さい。<br>
+      <%= performer_profile_url(@performer) %>
+    </span>
+  </p>
+</div>
+<p>
+  <span class="namecard__preview__annotation">※およそのレイアウトになります。実際には文字の位置などが多少異なります。</span>
+</p>

@@ -1,0 +1,65 @@
+<div class="container">
+  <p>ようこそ、<%= current_user.email %>さん。<br>
+    <% if current_user.sign_in_count == 1 %>
+      この度は本サービスへご登録をくださり、ありがとうございます。<br>
+      以下の手順に沿って、ご利用開始の手続をお願い致します。<br>
+    <% end %>
+  </p>
+</div>
+
+<hr>
+<!--チュートリアル動画の作成後アップ
+<div>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/_oR87B_8LJs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+-->
+
+<div class="container">
+
+  <h3>STEP1 ユーザー情報の登録
+    <% if (current_user.basic.present? && current_user.bank.present?) %>
+      <span style="font-size: 1.25em; color: #5cb85c;">
+        <i class="fa fa-check-circle"></i>
+      </span>
+    <% end %>
+  </h3>
+
+  <p>ご利用を開始するために、こちらからユーザー情報の登録をお願い致します。</p>
+  <%= link_to "ユーザー情報の登録", edit_profile_path(current_user), class: "btn btn-success", target:"blank" %>
+
+  <% if (current_user.basic.present? && current_user.bank.present?) %>
+  <hr>
+
+    <% if client? %>
+
+      <h3>STEP2 サービスの利用準備ができました。
+      <% if (current_user.basic.present? && current_user.bank.present?) %>
+        <span style="font-size: 1.25em; color: #5cb85c;">
+          <i class="tutorial-check"></i>
+        </span>
+      <% end %>
+      </h3>
+      <%= movie("https://youtu.be/_oR87B_8LJs") %>
+      <button type="button" id="tutorial-movie" class="btn btn-success">動画を確認しました。</button>
+
+      <hr>
+
+      <h3>STEP3 チュートリアルムービー</h3>
+      <%= movie("https://youtu.be/_oR87B_8LJs") %>
+      <hr>
+
+
+    <% elsif performer? %>
+      <h3>STEP2 トリセツ動画</h3>
+      <%= movie("https://youtu.be/_oR87B_8LJs") %>
+
+    <% end %>
+  <% end %>
+
+</div>
+
+<script>
+  $("#tutorial-movie").on('click keyup',function(){
+    $(".tutorial-check").addClass("fa fa-check-circle");
+  });
+</script>

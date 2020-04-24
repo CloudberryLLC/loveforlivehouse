@@ -1,0 +1,38 @@
+<!--Offers#Show-->
+
+<h4 class="title">持ち物</h4>
+
+<div class="margin__top__1em">
+  <p class="strong">クライアント側で準備するもの:<p>
+  <p><%= description(@offer.arrangement.client_items) %></p>
+
+  <p class="strong">パフォーマーが準備するもの:<p>
+  <%= description(@offer.arrangement.performer_items) %></p>
+</div>
+
+
+<!--Offers#Edit-->
+
+<!--準備物詳細-->
+
+<h5 class="title">準備が必要なもの</h5>
+
+<p class="annotation">金銭以外の必要な準備物をご記入ください。</p>
+
+  <%= f.fields_for :arrangement, @offer.arrangement || Arrangement.new do |a| %>
+
+    <div>
+      <%= a.label :client_items %>
+      <%= a.text_area :client_items, rows: 7, placeholder: "例:新幹線チケット、宿泊手配、音響機材など", class:"form-control left", autofocus: true %>
+    </div>
+
+    <div class="form-group">
+      <%= a.label :performer_items %>
+      <%= a.text_area :performer_items, rows: 7, placeholder: "例:楽器一式、アンプ、ケーブルなど", class: "form-control left", autofocus: true %>
+    </div>
+
+  <% end %>
+
+<hr>
+
+<!--準備物終わり-->

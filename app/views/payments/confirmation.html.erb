@@ -1,0 +1,14 @@
+<div class="container pagetop">
+  <h2 class="title">お支払内容の確認</h2>
+  <hr>
+</div>
+
+  <div id="payment-detail">
+    <%= render partial: 'offers/payment', locals: { offer: @offer } %>
+  </div>
+
+  <div class="detail">
+    <%= render partial: 'offers/offer_detail', locals: { offer: @offer } %>
+  </div>
+
+  <%= render 'offers/cancel_button', locals: { offer: @offer } %>

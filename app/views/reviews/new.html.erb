@@ -1,0 +1,131 @@
+<div class="container pagetop">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+
+      <h3 class="title center">レビュー</h3>
+
+      <hr>
+
+      <div class="margin__vertical__2em">
+        <p>
+          この度はMUSICIANBOOKをご利用くださりありがとうございました。<br>
+          お手数をおかけしますが、レビューとフィードバックにご協力をお願い致します。<br>
+        </p>
+      </div>
+
+      <%= form_for @offer do |f| %>
+
+        <% if @offer.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <ul>
+              <% @offer.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%= f.hidden_field :offer_status, value: 18 %>
+
+        <%= f.fields_for :review, @offer.review || Review.new do |r| %>
+
+          <%= r.hidden_field :reviewee, value: @reviewee %>
+          <%= r.hidden_field :reviewer, value: @reviewer %>
+          <%= r.hidden_field :total_review, id: :total_review %>
+
+          <h5 class="title">公開レビュー</h5>
+          <p class="annotation">以下はパフォーマーページにレビューが公開されます。</p>
+
+          <div class="margin__vertical__2em">
+            <p id='review_quality' class="review_elements" >パフォーマンスの質</p>
+            <%= r.hidden_field :quality, id: :quality, class: :review_elements %>
+            <p id='review_confortability' class="review_elements" >仕事のしやすさ</p>
+            <%= r.hidden_field :confortability, id: :confortability, class: :review_elements %>
+            <p id='review_cost_performance' class="review_elements" >コストパフォーマンス</p>
+            <%= r.hidden_field :cost_performance, id: :cost_performance, class: :review_elements %>
+            <p id='review_manners' class="review_elements" >マナー</p>
+            <%= r.hidden_field :manners, id: :manners, class: :review_elements %>
+            <p id='review_fast_response' class="review_elements" >返信の速さ</p>
+            <%= r.hidden_field :fast_response, id: :fast_response, class: :review_elements %>
+
+            <%= r.label :comment %>
+            <span class="annotation">※1000文字以内</span>
+            <p><%= r.text_area :comment, rows: 7, maxlength: 1000, class: "form-control", placeholder: "1000文字以内", autofocus: true %></p>
+          </div>
+
+          <hr>
+
+          <h5 class="title">非公開レビュー</h5>
+          <p class="annotation">以下は当社以外閲覧できません。</p>
+
+          <div class="margin__vertical__2em">
+            <%= r.label :report %>
+            <p class="annotation">
+              ※ユーザー同士のトラブルがあった場合にご記入ください(例:演奏家が来なかった、当日欠員が出た、ハラスメント行為があった等)<br>
+              ※利用規約に定める返金申請を希望される場合は、パフォーマンス終了後48時間以内に、こちらに返金ご希望の旨とトラブルの内容をご記入の上送信ください。<br>
+            </p>
+            <p><%= r.text_area :report, rows: 7, maxlength: 1000, class: "form-control", placeholder: "1000文字以内", autofocus: true %></p>
+
+            <%= r.label :feedback %>
+            <span class="annotation">※1000文字以内</span><br>
+            <p><%= r.text_area :feedback, rows: 7, maxlength: 1000, class: "form-control", placeholder: "1000文字以内", autofocus: true %></p>
+          </div>
+
+        <% end %>
+
+      <div class="actions button__area center">
+        <%= f.submit "レビューする", class: "btn btn-success" %>
+      </div>
+
+      <% end %>
+
+      <p class="annotation red">オファーの詳細を確認するには、レビューの送信を完了してください。</p>
+    </div>
+  </div>
+</div>
+
+<script>
+$('#review_quality').raty({
+path: '/assets/',
+click: function(score, e) {
+$("#quality").val(score)
+}
+});
+
+$('#review_confortability').raty({
+path: '/assets/',
+click: function(score, e) {
+$("#confortability").val(score)
+}
+});
+
+$('#review_cost_performance').raty({
+path: '/assets/',
+click: function(score, e) {
+$("#cost_performance").val(score)
+}
+});
+
+$('#review_manners').raty({
+path: '/assets/',
+click: function(score, e) {
+$("#manners").val(score)
+}
+});
+
+$('#review_fast_response').raty({
+path: '/assets/',
+click: function(score, e) {
+$("#fast_response").val(score)
+}
+});
+
+$(".review_elements").on('focus keyup click', function() {
+  var q = parseInt($("#quality").val());
+  var c = parseInt($("#confortability").val());
+  var cp = parseInt($("#cost_performance").val());
+  var m = parseInt($("#manners").val());
+  var r = parseInt($("#fast_response").val());
+  $("#total_review").val((q+c+cp+m+r)/5);
+});
+</script>

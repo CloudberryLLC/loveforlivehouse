@@ -1,0 +1,36 @@
+<div class="container pagetop">
+
+  <h3>お問い合わせ有難うございます</h3>
+
+  <p id="notice"><%= notice %></p>
+
+  <div class="inquiry__confirmed__message">
+    <p>以下お問い合わせについて、1営業日以内に担当よりご回答させていただきます。</p>
+    <p>もし担当よりご連絡がない場合は大変恐れ入りますが再度、
+      <%= link_to "お問い合わせフォーム", new_inquiry_path %> よりご連絡をお願いいたします。</p>
+  </div>
+
+  <div class="inquiry__confirmed__content">
+    <p>
+      <strong>お名前:</strong>
+      <%= @inquiry.name %>
+    </p>
+    <p>
+      <strong>メールアドレス:</strong>
+      <%= @inquiry.email %>
+    </p>
+    <p>
+      <strong>お問い合わせの種類:</strong>
+      <%= category_show(@inquiry.category) %>
+    </p>
+    <p>
+      <strong>お問い合わせ内容:</strong>
+      <%= @inquiry.content %>
+    </p>
+  </div>
+
+  <hr>
+
+  <p>今後ともmusicianbookをよろしくお願いいたします。</p><br><br>
+
+</div>

@@ -1,0 +1,35 @@
+//ジャンボトロン
+#home__jumbotron {
+  // 背景画像を暗くする
+  background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), image-url("top.png");
+	background-size: cover;
+	// 背景画像の位置を決める
+	background-position: 50% 50%;
+	height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom:2em;
+}
+
+//jumbotron上のメッセージ見出し
+
+#home__slogan__subtext {
+  text-align: center;
+  color: white;
+  padding: 1em;
+}
+
+.home__slogan {
+  display:inline-block;
+  margin: 0;
+}
+
+.slogan_subtext {
+  display:inline-block;
+  margin: 0;
+}
+
+.home__jumbotron__button {
+  margin-top: 1em;
+}

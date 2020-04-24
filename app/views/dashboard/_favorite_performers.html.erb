@@ -1,0 +1,7 @@
+<h4 class="title">お気に入り</h4>
+  <% unless @favorites.blank? %>
+    <%= render partial: "partial/performer_list", locals: { performers: @favorites } %>
+  <% else %>
+    <p class="margin__top__1em">チェック済みのミュージシャンはありません</p>
+  <% end %>
+<hr>

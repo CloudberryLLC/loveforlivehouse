@@ -1,0 +1,57 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+    フィードバックが届きました
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+    ユーザーからのフィードバックです。ご確認をお願いします。
+  </td>
+</tr>
+
+<!--本文-->
+<tr>
+  <td style="padding:1em;">
+    送信者: <%= @client.basic.lastname %> 様<br>
+    送信者メールアドレス: <%= @client.email %><br>
+    オファーID: <%= @offer.id %><br>
+    オファーされたパフォーマー: <%= @performer.performer_name.to_s %><br>
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em 1em;"></td></tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+
+    <p style="font-weight:bold;">ユーザーへのレビュー</p>
+    トータルスコア: <%= @review.total_review %> / 5.0<br>
+    コメント:<br>
+    <%= simple_format(@review.comment) %>
+
+    <p style="font-weight:bold;">イレギュラー報告</p>
+    <%= simple_format(@review.report) %>
+
+    <p style="font-weight:bold;">フィードバック</p>
+    <%= simple_format(@review.feedback) %>
+
+  </td>
+</tr>
+
+<tr><td style="padding:1em;"></td></tr>
+
+<!--リンクパネル-->
+<tr>
+  <td style="padding:1em;background-color:#eeeeee;">
+    <%= link_to '内容を確認し、支払いへ進む', root_url %>
+  </td>
+</tr>
+
+
+<%= render 'partial/mailer_footer' %>

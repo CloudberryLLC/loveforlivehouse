@@ -1,0 +1,67 @@
+<div class="container">
+
+  <% if client? %>
+    <p class="right">
+      <%= link_to "オファーを作成する",
+      edit_offer_path(@contact.offer_id),
+      class:"btn btn-sm btn-outline-primary" %>
+    </p>
+  <% end %>
+
+  <!--チャット一覧表示 ActionCable-->
+  <h3>メッセージ</h3>
+  <div class="container" id="chat_messages">
+    <div class= "row justify-content-center">
+      <div class= "col-md-10">
+        <%= render @messages %>
+        <div id="new_message"></div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!--チャット画面-->
+
+  <%= form_for @message, url: chat_messages_path, :html => {:multipart => true}, remote: true, authenticity_token: true do |f| %>
+
+  <% if @message.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <ul>
+        <% @message.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="container">
+    <div class= "row justify-content-center">
+      <div class= "col-md-10">
+        <div class="form-group center">
+          <%= f.text_area :body, id:"chatMessagesBody",class: "form-control",  autofocus: true %>
+        </div>
+
+          <%= f.hidden_field :contact_id, id:"contactId", value: @contact.id %>
+          <%= f.hidden_field :offer_id, value: @contact.offer_id %>
+          <%= f.hidden_field :from, id:"fromId", value: @from.id  %>
+          <%= f.hidden_field :to, value: @to.id  %>
+
+        <div class="actions">
+          <%= f.submit "メッセージを送信", class: "btn btn-primary" %>
+        </div>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $('.container').scrollTop($('#chat_messages')[0].scrollHeight);
+    var contactId = $('#contactId').val();
+    $(document).ready(function(){
+      App.MakeContactChannel(contactId)
+    });
+  </script>
+</div>

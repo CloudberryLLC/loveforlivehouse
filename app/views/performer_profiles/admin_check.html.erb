@@ -1,0 +1,50 @@
+<h3>パフォーマー新規登録・更新承認画面</h3>
+
+<hr>
+
+<div class="container">
+  <div>
+    <p>ユーザー情報</p>
+    ユーザーID: <%= @user.id %><br>
+    お名前: <%= @user.basic.lastname %> <%= @user.basic.firstname %> 様<br>
+    お名前フリガナ: <%= @user.basic.lastname_kana %> <%= @user.basic.firstname_kana %><br>
+    会社名・所属団体: <%= @user.basic.company %><br>
+    連絡先: <%= @user.email %><br>
+  </div>
+  <hr>
+  <div>
+    <p>登録を希望するパフォーマーの情報</p>
+    <p>
+    パフォーマーID: <%= @performer_profile.id %><br>
+    パフォーマー名: <%= @performer_profile.performer_name %><br>
+    区分: <%= @performer_profile.performer_rank %><br>
+    1人あたりの基本演奏料: <%= @performer_profile.basic_guarantee %><br>
+    メンバー数: <%= @performer_profile.number_of_member %><br>
+    ジャンル: <%= @performer_profile.genre %><br>
+    地域: <%= @performer_profile.area %><br>
+    緯度: <%= @performer_profile.latitude %><br>
+    経度: <%= @performer_profile.longitude %><br>
+    楽器構成: <%= @performer_profile.set_of_instruments %><br>
+    プロフィール(見出し): <%= @performer_profile.profile_short %><br>
+    プロフィール(詳細): <%= @performer_profile.profile_long %><br>
+    演奏に関する条件・制約: <%= @performer_profile.conditions %><br>
+    演奏に関する条件・制約(詳細): <%= @performer_profile.conditions_detail %><br>
+    サンプル動画URL1: <%= @performer_profile.sample_movie_url1 %><br>
+    サンプル動画URL2: <%= @performer_profile.sample_movie_url2 %><br>
+    サンプル動画URL3: <%= @performer_profile.sample_movie_url3 %><br>
+    </p>
+    <p>
+    登録日: <%= @performer_profile.created_at %><br>
+    更新日: <%= @performer_profile.updated_at %><br>
+    </p>
+  </div>
+</div>
+
+<hr>
+
+<div class="container">
+  <%= form_with model: @performer_profile, url: admin_approval_path do |f| %>
+    <%= f.hidden_field :certified, value: true %>
+    <%= f.submit "新規登録・変更を承認する", class: "btn btn-success" %>
+  <% end %>
+</div>

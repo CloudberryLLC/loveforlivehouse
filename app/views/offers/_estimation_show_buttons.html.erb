@@ -1,0 +1,29 @@
+<% if client? %>
+  <h5>ご注意</h5>
+  <p>
+    パフォーマーによってはこのほか当日、または後日精算の経費が発生する場合があります。<br>
+    事前によく確認をしてから見積りを承認してください。
+  </p>
+
+  <% if offer.offer_status == 4 %>
+    <%= form_with model: offer, local: true do |f| %>
+      <p>
+        <%= f.radio_button(:offer_status, 7) %>
+        <%= f.label(:status_07, "見積りに同意し、オファーを確定する") %><br>
+        <%= f.radio_button(:offer_status, 5) %>
+        <%= f.label(:status_05, "再見積りを依頼する") %><br>
+        <%= f.radio_button(:offer_status, 6) %>
+        <%= f.label(:status_06, "オファーを見送る") %>
+      </p>
+      <p class="annotation">再見積りやオファー見送りの際、理由を説明される場合はメッセージでやり取り下さい。</p>
+      <p>
+        <%= f.submit "パフォーマーに通知する", class: "right btn btn-success" %>
+      </p>
+    <% end %>
+  <% end %>
+
+<% elsif performer? %>
+  <% if show_estimation_edit_button?(offer.offer_status) %>
+    <%= link_to "見積りを変更する", edit_offer_path(offer), class: "btn btn-info right" %>
+  <% end %>
+<% end %>

@@ -1,0 +1,25 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+    <%= @resource.email %>さん
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+    複数回のログインが試みられたため、一定時間アカウントがロックされました。
+  </td>
+</tr>
+
+<!--リンクパネル-->
+<tr>
+  <td style="padding:1em;background-color:#eeeeee;">
+    <%= link_to 'アカウントのロックを解除する', unlock_url(@resource, unlock_token: @token) %>
+  </td>
+</tr>
+
+
+<%= render 'partial/mailer_footer' %>

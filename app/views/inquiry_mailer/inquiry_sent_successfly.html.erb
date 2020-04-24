@@ -1,0 +1,30 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+    お問い合わせを受け付けました。<br>
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+    この度はお問い合わせくださりありがとうございます。<br>
+    お問い合わせの内容ついて、1営業日以内に担当より回答させていただきます。<br>
+  </td>
+</tr>
+
+<tr><td style="padding:1em;"></td></tr>
+
+<!--リンクパネル-->
+<tr>
+  <td style="padding:1em;background-color:#eeeeee;">
+    1営業日経っても返信のない場合は<%= link_to "こちら", new_inquiry_url %>からお願いします。<br>
+  </td>
+</tr>
+
+
+
+
+<%= render 'partial/mailer_footer' %>

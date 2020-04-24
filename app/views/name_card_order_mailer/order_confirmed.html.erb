@@ -1,0 +1,73 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+    名刺のオーダーを完了しました
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+    ご注文ありがとうございます。オーダーが正常に送信されました。<br>
+  </td>
+</tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+    オーダーID: <%= @order.id %><br>
+    枚数: <%= @order.amount.to_s %>枚<br>
+    お支払い金額: <%= @order.price.to_s(:delimited) %>円<br>
+    お支払い期限: <%= @order.payment_limit.strftime("%m/%d") %> 15時まで<br>
+    お支払い方法: <%= show_payment_option(@order.payment_option).to_s %><br>
+    <br>
+    お届け希望日: <%= @order.delivery_date.strftime("%m/%d") %><br>
+    お届け先:<br>
+    〒<%= @order.zipcode.to_s %><br>
+    <%= @order.pref.to_s %><%= @order.city.to_s %><%= @order.street.to_s %><br>
+    <%= @order.bldg.to_s %><br>
+    <%= @order.reciever_name.to_s %>様<br>
+  </td>
+</tr>
+
+<tr><td style="padding:1em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+    オーダー後の流れについて<br>
+  </td>
+</tr>
+
+<!--本文-->
+<tr>
+  <td style="padding:1em;">
+    クレジットカード払いの場合<br>
+    <br>
+    運営スタッフがお支払い処理が正常に完了したことを確認後、速やかに名刺を発注いたします。<br>
+    何らかのエラーによりクレジットのお支払いが完了していない場合は、その旨を確認させていただく場合がございます。<br>
+    <br>
+    銀行振込の場合<br>
+    <br>
+    上記に表示のお支払い期限日の15時までに、以下の口座あてにお振込みください。<br>
+    お支払期限日が土日祝日にあたる場合は、その翌営業日の15時までにご入金ください。<br>
+    お支払い期限を過ぎた場合、本オーダーについては自動的にキャンセルとなりますので予めご了承ください。<br>
+    運営スタッフがお支払い処理が正常に完了したことを確認後、速やかに名刺を発注いたします。<br>
+    <br>
+    お振込口座: 三井住友銀行 小阪支店(166) 普通 1188990 ムラタ ケンタロウ<br>
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em 1em;"></td></tr>
+
+<!--リンクパネル-->
+<tr>
+  <td style="padding:1em;background-color:#eeeeee;">
+    ご不明な点がある場合はこちらの<%= link_to "問い合わせフォーム", new_inquiry_url %> よりお問い合わせください。<br>
+  </td>
+</tr>
+
+
+<%= render 'partial/mailer_footer' %>

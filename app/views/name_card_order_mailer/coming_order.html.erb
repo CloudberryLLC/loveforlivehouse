@@ -1,0 +1,60 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+    【要対応】<br>
+    名刺のオーダーが入りました
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+    速やかに入金の確認および名刺の発注をお願いします。
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em 1em;"></td></tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+    ご注文内容:<br>
+    <br>
+    オーダーID: <%= @order.id.to_s %><br>
+    枚数: <%= @order.amount.to_s %><br>
+    お支払い金額: <%= @order.price.to_s %><br>
+    お支払い期限: <%= @order.payment_limit.strftime("%m/%d") %> 15時まで<br>
+    お支払い方法: <%= show_payment_option(@order.payment_option) %><br>
+    <br>
+    お届け希望日: <%= @order.delivery_date.strftime("%m/%d") %><br>
+    <br>
+    お届け先:<br>
+    〒<%= @order.zipcode.to_s %><br>
+    <%= @order.pref.to_s %><%= @order.city.to_s %><%= @order.street.to_s %><br>
+    <%= @order.bldg.to_s %><br>
+    <%= @order.reciever_name.to_s %>様<br>
+  </td>
+</tr>
+
+<tr><td style="padding:1em;"></td></tr>
+
+<!--本文-->
+<tr>
+  <td style="padding:1em;">
+    入金確認と名刺の発注が完了後、ユーザーに発注済みの旨をお知らせください。<br>
+  </td>
+</tr>
+
+<!--リンクパネル-->
+<tr>
+  <td style="padding:1em;background-color:#eeeeee;">
+    <%= link_to '発注済みを通知する', root_url %><br>
+  </td>
+</tr>
+
+
+
+
+<%= render 'partial/mailer_footer' %>

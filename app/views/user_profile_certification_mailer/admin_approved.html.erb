@@ -1,0 +1,27 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+    ユーザー登録/変更依頼を承認しました
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+    これはユーザー承認完了の確認メールです。
+  </td>
+</tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+    ユーザーID: <%= @user.id %><br>
+    お名前: <%= @user.basic.lastname %> <%= @user.basic.firstname %> 様<br>
+  </td>
+</tr>
+
+
+
+<%= render 'partial/mailer_footer' %>

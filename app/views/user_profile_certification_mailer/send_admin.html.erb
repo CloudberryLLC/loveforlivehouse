@@ -1,0 +1,58 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+		【要対応】<br>
+	  ユーザーからのプロフィール申請
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+	  ユーザーより利用申請もしくはプロフィール変更申請がありました。承認手続きを行ってください。<br>
+	  以下、申請内容です。
+  </td>
+</tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+	  ユーザーID: <%= @user.id %><br>
+	  メールアドレス: <%= @user.email %><br>
+	  お名前: <%= @user.basic.lastname.to_s %> <%= @user.basic.firstname.to_s %> 様<br>
+	  お名前フリガナ: <%= @user.basic.lastname_kana.to_s %> <%= @user.basic.firstname_kana.to_s %><br>
+	  会社名・所属団体: <%= @user.basic.company.to_s %><br>
+	  所属部署: <%= @user.basic.department.to_s %><br>
+	  電話番号: <%= @user.basic.phone.to_s %><br>
+	  郵便番号: 〒<%= @user.basic.zipcode.to_s %><br>
+	  住所: <%= @user.basic.pref.to_s %><%= @user.basic.city.to_s %><%= @user.basic.street.to_s %><%= @user.basic.bldg.to_s %><br>
+	  本人確認書類: <%= photo(@user.basic.id_front) %><br>
+	  本人確認書類(裏面): <%= photo(@user.basic.id_back) if @user.basic.id_back.present? %><br>
+	  <br>
+	  (登録口座)<br>
+	  <br>
+	  金融機関名:  <%= @user.bank.bank_name.to_s %><br>
+	  支店名:  <%= @user.bank.bank_branch.to_s %><br>
+	  支店番号:  <%= @user.bank.bank_branch_code.to_s %><br>
+	  口座種別:  <%= @user.bank.bank_type.to_s %><br>
+	  口座番号:  <%= @user.bank.bank_number.to_s %><br>
+	  口座名義人:  <%= @user.bank.bank_owner.to_s %><br>
+	  金融機関名:  <%= @user.bank.bank_owner_kana.to_s %><br>
+  </td>
+</tr>
+
+<tr><td style="padding:1em;"></td></tr>
+
+<!--リンクパネル-->
+<tr>
+  <td style="padding:1em;background-color:#eeeeee;">
+	  <%= link_to 'ユーザー承認手続を行う', admin_check_user_url(@user.id), style:'text-align:center;font-size:1.25em;font-weight:bold;' %>
+  </td>
+</tr>
+
+
+
+
+<%= render 'partial/mailer_footer' %>

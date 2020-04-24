@@ -1,0 +1,98 @@
+<%= form_with model: @offer, html: { multipart: true }, local: true do |form| %>
+
+  <% if @offer.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <ul>
+        <% @offer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!--オファー詳細-->
+  <h3 class="title"><%= offer_title(@offer.offer_status)[0] %></h3>
+
+  <hr>
+
+  <h5 class="title">場所・時間について</h5>
+  <div class="form-group">
+    <%= form.label :place %><span class="required"> ※</span>
+    <%= form.text_field :place, placeholder: '例: 東京タワー第一展望台', class: "form-control" %>
+  </div>
+  <div class="form-group">
+      <%= form.label :meeting_time %><span class="required"> ※</span><br>
+      <%= form.datetime_select :meeting_time, minute_step: 5, class:"custom-select" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :release_time %><span class="required"> ※</span><br>
+    <%= form.datetime_select :release_time, minute_step: 5 %>
+  </div>
+  <div class="form-group">
+    <%= form.label :playing_time %><span class="required"> ※</span>
+    <%= form.text_field :playing_time, placeholder: '半角数字で記入してください。', class: "form-control" %>
+  </div>
+  <hr>
+  <h5 class="title">イベントの詳細について</h5>
+  <p class="annotation">※1000文字以内</p>
+  <div class="form-group">
+    <%= form.label :description %><span class="required"> ※</span>
+    <%= form.text_area :description, rows: 7, maxlength: 1000, placeholder: '1000文字以内 (例:会社の10周年イベントです。)', class: "form-control" %>
+  </div>
+  <hr>
+  <h5 class="title">リクエスト</h5>
+  <p class="annotation">※各項目400文字以内</p>
+  <div class="form-group">
+    <%= form.label :dresscode %>
+    <%= form.text_area :dresscode, rows: 2, maxlength: 400, placeholder: '例: スーツでお願いします', class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :request_from_client %>
+    <%= form.text_area :request_from_client, rows: 4, maxlength: 400, class: "form-control", placeholder: "例:この曲を演奏してほしい。ハッピーバースデイを歌ってほしい等。", autofocus: true %>
+  </div>
+  <hr>
+  <h5 class="title">準備について</h5>
+  <p class="annotation">
+    以下は変更が発生しやすい項目ですので、メッセージで相手と合意ができていれば必ずしも毎回本ページから変更する必要はございません。
+  </p>
+  <p class="annotation">※各項目400文字以内</p>
+  <div class="form-group">
+    <%= form.label :equipments %>
+    <%= form.text_area :equipments, rows: 4, maxlength: 400, class: "form-control", placeholder: "例: 音響機材はホテルのものを使用します 必要であればホテル担当者とやり取りしてください。", autofocus: true %>
+  </div>
+  <div class="form-group">
+    <%= form.label :rehearsal %>
+    <%= form.text_area :rehearsal, rows: 4, maxlength: 400, class: "form-control", placeholder: "例: ◯◯時頃に15分ほどサウンドチェックはできます。", autofocus: true %>
+  </div>
+  <div class="form-group">
+    <%= form.label :carry_in %>
+    <%= form.text_area :carry_in, rows: 4, maxlength: 400, class: "form-control", placeholder: "例: 地下1階の搬入口から機材等は搬入お願いいたします。", autofocus: true %>
+  </div>
+  <div class="form-group">
+    <%= form.label :parking %>
+    <%= form.text_area :parking, rows: 4, maxlength: 400, class: "form-control", placeholder: "例: 会場に駐車場がありませんので、近隣の駐車場にてお願いします(領収書ご持参ください)", autofocus: true %>
+  </div>
+  <div class="form-group">
+    <%= form.label :dressing_room %>
+    <%= form.text_area :dressing_room, rows: 4, maxlength: 400, class: "form-control", placeholder: "例: 控室は相部屋ですが電源、姿見の鏡はございます。", autofocus: true %>
+  </div>
+  <div class="form-group">
+    <%= form.label :stage %>
+    <%= form.text_area :stage, rows: 4, maxlength: 400, class: "form-control", placeholder: "例: 会場はホテルの大広間でキャパは300人です。ステージの広さは6×3メートルです。", autofocus: true %>
+  </div>
+  <div class="form-group">
+    <%= form.label :accommodation %>
+    <%= form.text_area :accommodation, rows: 4, maxlength: 400, class: "form-control", placeholder: "例: 宿泊先は当方にて手配・負担いたします。", autofocus: true %>
+  </div>
+  <div class="form-group">
+    <%= form.label :other_condition %>
+    <%= form.text_area :other_condition, rows: 4, maxlength: 400, class: "form-control", placeholder: "例: 会場は季節的に少し寒いです。暖かくしてお越しください。", autofocus: true %>
+  </div>
+
+  <hr>
+
+  <div class="actions">
+    <%= form.submit "更新する", class: "btn btn-primary" %>
+  </div>
+
+<% end %>

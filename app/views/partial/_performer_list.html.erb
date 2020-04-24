@@ -1,0 +1,34 @@
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <% performers.each do |performer| %>
+      <% performer = set_profile_card_instance(performer) %>
+      <% unless performer.nil? %>
+        <div class="swiper-slide">
+          <div class="card profile_card shadow-sm">
+            <div class="row no-gutters">
+              <div class="col-4 profile_card__photo">
+                <%= image_tag thumbnail(performer.profile_photo), size: "96x96"  %>
+              </div>
+              <div class="col-8">
+                <div class="card-body profile_card__textarea">
+                  <h5 class="card-title"><%= performer.performer_name%></h5>
+                  <p>
+                    <span class="card-text"><%=performer.area %></span><br>
+                    <span class="card-text"><%= performer.genre %></span><br>
+                    <span class="card-text"><%= performer.set_of_instruments %></span><br>
+                    <span class="card-text">
+                      <%= calculate_price(performer.basic_guarantee * performer.number_of_member)[3].to_i.to_s(:delimited)+"円" %>
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="profile_card__link_button">
+                <span class="center"><%= link_to 'プロフィールを見る', performer_path(performer.id), class:'btn btn-sm btn-primary stretched-link' %></span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

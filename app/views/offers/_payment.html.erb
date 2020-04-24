@@ -1,0 +1,9 @@
+<div class="container">
+  <% if client? %>
+    <%= render partial: 'offers/payment_client', locals: { offer: @offer } %>
+    <%= render partial: 'offers/reciept', locals: { offer: @offer } %>
+  <% elsif performer? %>
+    <%= render partial: 'offers/payment_performer', locals: { offer: @offer } %>
+    <%= render partial: 'offers/reciept', locals: { offer: @offer } %>
+  <% end %>
+</div>

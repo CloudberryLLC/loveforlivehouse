@@ -1,0 +1,56 @@
+<div class="container pagetop">
+
+<h2 class="title">お支払い</h2>
+
+<div class="left">
+  <p><strong>お支払い総額: <%= @offer.payment.total.to_s(:delimited) %>円(税込)</strong></p>
+  <p><strong>お支払い期限: <%= @offer.payment.payment_due.strftime("%Y年%m月%d日(%a)") %>15:00まで</strong></p>
+</div>
+
+  <%= form_with model: @offer do |f| %>
+
+    <%= f.hidden_field :offer_status, value: 8 %>
+    <%= f.fields_for :payment, @offer.payment || Payment.new do |payment| %>
+      <div>
+        <%= payment.radio_button(:payment_options, 1, class:"radio_button_pay_options") %>
+        <%= payment.label(:payment, "クレジットカード") %><br>
+        <%= payment.radio_button(:payment_options, 2, class:"radio_button_pay_options") %>
+        <%= payment.label(:payment, "銀行振込") %>
+      </div>
+
+      <div class="button__area">
+        <%= payment.submit "次へ", class: "right btn btn-success" %>
+      </div>
+    <% end %>
+  <% end %>
+
+
+<hr>
+
+<div class="accordion" id="accordionPayment">
+  <div class="button__area" id="headingPayment">
+    <h5>
+      <button class="btn btn-outline-info collapsed" type="button" data-toggle="collapse" data-target="#collapsePayment" aria-expanded="true" aria-controls="collapsePayment">
+        お支払いの詳細を確認
+      </button>
+    </h5>
+  </div>
+  <div id="collapsePayment" class="collapse" aria-labelledby="headingPayment" data-parent="#accordionPayment">
+    <%= render partial: 'offers/payment_detail_for_client', locals: { offer: @offer, payment: @payment } %>
+  </div>
+</div>
+
+<%= javascript_tag do %>
+  $(".radio_button_pay_options").on('click keyup', function() {
+    if ($('input[name="offer[payment_attributes][payment_options]"]:checked').val() == 1 ){
+      $('#card-transaction-button').show();
+    }
+
+    payment_due = "";
+
+    if ($('input[name="offer[payment_attributes][payment_options]"]:checked').val() == 2 ){
+      $('#card-transaction-button').hide();
+      $('#offer_payment_attributes_payment_due').val(payment_due);
+    }
+  });
+<% end %>

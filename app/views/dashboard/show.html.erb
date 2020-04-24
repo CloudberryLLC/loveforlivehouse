@@ -1,0 +1,20 @@
+<div class="container">
+  <h2 class="title">ダッシュボード</h2>
+  <hr>
+
+  <div id="dashboard-top">
+    <%= render 'dashboard_top' %>
+  </div>
+
+  <% if client? %>
+    <%= render 'dashboard_client' %>
+
+  <% elsif performer? %>
+    <br>
+    <div id="dashboard-performer" >
+      <%= render 'dashboard_performer' %>
+    </div>
+
+  <% end %>
+
+</div>

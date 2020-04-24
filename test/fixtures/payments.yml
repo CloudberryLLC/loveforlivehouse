@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  offer: one
+  total: 1
+  guarantee: 1
+  management_fee: 1
+  staff: 1
+  consumption_tax: 1
+  withholding_tax: 1
+  card: MyString
+  transfer_fee: 1
+  system_fee: 1
+  payment_options: 1
+  payment_due: 2018-11-21
+  paid: false
+  recieved_at: 2018-11-21 22:21:53
+
+two:
+  offer: two
+  total: 1
+  guarantee: 1
+  management_fee: 1
+  staff: 1
+  consumption_tax: 1
+  withholding_tax: 1
+  card: MyString
+  transfer_fee: 1
+  system_fee: 1
+  payment_options: 1
+  payment_due: 2018-11-21
+  paid: false
+  recieved_at: 2018-11-21 22:21:53

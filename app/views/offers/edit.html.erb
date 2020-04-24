@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+
+    <% if current_user.id == @offer.client %>
+      <%= render partial: 'offers/edit_offer_client', locals: {offer: @offer} %>
+    <% end %>
+
+    <% if current_user.id == @offer.contractor %>
+      <%= render partial: 'offers/edit_offer_performer', locals: {offer: @offer} %>
+    <% end %>
+
+    <hr>
+
+    </div>
+  </div>
+</div>
+
+<%= javascript_tag do %>
+  function autoFillPrices(){
+    var a = $("#guarantee").val();
+    var b = $("#staff").val();
+    var c = parseInt(a) +  parseInt(b);
+    if(c > 0){
+    $("#withholding_tax").val(parseInt(c * <%= calculate_price(1)[4] %>));
+    $("#system_fee").val(Math.min(<%= Constants::SYSTEM_FEE_LIMIT %>, parseInt(c * <%= calculate_price(1)[2] %>)));
+    }
+  }
+  $(function(ready) {
+    if ($(".no-nil").val() == "") {
+    $(".no-nil").val(0);
+    }
+    autoFillPrices();
+  });
+  $(function(ready) {
+    $("#staff").on('focus keyup', function() {
+      autoFillPrices();
+    });
+  });
+<% end %>

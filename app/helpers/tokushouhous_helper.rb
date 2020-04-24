@@ -1,0 +1,2 @@
+module TokushouhousHelper
+end

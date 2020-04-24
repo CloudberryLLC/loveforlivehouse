@@ -1,0 +1,57 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+    お支払いのお願い<br>
+    (オファーID: <%= @offer.id %>)
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+    オファーの承諾をパフォーマーに通知いたしました。<br>
+    お支払いにつきまして、以下ご確認をお願い致します。<br>
+  </td>
+</tr>
+
+<!--本文-->
+<tr>
+  <td style="padding:1em;">
+
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em 1em;"></td></tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+    <p style="font-weight:bold;">クレジットカード・デビットカードの場合</p>
+    既にお支払い済みかと存じますが、当社にて入金を確認次第のオファー確定となります。少々お時間がかかる場合がございますのでご容赦ください。<br>
+    <br>
+    <p style="font-weight:bold;">銀行振込の場合</p>
+    <%= @offer.payment.payment_due.strftime("%Y年%m月%d日(%a)") %> 15:00までにご入金の完了をお願いいたします。<br>
+    上記期限までにご入金が確認できない場合このオファーは不成立となり、パフォーマーにもその旨の通知が届きますのでご注意ください。<br>
+    <br>
+    <p style="font-weight:bold;">お振込金額: <%= total(@offer.estimation).to_s(:delimited) %>円 </p>
+    ※手数料はご負担をお願い致します。<br>
+    <br>
+    振込先口座<br>
+    三井住友銀行 小阪支店 普通 1188990<br>
+    ムラタ ケンタロウ<br>
+  </td>
+</tr>
+
+<tr><td style="padding:1em;"></td></tr>
+
+<!--リンクパネル-->
+<tr>
+  <td style="padding:1em;background-color:#eeeeee;">
+    <%= link_to "このオファーの詳細を確認する。", offer_url(@offer), class:"btn btn-success" %>
+  </td>
+</tr>
+
+
+<%= render 'partial/mailer_footer' %>

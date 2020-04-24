@@ -1,0 +1,49 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+    【要対応】<br>
+    ユーザーからの問い合わせ<br>
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+    24時間以内にメールで回答をお願いします。<br>
+  </td>
+</tr>
+
+<!--本文-->
+<tr>
+  <td style="padding:1em;">
+    お名前: <%= @inquiry.name.to_s %> 様<br>
+    メールアドレス: <%= @inquiry.email.to_s %><br>
+    カテゴリ: <%= category_show(@inquiry.category) %><br>
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em 1em;"></td></tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+    お問い合わせ内容:<br>
+    <%= simple_format(@inquiry.content) %>
+  </td>
+</tr>
+
+<tr><td style="padding:1em;"></td></tr>
+
+<!--リンクパネル-->
+<tr>
+  <td style="padding:1em;background-color:#eeeeee;">
+    <%= mail_to @inquiry.email, '返信する' %>
+  </td>
+</tr>
+
+
+
+
+<%= render 'partial/mailer_footer' %>

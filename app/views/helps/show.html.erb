@@ -1,0 +1,45 @@
+<div class="container">
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "ヘルプ", helps_path %></li>
+    <li class="breadcrumb-item"><%= category_show(@help.category) %></li>
+  </ol>
+
+  <div class="container-fluid pagetop">
+
+  <div>
+      <h2 class="strong"><%= @help.title %></h2>
+  </div>
+
+  <hr>
+
+  <div class="right">
+    <p class="margin-bottom-1em">
+      <strong>カテゴリー:</strong>
+      <%= category_show(@help.category) %>
+    </p><br>
+  </div>
+
+  <div id="help-content-area">
+    <%= sanitize @help.content %>
+  </div>
+
+  <hr>
+
+  <% if (user_signed_in? && admin?) %>
+    <div class="button__area">
+        <%= link_to '記事を編集', edit_help_path(@help), class:"btn btn-secondary" %>
+        <%= link_to '記事の一覧', helps_path, class:"btn btn-info" %>
+    </div>
+  <% end %>
+
+  </div>
+
+</div>
+
+<script>
+  //Edit時に表示される画像のキャプチャを除去
+  $('#help-content-area').find('img').unwrap();
+  $('#help-content-area').find('img').nextAll('span').remove();
+  $('#help-content-area').find('img').addClass('help__image');
+</script>

@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>ユーザー登録/変更 承認画面</h2>
+  <hr>
+  <p>ユーザー情報</p>
+    ユーザーID: <%= @user.id %><br>
+  	メールアドレス: <%= @user.email %><br>
+    お名前: <%= @user.basic.lastname %> <%= @user.basic.firstname %> 様<br>
+    お名前フリガナ: <%= @user.basic.lastname_kana %> <%= @user.basic.firstname_kana %><br>
+    会社名・所属団体: <%= @user.basic.company %><br>
+    所属部署: <%= @user.basic.department if @user.basic.department.present? %><br>
+    電話番号: <%= @user.basic.phone %><br>
+    郵便番号: 〒<%= @user.basic.zipcode %><br>
+    住所: <%= @user.basic.pref %><%= @user.basic.city %><%= @user.basic.street %> <%= @user.basic.bldg %><br>
+    <p>本人確認書類:</p>
+    <%= image_tag(photo(@user.basic.id_front)) %><br>
+    <p>本人確認書類(裏面):</p>
+    <% if @user.basic.id_back.present? %>
+      <%= image_tag(photo(@user.basic.id_back)) %><br>
+    <% end %>
+  <p>登録口座</p>
+    金融機関名:  <%= @user.bank.bank_name %><br>
+    支店名:  <%= @user.bank.bank_branch %><br>
+    支店番号:  <%= @user.bank.bank_branch_code %><br>
+    口座種別:  <%= @user.bank.bank_type %><br>
+    口座番号:  <%= @user.bank.bank_number %><br>
+    口座名義人:  <%= @user.bank.bank_owner %><br>
+    金融機関名:  <%= @user.bank.bank_owner_kana %><br>
+  <hr>
+  <div class="container">
+    <%= form_with model: @user, url: user_approval_path(@user), local: true do |f| %>
+      <%= f.hidden_field :certified, value: true %>
+      <%= f.submit "新規登録・変更を承認する", class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,170 @@
+<div class="container pagetop">
+  <div class="row justify-content-center">
+    <div class="text-center">
+
+      <h2>グループを新規作成する</h2>
+      <hr>
+
+      <%= form_for @user, url: new_user_performer_profile_path, :html => {:multipart => true}  do |f| %>
+
+        <% if @user.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <% if @user.user_type === 3 %>
+          <div class="container">
+            <%= f.fields_for :performer_profiles, @performer_profile || PerformerProfile.new do |p| %>
+              <p class="left">演奏家プロフィール</p>
+              <div class="container">
+                <div class="form-group">
+                  <%= p.label :performer_name %>
+                  <span class="required"> *</span><br>
+                  <%= p.text_field :performer_name, class: "form-control", placeholder: "アーティスト名", autofocus: true %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :performer_rank %>
+                  <span class="required"> *</span><br>
+                  <%= p.select :performer_rank, [["プロフェッショナル", 1],["プロ志望者 - プロミュージシャンになる意思があり、時々音楽の仕事を受ける。", 2],["アマチュア - 音楽で仕事をする意思はないが、自分の音楽スキルを活かしたい。", 3]], {}, {class: "form-control"} %>
+                  <p class="margin-1em">
+                    ※
+                    <span class="preference" data-toggle="popover" data-html="true" data-placement="bottom"
+                    title="区分の選び方について"
+                    data-content=
+                    "
+                    <p>おおよそ以下のような基準となります。</p>
+                    <p>
+                      プロフェッショナル - 音楽大学を卒業、またはすでに音楽で生計を立てている方。<br>
+                      プロ志望者 - プロを目指す意思がある方、または副業で音楽の仕事をしたことがある方。<br>
+                      アマチュア - 演奏のレベルを問わず、演奏を趣味の範囲にとどめておきたい方。</p>
+                    " >
+                    区分の選び方について</span>
+                    <br>
+                    ※
+                    <span class="preference" data-toggle="popover" data-html="true" data-placement="bottom"
+                    title="ヘルプ:最低報酬額について"
+                    data-content=
+                    "
+                    <p>プロフェッショナル・プロ志望者の区分では、一人あたり報酬額に下限があります。</p>
+                    <p>プロフェッショナル: 40,000円 / プロ志望者: 30,000円</p>
+                    <p>一人あたり演奏料を下限より低い金額で希望する場合は「アマチュア」の区分を選択してください。</p>
+                    " >
+                    最低報酬額</span>
+                  </p>
+                </div>
+                <div class="form-group">
+                  <%= p.label :basic_guarantee %>
+                  <span class="required"> *</span><br>
+                  <%= p.text_field :basic_guarantee, class: "form-control", placeholder: "最低額：アマチュア15,000円、プロ志望30,000円、プロ40,000円", autofocus: true %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :number_of_member %>
+                  <span class="required"> *</span><br>
+                  <%= p.text_field :number_of_member, class: "form-control", placeholder: "半角数字", autofocus: true %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :genre %>
+                  <%= p.text_field :genre, id: "genre", class: "form-control", placeholder: "例：クラシック、ジャズ、ポップス", autofocus: true %>
+                  <%= p.hidden_field :music_genre_list , id:"genre-tag" %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :area %>
+                  <%= p.text_field :area, class: "form-control", placeholder: "例：東京都、大阪府", autofocus: true %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :set_of_instruments %><br>
+                  <%= p.text_field :set_of_instruments, id:"set-of-instruments", class: "form-control", placeholder: "カンマ区切りで楽器を追加", autofocus: true %>
+                  <%= p.hidden_field :instrument_list , id:"instrument-tag" %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :profile_short %>
+                  <%= p.text_area :profile_short, rows: 3, maxlength: 100, class: "form-control", placeholder: "100文字以内", autofocus: true %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :profile_long %>
+                  <%= p.text_area :profile_long, rows: 7, maxlength: 1000, class: "form-control", placeholder: "1000文字以内", autofocus: true %>
+                </div>
+              <hr>
+
+              <p class="left">アーティスト写真</p>
+                <div class="form-group">
+                  <%= p.label :profile_photo %>
+                  <%= p.file_field :profile_photo, id: :musician_profile_profile_photo, accept: 'image/jpg,image/jpeg,image/png,image/gif', class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :cover_photo %>
+                  <%= p.file_field :cover_photo, id: :musician_profile_cover_photo, accept: 'image/jpg,image/jpeg,image/png,image/gif', class: "form-control" %>
+                </div>
+              <hr>
+
+              <p class="left">条件</p>
+                <div class="form-group">
+                  <%= p.label :conditions %>
+                  <%= p.text_area :conditions, class: "form-control", placeholder: "出張可、音響手配可、など宿泊費負担など", autofocus: true %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :conditions_detail %>
+                  <%= p.text_area :conditions_detail, rows: 5, maxlength: 400, class: "form-control", placeholder: "条件詳細（400文字以内）", autofocus: true %>
+                </div>
+              <hr>
+
+              <p class="left">演奏動画</p>
+
+                <div class="form-group">
+                  <%= p.label :sample_movie_url1 %>
+                  <%= p.text_field :sample_movie_url1, class: "form-control", placeholder: "Youtubeのみ", autofocus: true %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :sample_movie_url2 %>
+                  <%= p.text_field :sample_movie_url2, class: "form-control", placeholder: "Youtubeのみ", autofocus: true %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :sample_movie_url3 %>
+                  <%= p.text_field :sample_movie_url3, class: "form-control", placeholder: "Youtubeのみ", autofocus: true %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+        <hr>
+        <div class="actions">
+          <%= f.submit "公開審査を依頼する", class: "btn btn-info" %>
+        </div>
+      <% end %>
+      <hr>
+
+      <p>
+      アカウント情報（メールアドレス、パスワード）の変更は<%= link_to "こちら", edit_user_registration_path %>
+      </p>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function(){
+    //タグが登録されている場合、何もせずフォームが保存されるとカンマ抜きで登録されるので、その対処
+    $("#genre-tag").val($("#genre-tag").val().replace(/\s+/g, ","));
+    $("#instrument-tag").val($("#instrument-tag").val().replace(/\s+/g, ","));
+
+    //ジャンルと楽器編成の隠しフォーム(タグ用)へフォームの内容をうつす
+    $("#genre").on('load click keyup',function(){
+      genreTags = $("#genre").val();
+      $("#genre-tag").val(genreTags);
+    });
+
+    $("#set-of-instruments").on('load click keyup',function(){
+      instrumentTags = $("#set-of-instruments").val();
+      $("#instrument-tag").val(instrumentTags);
+    });
+  });
+
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>

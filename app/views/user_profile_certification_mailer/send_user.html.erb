@@ -1,0 +1,55 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+		アカウント情報登録を受け付けました。<br>
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+		こんにちは。MUSICIANBOOKカスタマーサポートです。<br>
+	  この度は、MUSICIANBOOKにご登録をくださりありがとうございます。<br>
+		<br>
+	  アカウント情報の登録(またはサービス利用申請)を受け付けました。<br>
+	  本利用申請について、本人確認書類と照合のうえ審査をさせて頂きます。<br>
+	  サービス利用開始まで恐れ入りますが少々お待ち下さいませ。<br>
+  </td>
+</tr>
+
+<!--本文-->
+<tr>
+  <td style="padding:1em;">
+		<%= @user.basic.lastname %> 様<br>
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em 1em;"></td></tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+	  ご申請内容(情報保護のため、一部を伏せております)<br>
+	  <br>
+	  ユーザーID: <%= @user.id %><br>
+	  お名前: <%= @user.basic.lastname %> <%= @user.basic.firstname %> 様<br>
+	  申請日時: <%= @user.updated_at %><br>
+  </td>
+</tr>
+
+<tr><td style="padding:1em;"></td></tr>
+
+<!--リンクパネル-->
+<tr>
+  <td style="padding:1em;background-color:#eeeeee;">
+		本登録に覚えのない場合は<%= link_to 'サポート', new_inquiry_url %>までお知らせください。<br>
+		今後ともMUSICIANBOOKをよろしくお願いいたします。<br>
+  </td>
+</tr>
+
+
+
+
+<%= render 'partial/mailer_footer' %>

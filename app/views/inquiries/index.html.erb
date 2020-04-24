@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Inquiries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Type</th>
+      <th>Content</th>
+      <th>Closed</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inquiries.each do |inquiry| %>
+      <tr>
+        <td><%= inquiry.name %></td>
+        <td><%= inquiry.email %></td>
+        <td><%= inquiry.category %></td>
+        <td><%= inquiry.content %></td>
+        <td><%= inquiry.closed %></td>
+        <td><%= link_to 'Show', inquiry %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Inquiry', new_inquiry_path %>

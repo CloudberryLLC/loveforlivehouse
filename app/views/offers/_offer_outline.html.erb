@@ -1,0 +1,10 @@
+<div class="container">
+  <h4 class="title"><%= select_offer_page_title(@offer.offer_status) %> (オファーID: <%= @offer.id %>)</h4>
+  <p class="right">ステータス: <%= show_offer_status(@offer.offer_status) %></p>
+
+  <% if offer_declined?(@offer) %>
+    <div id="declined_indicator">
+      <h4 class="title red"><%= offer_declined_message(@offer) %></h4>
+    </div>
+  <% end %>
+</div>

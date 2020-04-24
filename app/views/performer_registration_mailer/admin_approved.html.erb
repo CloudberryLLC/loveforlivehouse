@@ -1,0 +1,45 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+    パフォーマー登録/変更 承認通知
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+    以下の内容のパフォーマー登録/変更依頼を承認しました。<br>
+  </td>
+</tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+    ユーザー情報<br>
+    <br>
+    ユーザーID: <%= @user.id %><br>
+    お名前: <%= @user.basic.lastname.to_s %> <%= @user.basic.firstname.to_s %> 様<br>
+    連絡先: <%= @user.email %><br>
+    <br>
+    <br>
+    登録を希望するパフォーマーの情報</br>
+    <br>
+    パフォーマーID: <%= @performer.id %><br>
+    パフォーマー名: <%= @performer.performer_name.to_s %><br>
+    登録日: <%= @performer.created_at %><br>
+    承認日時: <%= @performer.updated_at %><br>
+  </td>
+</tr>
+
+<tr><td style="padding:1em;"></td></tr>
+
+<!--リンクパネル-->
+<tr>
+  <td style="padding:1em;background-color:#eeeeee;">
+    <%= link_to 'パフォーマーのページへ', performer_url(@performer) %>
+  </td>
+</tr>
+
+<%= render 'partial/mailer_footer' %>

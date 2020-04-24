@@ -1,0 +1,404 @@
+# ja.yml
+
+ja:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "バリデーションに失敗しました: %{errors}"
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
+
+  date:
+    abbr_day_names:
+    - 日
+    - 月
+    - 火
+    - 水
+    - 木
+    - 金
+    - 土
+    abbr_month_names:
+    -
+    - 1月
+    - 2月
+    - 3月
+    - 4月
+    - 5月
+    - 6月
+    - 7月
+    - 8月
+    - 9月
+    - 10月
+    - 11月
+    - 12月
+    day_names:
+    - 日曜日
+    - 月曜日
+    - 火曜日
+    - 水曜日
+    - 木曜日
+    - 金曜日
+    - 土曜日
+    formats:
+      default: "%Y/%m/%d"
+      long: "%Y年%m月%d日(%a)"
+      short: "%m/%d"
+    month_names:
+    -
+    - 1月
+    - 2月
+    - 3月
+    - 4月
+    - 5月
+    - 6月
+    - 7月
+    - 8月
+    - 9月
+    - 10月
+    - 11月
+    - 12月
+    order:
+    - :year
+    - :month
+    - :day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: 約1時間
+        other: 約%{count}時間
+      about_x_months:
+        one: 約1ヶ月
+        other: 約%{count}ヶ月
+      about_x_years:
+        one: 約1年
+        other: 約%{count}年
+      almost_x_years:
+        one: 1年弱
+        other: "%{count}年弱"
+      half_a_minute: 30秒前後
+      less_than_x_minutes:
+        one: 1分以内
+        other: "%{count}分未満"
+      less_than_x_seconds:
+        one: 1秒以内
+        other: "%{count}秒未満"
+      over_x_years:
+        one: 1年以上
+        other: "%{count}年以上"
+      x_days:
+        one: 1日
+        other: "%{count}日"
+      x_minutes:
+        one: 1分
+        other: "%{count}分"
+      x_months:
+        one: 1ヶ月
+        other: "%{count}ヶ月"
+      x_years:
+        one: 1年
+        other: "%{count}年"
+      x_seconds:
+        one: 1秒
+        other: "%{count}秒"
+    prompts:
+      day: 日
+      hour: 時
+      minute: 分
+      month: 月
+      second: 秒
+      year: 年
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      accepted: を受諾してください
+      blank: を入力してください
+      present: は入力しないでください
+      confirmation: と%{attribute}の入力が一致しません
+      empty: を入力してください
+      equal_to: は%{count}にしてください
+      even: は偶数にしてください
+      exclusion: は予約されています
+      greater_than: は%{count}より大きい値にしてください
+      greater_than_or_equal_to: は%{count}以上の値にしてください
+      inclusion: は一覧にありません
+      invalid: は不正な値です
+      less_than: は%{count}より小さい値にしてください
+      less_than_or_equal_to: は%{count}以下の値にしてください
+      model_invalid: "バリデーションに失敗しました: %{errors}"
+      not_a_number: は数値で入力してください
+      not_an_integer: は整数で入力してください
+      odd: は奇数にしてください
+      required: を入力してください
+      taken: はすでに存在します
+      too_long: は%{count}文字以内で入力してください
+      too_short: は%{count}文字以上で入力してください
+      wrong_length: は%{count}文字で入力してください
+      other_than: は%{count}以外の値にしてください
+    template:
+      body: 次の項目を確認してください
+      header:
+        one: "%{model}にエラーが発生しました"
+        other: "%{model}に%{count}個のエラーが発生しました"
+  helpers:
+    select:
+      prompt: 選択してください
+    submit:
+      create: 登録する
+      submit: 保存する
+      update: 更新する
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%n%u"
+        precision: 0
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: 円
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: 十億
+          million: 百万
+          quadrillion: 千兆
+          thousand: 千
+          trillion: 兆
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n%u"
+        units:
+          byte: バイト
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: 、
+      two_words_connector: 、
+      words_connector: 、
+  time:
+    am: 午前
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      short: "%y/%m/%d %H:%M"
+    pm: 午後
+
+# カスタムデータ
+
+  errors:
+    messages:
+      carrierwave_processing_error: 処理できませんでした
+      carrierwave_integrity_error: は許可されていないファイルタイプです
+      carrierwave_download_error: はダウンロードできません
+      extension_whitelist_error: "%{extension}ファイルのアップロードは許可されていません。アップロードできるファイルタイプ: %{allowed_types}"
+      extension_blacklist_error: "%{extension}ファイルのアップロードは許可されていません。アップロードできないファイルタイプ: %{prohibited_types}"
+      content_type_whitelist_error: "%{content_type}ファイルのアップロードは許可されていません"
+      content_type_blacklist_error: "%{content_type}ファイルのアップロードは許可されていません"
+      rmagick_processing_error: "rmagickがファイルを処理できませんでした。画像を確認してください。エラーメッセージ: %{e}"
+      mini_magick_processing_error: "MiniMagickがファイルを処理できませんでした。画像を確認してください。エラーメッセージ: %{e}"
+      min_size_error: "ファイルを%{min_size}バイト以上のサイズにしてください"
+      max_size_error: "ファイルを%{max_size}バイト以下のサイズにしてください"
+      blank: "は空欄にできません"
+  activerecord:
+    attributes:
+      user:
+        email: "メールアドレス"
+        user_type: "ユーザー区分"
+        rule_confirmation: "利用規約"
+      basic:
+        lastname: "姓"
+        lastname_kana: "姓（カナ）"
+        firstname: "名"
+        firstname_kana: "名（カナ）"
+        company: "会社名"
+        department: "部署名"
+        phone: "電話番号（ハイフンなし）"
+        zipcode: "郵便番号（ハイフンなし）"
+        pref: "都道府県"
+        city: "市区町村"
+        street: "番地"
+        bldg: "建物名"
+        profile_photo: "プロフィール写真"
+        cover_photo: "カバー写真"
+        id_front: "本人確認書類コピー（表）"
+        id_back: "本人確認書類コピー（裏）"
+        company_certification: "履歴事項全部証明書コピー"
+      bank:
+        bank_name: "金融機関名"
+        bank_branch: "支店名"
+        bank_branch_code: "支店コード（店番）"
+        bank_type: "口座種別"
+        bank_number: "口座番号"
+        bank_owner: "口座名義人"
+        bank_owner_kana: "口座名義人（カナ）※スペースなし"
+      musician_profile:
+        musician_name: "アーティスト名"
+        musician_class: "アーティスト区分"
+        instrument1: "演奏楽器1"
+        instrument2: "演奏楽器2"
+        area: "主な活動エリア"
+        profile_photo: "プロフィール写真"
+        cover_photo: "カバー写真"
+        profile_short: "プロフィール（見出し）"
+        profile_long: "プロフィール（詳細）"
+        sample_movie_url1: "サンプル動画URL1"
+        sample_movie_url2: "サンプル動画URL2"
+        sample_movie_url3: "サンプル動画URL3"
+        basic_guarantee: "基本報酬希望額"
+        play_condition: "演奏条件"
+        play_condition_detail: "演奏条件詳細"
+      performer_profile:
+        performer_name: "アーティスト名"
+        performer_rank: "アーティスト区分"
+        genre: "ジャンル"
+        area: "主な活動エリア"
+        number_of_member: "メンバー数"
+        set_of_instruments: "楽器構成"
+        profile_photo: "プロフィール写真"
+        cover_photo: "カバー写真"
+        profile_short: "プロフィール（見出し）"
+        profile_long: "プロフィール（詳細）"
+        sample_movie_url1: "サンプル動画URL1"
+        sample_movie_url2: "サンプル動画URL2"
+        sample_movie_url3: "サンプル動画URL3"
+        basic_guarantee: "手取り報酬(1人あたり)"
+        conditions: "演奏条件"
+        conditions_detail: "演奏条件詳細"
+        published: "公開設定"
+      contact:
+        performer_id: "演奏家ID"
+        user1: "クライアント"
+        user2: "受注者"
+      chat_message:
+        contact_id: "コンタクトID"
+        from: "送信者"
+        to: "受診者"
+        body: "本文"
+      offer:
+        user: "ユーザー"
+        contact: "コンタクトID"
+        offer_status: "ステータス"
+        client: "クライアント"
+        contractor: "受注者"
+        offered_performer: "演奏者"
+        last_update_from: "最終更新者"
+        meeting_time: "入り時間"
+        meeting_time_confirmed: "確定"
+        release_time: "終了時間"
+        release_time_confirmed: "確定"
+        playing_time: "演奏時間(トータル / 分)"
+        playing_time_confirmed: "確定"
+        place: "場所"
+        request_from_client: "選曲・演出"
+        dresscode: "衣装・ドレスコード"
+        contract: "契約書(ある場合)"
+        description: "イベントの内容"
+        equipments: "音響機材等について"
+        rehearsal: "リハーサルについて"
+        carry_in: "搬入経路および動線"
+        parking: "近隣駐車場について"
+        dressing_room: "控室について"
+        stage: "会場・ステージについて"
+        accommodation: "宿泊ついて(必要な場合)"
+        other_condition: "その他準備について"
+      estimation:
+        guarantee: "手取り演奏料(全員分)"
+        staff: "スタッフ人件費(全員分)"
+        withholding_tax: "源泉税・特別復興税"
+        system_fee: "システム利用料"
+        consumption_tax: "内消費税"
+        transport: "交通費"
+        accommodation: "宿泊費"
+        carriage: "機材運搬費"
+        equipment: "楽器・機材レンタル費"
+        other_expenses: "その他経費"
+        detail: "見積り詳細"
+      arrangement:
+        client_items: "クライアント側の準備物"
+        performer_items: "パフォーマー側の持参物"
+      payment:
+        total: "合計金額"
+        guarantee: "実演料(パフォーマー手取り収入)"
+        management_fee: "エージェント手数料"
+        staff: "スタッフ人件費"
+        consumption_tax: "消費税"
+        withholding_tax: "源泉税・特別復興税"
+        transport: "交通費"
+        accommodation: "宿泊費"
+        carriage: "運搬費"
+        equipment: "機材費"
+        other_expenses: "その他経費"
+        card: "カード手数料"
+        transfer_fee: "送金手数料"
+        system_fee: "システム利用料"
+        payment_options: "支払い方法"
+        payment_due: "支払い期日"
+        paid: "支払状況"
+        charged_at: "請求日"
+        recieved_at: "支払完了日時"
+      review:
+        reviewee: "レビューされた人"
+        reviewer: "レビュワー"
+        total_review: "総合評価"
+        quality: "クオリティ"
+        confortability: "仕事のしやすさ"
+        manners: "仕事のしやすさ"
+        cost_performance: "コストパフォーマンス"
+        fast_response: "仕事のしやすさ"
+        comment: "コメント"
+        report: "イレギュラー報告"
+        feedback: "サービス改善リクエスト"
+      cancelled_offer:
+        cancelled_by: "キャンセル申請者"
+        cause: "キャンセル理由"
+        payback_rate: "払戻率"
+        paid_to_client: "クライアントへの払戻"
+        paid_to_performer: "パフォーマーへの支払"
+        pay_amount_to_client: "クライアント払戻額"
+        pay_amount_to_performer: "パフォーマー支払額"
+      name_card:
+        your_part: "項目1(演奏楽器)"
+        your_name: "項目2(名前)"
+        your_name_kana: "項目3(名前フリガナもしくはグループ名)"
+        your_group: "項目4(フリー欄 20文字以内)"
+      name_card_order:
+        id: "注文ID"
+        amount: "数量"
+        delivery_date: "お届け希望日(時間指定不可)"
+        price: "お支払い金額"
+        payment_option: "お支払い方法"
+        payment_limit: "お支払い期限"
+        zipcode: "郵便番号(ハイフンなし)"
+        pref: "都道府県"
+        city: "市区町村"
+        street: "番地"
+        bldg: "建物名"
+        reciever_name: "お名前"
+      inquiry:
+        name: "お名前"
+        email: "メールアドレス"
+        category: "お問い合わせの種類"
+        content: "お問い合わせ内容(1000文字以内)"

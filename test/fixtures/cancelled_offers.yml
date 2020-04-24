@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  offer: one
+  cancelled_by: 1
+  cause: MyText
+
+two:
+  offer: two
+  cancelled_by: 1
+  cause: MyText

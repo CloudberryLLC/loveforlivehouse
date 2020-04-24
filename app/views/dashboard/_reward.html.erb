@@ -1,0 +1,28 @@
+<h5>今月の実績</h5>
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      パフォーマー名
+    </div>
+    <div class="col-md-3">
+      <span class="right">オファー回数 / 報酬総額</span>
+    </div>
+  </div>
+  <hr>
+  <% @user.performer_profiles.each do |group| %>
+    <div class="row">
+      <div class="col-md-9">
+        <span class="dashboard__index left">
+    		<%= image_tag(group.profile_photo, class:"profile-64round") if group.profile_photo.attached? %>
+    		<%= group.performer_name %>
+        </span>
+      </div>
+      <div class="col-md-3">
+        <!--当月の報酬を表示する-->
+        <span class="dashboard__index right middle_height"><%= show_reward(group)[0] %>回 / <%= show_reward(group)[1].to_s(:delimited) %>円</span>
+      </div>
+    </div>
+  <% end %>
+</div>

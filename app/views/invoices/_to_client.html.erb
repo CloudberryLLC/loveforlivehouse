@@ -1,0 +1,68 @@
+<div class="container pagetop">
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+      <div id="invoice_title" class="title">
+        <h2 class="title center">前払請求書</h2>
+      </div>
+
+      <% # 請求書番号と日付 %>
+      <p class="right">
+        No: I-<%= set_number(@offer) %><br>
+        <%= show_date(@payment.charged_at) %>
+      </p>
+
+      <% # 宛名 %>
+      <div id="invoice_client_name">
+        <h4 class="strong">
+          <%= show_company_name(@user.basic) %> <%= @user.basic.department %><br>
+          <%= @user.basic.lastname %> <%= @user.basic.firstname %> 様</h4>
+      </div>
+
+      <% # 挨拶文 %>
+      <p>
+        平素より格別のご高配を賜り誠に有難うございます。 <br>
+        利用規約に基づき下記の内容で前払のご請求をさせて頂きます。
+      </p>
+
+      <%= render partial: 'offers/payment_detail_for_client', locals: { offer: @offer, payment: @payment } %>
+
+      <% # 備考 %>
+      <p>
+        MUSICIANBOOK利用料として (オファーID: <%= @offer.id %>)<br>
+        実施日: <%= @offer.meeting_time.strftime("%Y年%m月%d日") %> (場所: <%= @offer.place %>)<br>
+        備考: <%= simple_format(@payment.detail) %>
+      </p>
+
+      <hr>
+
+      <div id="payment_information">
+        <p>
+          <span>ご入金期限: </span><br>
+          <span class="strong"><%= @payment.payment_due.strftime("%Y年%m月%d日(%a)") %> 15:00まで</span>
+        </p>
+        <p>
+          <span>お振込先:</span><br>
+          <span>
+            三井住友銀行 谷町支店<br>
+            普通 1188990<br>
+            合同会社ギフトポート
+          </span>
+        </p>
+        <p class="annotation">
+          ※お支払い期限内のご入金が確認できない場合、<span class="underline">本オファーについては不成立となります</span>。<br>
+          ※本ご請求はオファー完了時刻をもって本請求書の代わりとさせていただきます。<br>
+          ※万一キャンセルや欠員が発生した場合、返金申請はオファー終了後48時間以内のみ受付可能です。
+        </p>
+      </div>
+
+      <hr>
+
+      <div id="from_address">
+        <p>またのご利用をお待ち申し上げております。</p>
+        <p class="right">〒338-0002 埼玉県さいたま市下落合4-19-1-102 合同会社ギフトポート</p>
+      </div>
+
+    </div>
+  </div>
+</div>

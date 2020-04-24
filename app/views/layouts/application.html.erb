@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="MUSICIANBOOK - ミュージシャンブックは、近くのミュージシャンに気軽に演奏を依頼できる、新しい演奏マッチングサービスです。">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="google-site-verification" content="Af98TzfyS4zXKSN9A8LCIZo_WCWPB_1DZ096qvWHQCI" />
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <title>近くの演奏家に気軽に演奏を依頼できる | MUSICIANBOOK - ミュージシャンブック</title>
+
+    <%= favicon_link_tag asset_path('favicon.ico'), :rel => 'favicon' %>
+    <%= favicon_link_tag asset_path('apple-touch-icon.png'), :rel => 'apple-touch-icon', :type => 'image/png' %>
+    <%= favicon_link_tag asset_path('android-chrome-192×192.png'), :rel => 'android-chrome-icon', :type => 'image/png' %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+
+  <body>
+  <!--contents-->
+    <div id="body">
+      <div id="navbar">
+        <%= render 'layouts/navbar' %>
+      </div>
+      <div class="content">
+        <%= yield %>
+      </div>
+    </div>
+
+
+  <!--scripts-->
+    <!--toastr-->
+    <% unless flash.empty? %>
+      <script type="text/javascript">
+        <% flash.each do |f| %>
+          <% type =  f[0].to_s.gsub('alert','error').gsub('notice','info') %>
+          //toastr表示時間の設定
+          toastr.options = {
+            "timeOut": "2000",
+            "extendedTimeOut": "0",};
+          toastr[ '<%= type %>' ]('<%= f[1] %>');
+        <% end %>
+      </script>
+    <% end %>
+    <!--bootstrap tooltip-->
+    <script>
+      $(document).on('turbolinks:load', function(){
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    </script>
+    <!--swiper-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+    <script>
+      var mySwiper = new Swiper ('.swiper-container', {
+        init: true,
+        slidesPerView: 3,
+        spaceBetween: 20,
+        loop: false,
+        breakpoints: {
+          768: {slidesPerView: 1, spaceBetween: 10,centeredSlides : true},
+          1024: {slidesPerView: 2, spaceBetween: 20,centeredSlides : false}},
+        pagination: {el: '.swiper-pagination'}
+      });
+    </script>
+    <!--GA-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138718978-1"></script>
+    <script>
+      //Global site tag (gtag.js) - Google Analytics
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-138718978-1');
+    </script>
+  </body>
+
+
+  <footer>
+    <div id="footer__content">
+      <p>
+      <%= link_to '利用規約', root_path, class:"footer__link" %><br><!-- #terms_of_service-->
+      <%= link_to 'プライバシーポリシー', root_path, class:"footer__link" %><br><!-- #privacy_policy-->
+      <%= link_to '特定商取引法に基づく表記', root_path, class:"footer__link" %><br><!-- #tokushouhou-->
+      <%= link_to '運営会社', root_path, class:"footer__link" %><br><!-- #'https://giftport.herokuapp.com'-->
+      </p>
+      <div id="footer__copyright">
+        &copy; 2018-2020 Kentaro Murata All rights reserved. <!--Giftport LLC-->
+      </div>
+    </div>
+  </footer>
+
+</html>

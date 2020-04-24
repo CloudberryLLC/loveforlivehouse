@@ -1,0 +1,45 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+    【通知】再見積り依頼
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+    クライアントより再見積り依頼が届きました。お早めに対応をお願い致します。<br>
+  </td>
+</tr>
+
+<!--本文-->
+<tr>
+  <td style="padding:1em;">
+    本メール下部の「再見積りを行う」リンクより再見積りが行えます。<br>
+    ご不明な点がある場合、<%= link_to 'このオファー', offer_url(@offer) %>の「メッセージ」タブよりクライアントと連絡を取ることができます。<br>
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em 1em;"></td></tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+    オファーID: <%= @offer.id %> <br>
+    オファーを受けるグループ: <%= @performer.performer_name %><br>
+  </td>
+</tr>
+
+<tr><td style="padding:1em;"></td></tr>
+
+<!--リンクパネル-->
+<tr>
+  <td style="padding:1em;background-color:#eeeeee;">
+    <%= link_to "再見積りを行う", edit_offer_url(@offer), class:"btn btn-success" %>
+  </td>
+</tr>
+
+
+<%= render 'partial/mailer_footer' %>

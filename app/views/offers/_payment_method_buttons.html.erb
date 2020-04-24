@@ -1,0 +1,26 @@
+<div id="payment_method_buttons" class="button__area">
+  <% if @offer.offer_status == 8 %>
+    <%= form_with model: @offer, local: true do |f| %>
+      <%= f.hidden_field :offer_status, value: 9 %>
+      <% if @offer.payment.payment_options == 1 %>
+        <div id="card-transaction-button" class="padding__1em" style="display: none;">
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.application.credentials.STRIPE_PUBLISHABLE_KEY %>"
+            data-label="クレジットカード決済"
+            data-amount= "<%= @offer.payment.total %>"
+            data-name="MUSICIANBOOK"
+            data-description="オファーに対する支払いを行います。"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto"
+            data-currency="jpy">
+          </script>
+        </div>
+      <% end %>
+      <%= f.submit "支払い方法を確定する", class: "btn btn-success" %>
+    <% end %>
+  <% end %>
+  <% if show_change_payment_method_button?(@offer.offer_status) %>
+    <%= link_to '支払い方法を変更する', edit_payment_path(@offer.payment), class:'btn btn-secondary' %>
+  <% end %>
+</div>

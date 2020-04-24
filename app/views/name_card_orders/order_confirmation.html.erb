@@ -1,0 +1,74 @@
+<div class="container">
+
+  <div class="pagetop">
+    <h4>オーダーの確認</h4>
+  </div>
+  <hr>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <h5>プレビュー</h5>
+      <%= render 'name_cards/namecard_preview' %>
+    </div>
+    <hr>
+    <div class="col-lg-6">
+      <div id="payment-detail">
+        <h5 class="margin-bottom-1em">オーダー内容</h5>
+        <div class="margin-1em">
+          <p>枚数: <%= @order.amount %>枚</p>
+          <p>金額: <%= @order.price.to_s(:delimited) %>円(税込)</p>
+          <p>お支払期日: <%= @order.payment_limit %></p>
+          <p>お支払い方法: <%= show_payment_option(@order.payment_option) %></p>
+          <p>お届け希望日: <%= @order.delivery_date %></p>
+          <p>
+          <p>お届け先:</p>
+          <p>
+            <span class="margin-left-1em">〒<%= @order.zipcode %><br></span>
+            <span class="margin-left-1em"><%= @order.pref %><%= @order.city %><%= @order.street %><br></span>
+            <span class="margin-left-1em"><%= @order.bldg %></span>
+          </p>
+          <p>
+            <span class="margin-left-1em"><%= @order.reciever_name %> 様</span>
+          </p>
+        </div>
+      </div>
+      <hr>
+      <div id="confirmation-buttons">
+        <div id="order-confirm-button">
+          <%= form_with url: name_card_order_confirmed_path(@order), local: true do |f| %>
+            <% if @order.payment_option == 1 %>
+              <div id="card-transaction-button" class="padding__1em hide-stripe-button">
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="<%= Rails.application.credentials.STRIPE_PUBLISHABLE_KEY %>"
+                  data-label="クレジットカード決済"
+                  data-amount= "<%= @order.price %>"
+                  data-name="MUSICIANBOOK"
+                  data-description="カード決済を行います。"
+                  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                  data-locale="auto"
+                  data-currency="jpy">
+                </script>
+              </div>
+            <% else %>
+
+            <% end %>
+          <div class="button__area">
+            <%= f.submit 'オーダーを確定する', class:'btn btn-success' %>
+          </div>
+          <div class="annotation left">
+            クレジットカード/銀行振込とも、お支払期限は2日後の15:00までとなります。<br>
+            期限内にご入金が確認できない場合は自動キャンセル扱いとなります。<br>
+            オーダーの際はご入金期限や決済状況等をご確認ください。
+          </div>
+          <% end %>
+        </div>
+        <div class="button__area">
+          <%= link_to '修正する', edit_name_card_order_path(@order), class:'btn btn-info' %>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

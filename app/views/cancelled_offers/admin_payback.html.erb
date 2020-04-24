@@ -1,0 +1,73 @@
+<div class="container">
+  <h3 class="title">払戻画面</h3>
+  <p>オファーID: <%= @offer.id %></p>
+  <hr>
+
+  <div>
+    <h4 class="title">キャンセル概要</h4>
+    <p>
+      受領金額: <span id="recieved_amount"><%= @offer.cancelled_offer.recieved_amount.to_s(:delimited) %></span>円
+    </p>
+    <p>
+      本来パフォーマーに支払うべき金額: <span id="deposit_for_performer"><%= @offer.cancelled_offer.deposit_for_performer.to_s(:delimited) %></span>円
+    </p>
+    <p>種別: <%= show_offer_status(@offer.offer_status) %></p>
+    <p>理由: <%= description(@offer.cancelled_offer.cause) %></p>
+
+    <hr>
+
+    <h4 class="title">払い戻し処理</h4>
+
+    <%= form_with model: @offer, url: cancel_path, local: true do |c| %>
+      <%= c.hidden_field :offer_status, value: 20 %>
+      <%= c.fields_for :cancelled_offer do |admin| %>
+        <p>
+          <span class="strong"><%= admin.label :payback_rate %></span>
+          <%= admin.text_field :payback_rate, class:'form-control', autofocus: true %>
+        </p>
+
+        <p>
+          <span class="strong"><%= admin.label :pay_amount_to_client %></span>
+          <%= admin.text_field :pay_amount_to_client, class:'form-control', autofocus: true %>
+        </p>
+        <p>
+          <span class="strong">クライアントの返金先口座:</span><br>
+          <%= show_bank_account(@client) %>
+        </p>
+        <p>
+          <span class="strong"><%= admin.label :paid_to_client %></span>
+          <%= admin.check_box :paid_to_client, data: {on: '済', off: '未', onstyle: 'success', offstyle: 'secondary'} %>
+        </p>
+
+        <p>
+          <span class="strong"><%= admin.label :pay_amount_to_performer %></span>
+          <%= admin.text_field :pay_amount_to_performer, class:'form-control', autofocus: true %>
+        </p>
+        <p>
+          <span class="strong">パフォーマーの振込先口座:</span><br>
+          <%= show_bank_account(@contractor) %>
+        </p>
+        <p>
+          <span class="strong"><%= admin.label :paid_to_performer %></span>
+          <%= admin.check_box :paid_to_performer, data: {on: '済', off: '未', onstyle: 'success', offstyle: 'secondary'} %>
+        </p>
+      <% end %>
+
+      <div class="button__area actions center">
+        <%= c.submit "払戻及び支払処理完了", class: "btn btn-info", data: { confirm: "ユーザーに通知する前に今一度支払いが完了しているか、ご確認ください。" } %>
+      </div>
+    <% end %>
+  </div>
+
+  <hr>
+
+  <%= render 'offers/offer_detail' %>
+
+</div>
+
+<script>
+  $(document).on('turbolinks:load', function(){
+    $('#offer_cancelled_offer_attributes_paid_to_client').bootstrapToggle();
+    $('#offer_cancelled_offer_attributes_paid_to_performer').bootstrapToggle();
+  });
+</script>

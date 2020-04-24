@@ -1,0 +1,11 @@
+<div class="chat__wrapper">
+  <div class="new-sender-id"><%= chat_message.from %></div>
+  <div class="chat-new-sender">
+    <%= image_tag get_sender_photo(chat_message.from), class: "profile-32round" %>
+    <%= get_sender_name(chat_message.from) %>
+  </div>
+  <div class="chat-body chat-new-body">
+    <%= simple_format(chat_message.body) %>
+  </div>
+  <p class="post-time"><%= chat_message.created_at.strftime("%m/%d %H:%M") %></p>
+</div>

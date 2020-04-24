@@ -1,0 +1,33 @@
+<div class="container padding__1em">
+  <h3>オファーのキャンセル</h3>
+  <p>オファーID: <%= @offer.id %></p>
+  <hr>
+
+  <h4>キャンセルするオファーの内容</h4>
+  <%= render 'offers/offer_detail' %>
+  <hr>
+
+  <%= form_with model: @offer, url: cancel_path, local: true do |c| %>
+    <%= c.label :キャンセル種別 %><span class="required">※</span>
+      <p>
+        <%= c.radio_button(:offer_status, 14) %>
+        <%= c.label(:cancelled_by_client, "クライアント都合") %><br>
+        <%= c.radio_button(:offer_status, 15) %>
+        <%= c.label(:cancelled_by_performer, "パフォーマー都合") %><br>
+        <%= c.radio_button(:offer_status, 16) %>
+        <%= c.label(:cancelled_by_irresistable_reason, "天候・災害等の不可抗力") %>
+      </p>
+    <div>
+    <%= c.fields_for :cancelled_offer do |co| %>
+      <%= co.hidden_field :cancelled_by, value: current_user.id %>
+      <%= co.label :cause %>
+      <%= co.text_area :cause, rows: 7, class:'form-control', autofocus: true %>
+    <% end %>
+    </div>
+
+    <div class="actions padding__1em">
+      <%= c.submit "キャンセルを確定する", class: "btn btn-danger", data: { confirm: "本当にこのオファーをキャンセルしますか?"} %>
+    </div>
+
+  <% end %>
+</div>

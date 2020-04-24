@@ -1,0 +1,796 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+/* Coding Guide
+ https://google.github.io/styleguide/htmlcssguide.html
+*/
+
+
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+@import "toastr";
+@import "font-awesome";
+@import "bootstrap-toggle";
+@import "trix";
+@import "*";
+
+
+/* 構造タグ関連 */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+width: 100%;
+height: 100%;
+}
+
+table {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a .no_decoration {
+  text-decoration: none;
+}
+
+#body {
+  background-color: #fafafa;
+  padding-bottom: 1em;
+}
+
+#content {
+  background-color: #fafafa;
+}
+
+#footer__content {
+  background-color: #eeeeee;
+  padding: 2em 2em 1em 2em;
+  bottom: 0px;
+}
+
+#footer__copyright {
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.footer__link {
+  color: black;
+  text-decoration: underline;
+}
+
+
+/* カラー、フォント、配置 */
+
+//フォントサイズ指定
+h1 {
+  font-size:2.5em;
+  font-weight: bold;
+}
+
+h2 {
+  font-size:2em;
+  font-weight: bold;
+}
+
+h3 {
+  font-size:1.5em;
+  font-weight: bold;
+}
+
+h4 {
+  font-size:1.25em;
+  font-weight: bold;
+}
+
+h5 {
+  font-size:1.125em;
+  font-weight: bold;
+}
+
+h6 {
+  font-size:1em;
+  font-weight: bold;
+}
+
+//カラー
+.white{
+	color: white;
+}
+
+.azure{
+	background-color: azure;
+}
+
+.gray{
+	color: gray;
+}
+
+.pink{
+  color: #f19ca7;
+}
+
+.red{
+  color: red;
+}
+
+.blue{
+  color: blue;
+}
+
+.black{
+  color: black;
+}
+
+.navy{
+  background-color: navy;
+}
+
+//テキスト装飾
+.underline {
+  text-decoration: underline;
+}
+
+.strong {
+  font-weight: bold;
+}
+
+//配置
+.left {
+	text-align: left;
+}
+
+.center {
+	text-align: center;
+}
+
+.right {
+	text-align: right;
+}
+
+
+//マージン・パディング補正
+.margin__top__1em {
+  margin-top: 1em;
+}
+
+.margin__top__2em {
+  margin-top: 2em;
+}
+
+.margin__botttom__1em {
+  margin-bottom: 1em;
+}
+
+.margin__botttom__2em {
+  margin-bottom: 2em;
+}
+
+.margin__vertical__1em {
+  margin: 1em 0em;
+}
+.margin__vertical__2em {
+  margin: 2em 0em;
+}
+
+.margin__left__1em {
+  margin-left: 1em;
+}
+
+.padding__1em {
+  padding: 1em;
+}
+
+//ボーダー
+.noborder {
+  border: 0px none;
+}
+
+//その他
+.dropdown-backdrop {
+	position: static;
+}
+
+/* 全ビューで使い回す要素 */
+
+//navbar
+
+//navbar以下の要素がnavボタンをクリックしたときに下ずれするのを防止
+.navbar__area {
+  height: 64px;
+  width: 100%;
+  z-index: 2;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+.navbar-collapse {
+  border-radius: 0.5em;
+}
+
+.brand-logo {
+  height: 48px;
+}
+
+.brand-font {
+  font-weight: bold;
+}
+
+.brand-text {
+  font-size: 1.125em;
+  vertical-align: middle;
+  color:black;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.nav-pills {
+  background-color: lavender;
+}
+
+#help_search_component {
+}
+
+#search__result__box {
+  position: fixed;
+  max-width: 250px;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+#search-input {
+}
+
+//パンくずリスト
+.breadcrumb {
+  background-color: #fafafa;
+}
+
+//ページネーション
+.pagination__area {
+  padding: 1em 0em;
+  display: flex;
+  justify-content: center;
+}
+
+//swiper
+
+.swiper-container {
+  padding: 1em !important;
+}
+
+.swiper-wrapper {
+  margin: 1em 0em;
+}
+
+//テキスト関係
+
+.jumbotron__eyecatch__text {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.title {
+  margin: 1em 0em;
+}
+
+.title__with_underline {
+  margin: 1em 0em;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.annotation {
+  font-size: 0.8em;
+}
+
+.text__wrapper {
+  padding: 1em 0em;
+}
+
+.text__area {
+  margin: 2em 0em;
+}
+
+//ボタン関係
+#registration__type__button_area {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#payment_method_buttons {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#invoice_and_reciept_buttons {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#cancel_buttons {
+  display:flex;
+  justify-content: center;
+  align-items: center;     
+}
+
+.btn {
+  margin: 0.1em;
+}
+
+.button__area{
+  display: block;
+  padding-top:1em;
+  padding-bottom:2em;
+}
+
+.btn-short {
+  width: 7.5em;
+}
+
+
+//プロフィール写真系
+
+.login_user__profile_photo{
+  display: block;
+  text-align: right !important;
+}
+.profile-0 {
+    width: 28px !important;
+    height: 28px !important;
+}
+
+.profile-64round {
+	border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    margin: 0.5em;
+}
+
+.profile-32round {
+	border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin: 0.2em;
+}
+
+.app_icon{
+  border-radius: 3%;
+  width: 258.4px;
+  height: 100px;
+}
+
+/* Chat関係 */
+#to__message__form {
+  position: absolute;
+  right: 1em;
+}
+
+#to__top {
+  position: absolute;
+  right: 2em;
+}
+
+/* トップページ */
+#performer__search__box {
+  display: flex;
+  justify-content: center;
+}
+
+#performer-search-input {
+  width: 61.8%;
+  min-width: 300px;
+  text-align: center;
+}
+
+//Offers#show 期限切れのとき背景をグレイに
+.offer_expired {
+  background-color: #aaa;
+}
+
+#declined_indicator {
+  text-decoration: bold;
+}
+
+//請求書・領収書
+#invoice_title {
+  background-color: powderblue;
+}
+
+#reciept_title {
+  background-color: lavender;
+}
+
+#invoice_client_name {
+  margin: 1em 0em 2em;
+}
+
+#reciept_client_name {
+  margin: 1em 0em 2em;
+}
+
+#from_address {
+  margin: 2em 0em;
+}
+
+#reciept__description{
+  margin-bottom: 2em;
+}
+
+.total-bill {
+  font-size: 1.25em;
+  font-weight: bold;
+  text-decoration: underline;
+  margin: 2em 0em;
+}
+
+.reciept-table {
+  text-align: center;
+}
+
+
+
+
+
+//旧CSS
+//その他
+
+.jumbotron-performer-cover {
+    // 背景画像を暗くする
+    background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) );
+	background-size: cover;
+	// 背景画像の位置を決める
+	background-position: 50% 50% 50% 50%;
+	height: 400px;
+}
+
+#jumbotron-roadmap{
+  // 背景画像を暗くする
+  background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), image-url("about-roadmap.png");
+	background-size: cover;
+	// 背景画像の位置を決める
+	background-position: 50% 50%;
+	height: 400px;
+}
+
+
+//プロフィールカードの画像
+.card-img-top {
+	width: 100%;
+	background-position: 50% 50%;
+}
+
+.card-group-img {
+	width:75%;
+}
+
+.profile-headline{
+	padding: 0.5em 0em 0.5em 1em
+}
+
+.middle_height{
+  padding-top: 10%;
+  vertical-align: middle;
+}
+
+.middle{
+  vertical-align: middle;
+}
+
+.required {
+  color: red;
+}
+
+.inline {
+  display: inline;
+}
+
+.preference{
+  color: blue;
+  text-decoration: underline;
+}
+
+.hidden{
+    display:none;
+}
+
+//ダッシュボード関係
+.dashboard__index{
+  height: 80px;
+}
+
+//ボタン位置関係
+#confirmation-buttons{
+  text-align: center;
+}
+
+#order-confirm-button{
+  display:inline-block;
+}
+
+.offer-button{
+  display:inline-block;
+}
+
+.hide-stripe-button{
+  display: none;
+}
+
+.favorite-button{
+}
+
+//マージン/パディング関係
+.pagetop{
+	padding-top: 2em;
+}
+
+.margin1 {
+	margin: 1em 0 0 1em ;
+}
+
+.margin2 {
+	margin: 1em 0 1em 1em ;
+}
+
+.margin-1em {
+  margin: 1em;
+}
+
+.margin-left-1em {
+  margin-left: 1em;
+}
+
+.margin-right-1em {
+  margin-right: 1em;
+}
+
+.margin-top-1em{
+  margin-top: 1em;
+}
+
+.margin-bottom-1em{
+  margin-bottom: 1em;
+}
+
+.padding-only-top {
+	padding: 1em 0 0 0  ;
+}
+
+.padding__1em {
+	padding: 1em;
+}
+
+.youtube-container{
+
+	}
+
+.row-group {
+	margin: 1em;
+}
+
+
+
+.map-large {
+  display: block;
+  height :400px;
+  width: 100%;
+}
+
+//フォーム関係
+.form-input{
+  margin: 1em;
+  padding: 1em;
+}
+
+.form-submit{
+  margin: 1em;
+  padding: 1em;
+}
+
+.form{
+  margin-top:1em;
+  margin-bottom: 1em;
+  padding-top:1em;
+  padding-bottom:1em;
+}
+
+//名刺作成系
+.namecard__example{
+  position: relative;
+  width: 480px;
+  height: 300px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 1em;
+  padding: 0.5em;
+}
+
+.namecard__preview_frame{
+  position: relative;
+  width: 480px;
+  height: 300px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 1em;
+  padding: 2em;
+}
+
+.namecard__preview__qrcode__wrapper{
+  display:block;
+  position: absolute;
+  top: 2.5em;
+  right: 2.5em;
+}
+
+.qrcode__for_download{
+  width:110px;
+  height:110px;
+  padding:10px;
+}
+
+.qrcode__preview{
+  display:block;
+  text-align: center !important;
+}
+
+.namecard__preview__partname{
+  display:block;
+  font-size: 1.1em;
+  margin-bottom:1em;
+}
+
+.namecard__preview__performername{
+  display:block;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  vertical-align: bottom;
+}
+
+.namecard__preview__performername__sub{
+  display:block;
+  font-size: 1em;
+  margin-bottom:0.5em;
+}
+
+.namecard__preview__unitindex{
+  display:block;
+  font-size: 1em;
+}
+
+.namecard__preview__units{
+  display:block;
+  margin-top:1.25em;
+  font-size: 1.125em;
+}
+
+.namecard__preview__servicename{
+  display:block;
+  position: absolute;
+  bottom:2em;
+  line-height: 1.2em;
+  font-size: 0.9em;
+}
+
+.namecard__preview__annotation{
+  display:block;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+.copy_url{
+  margin-top:2em;
+  margin-bottom:2em;
+}
+
+#payment-view{
+  display:inline;
+}
+//チャット表示系
+
+.chat__wrapper {
+}
+
+.chat__body__wrapper {
+}
+
+.chat-sender{
+	font-size: 80%;
+	margin: 0 0 0.1em 0;
+}
+
+.chat-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+	padding: 1em 1em 0 1em;
+}
+
+
+.chat-sender-body {
+	display: inline-block;
+	background-color: #DFDFDF;
+	border-radius: 1em 1em 0 1em;
+}
+
+.chat-reciever-body {
+	display: inline-block;
+	background-color: #B0E0FF;
+	border-radius: 0 1em 1em 1em;
+}
+
+#messages {
+	height:50vh;
+	overflow-y: auto;
+}
+
+#chat_messages {
+	height:50vh;
+	overflow-y: auto;
+}
+
+.post-time {
+  font-size: 0.618em
+}
+
+
+//datetimepicker動かすためのcss
+.date-form {
+  position: relative;
+}
+
+//swiper関連
+.swiper-container {
+  margin-left:1em;
+}
+
+.profile_card{
+  position:relative;
+  height: 13em;
+}
+
+.profile_card__photo{
+  display:inline-block;
+  height: 10.5em;
+}
+
+.profile_card__textarea{
+  display:inline-block;
+  height: 10.5em;
+}
+
+.profile_card__link_button{
+  margin-right: 10px;
+  margin-bottom:0px;
+  text-align: right;
+}
+
+//二段階認証関係
+.two_factor_auth__qrcode{
+  margin-top:2em;
+  margin-bottom:2em;
+}
+
+.two_factor_auth__submit{
+  margin-bottom:2em;
+}

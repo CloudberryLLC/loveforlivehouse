@@ -1,0 +1,83 @@
+<div class="form">
+
+  <% unless @user.nil? %>
+    <p>ユーザーID: <%= @user.id %></p>
+  <% end %>
+
+  <%= form_with(model: inquiry, local: true) do |form| %>
+    <% if inquiry.errors.any? %>
+      <div id="error_explanation">
+        <h3 class="red">以下の項目を修正してください:</h3>
+
+        <ul>
+        <% inquiry.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form__user_id">
+    </div>
+    <div class="field">
+      <p>
+        <%= form.label :name %>
+        <%= form.text_field :name, class: "form-control", autofocus: true %>
+      </p>
+    </div>
+
+    <div class="field">
+      <p>
+        <%= form.label :email %>
+        <%= form.text_field :email, class: "form-control", autofocus: true %>
+      </p>
+    </div>
+
+    <div class="field">
+      <p>
+        <%= form.label :category %>
+        <%= form.select :category, category_array, {}, {class: "form-control", autofocus: true} %>
+      </p>
+    </div>
+
+    <div class="field">
+      <p>
+        <%= form.label :content %>
+        <%= form.text_area :content, rows: 7, maxlength: 1000, class: "form-control", placeholder: "1000文字以内", autofocus: true %>
+        <p class="annotation blue">オファーID等ある場合はご記入頂くとスムーズです。</p>
+      </p>
+    </div>
+
+    <div class="button__area actions center">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inquiryConfirmationModal">送信する</button>
+    </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="inquiryConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="inquiryConfirmationModalTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="inquiryConfirmationModalTitle">
+                  送信前にご確認ください。
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body annotation">
+                <p>1. お問い合わせへの回答はメールとなります。@giftport.jpからのメールを受信できるようにしておいてください。</p>
+                <p>2. メール以外での対応は現時点で一切承っておりません。電話、対面でのご対応は今後も行う予定はございませんので予めご了承ください。</p>
+                <p>3. ipアドレスを記録しておりますので悪戯等はご遠慮ください。</p>
+                <p>4. 項目未記入・字数制限超過でエラーが出た場合は修正の上再度送信をお願いいたします。</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">戻る</button>
+                <%= form.submit "この内容で送信する", class:"btn btn-success" %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+  <% end %>
+
+</div>

@@ -1,0 +1,39 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+    【承認】<br>
+    プロフィール登録・変更
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+    プロフィールの登録(または変更)が承認されました。
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em 1em;"></td></tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+    本メールの到着をもちまして、MUSICIANBOOKのサービスの全機能をご利用いただけます。<br>
+    サービスの使い方については以下ご確認ください。<br>
+    <%= link_to 'チュートリアル', how_to_use_url(@user) %> | <%= link_to 'ヘルプ・よくある質問', helps_url %><br>
+  </td>
+</tr>
+
+<!--本文-->
+<tr>
+  <td style="padding:1em;">
+    今後ともMUSICIANBOOKをよろしくお願い致します。
+  </td>
+</tr>
+
+
+
+
+<%= render 'partial/mailer_footer' %>

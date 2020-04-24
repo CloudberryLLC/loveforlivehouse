@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  offer: MyString
+  references: MyString
+  guarantee: MyString
+  integer: MyString
+  staff: MyString
+  integer: MyString
+  withholding_tax: MyString
+  integer: MyString
+  system: MyString
+  integer: MyString
+  transport: MyString
+  integer: MyString
+  accommodation: MyString
+  integer: MyString
+  carriage: MyString
+  integer: MyString
+  equipment: MyString
+  integer: MyString
+  other_expenses: MyString
+  integer: MyString
+  detail: MyString
+  text: MyString
+
+two:
+  offer: MyString
+  references: MyString
+  guarantee: MyString
+  integer: MyString
+  staff: MyString
+  integer: MyString
+  withholding_tax: MyString
+  integer: MyString
+  system: MyString
+  integer: MyString
+  transport: MyString
+  integer: MyString
+  accommodation: MyString
+  integer: MyString
+  carriage: MyString
+  integer: MyString
+  equipment: MyString
+  integer: MyString
+  other_expenses: MyString
+  integer: MyString
+  detail: MyString
+  text: MyString

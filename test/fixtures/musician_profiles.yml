@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  musician_name: MyString
+  musician_class: MyString
+  instrument1: MyString
+  instrument2: MyString
+  profile_photo: 
+  profile_short: MyText
+  profile_long: MyText
+  sample_movie_url1: MyText
+  sample_movie_url2: MyText
+  basic_guarantee: 1
+  play_condition: MyText
+  play_condition_detail: MyText
+
+two:
+  musician_name: MyString
+  musician_class: MyString
+  instrument1: MyString
+  instrument2: MyString
+  profile_photo: 
+  profile_short: MyText
+  profile_long: MyText
+  sample_movie_url1: MyText
+  sample_movie_url2: MyText
+  basic_guarantee: 1
+  play_condition: MyText
+  play_condition_detail: MyText

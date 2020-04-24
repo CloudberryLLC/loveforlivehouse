@@ -1,0 +1,31 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+    管理画面へのアクセスが試みられました
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+    このユーザーが管理者でない場合はすぐに対処してください。<br>
+  </td>
+</tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+    ユーザーID: <%= @user.id.to_s %><br>
+    お名前: <%= @user.basic.lastname.to_s %> <%= @user.basic.firstname.to_s %> 様<br>
+    お名前フリガナ: <%= @user.basic.lastname_kana.to_s %> <%= @user.basic.firstname_kana.to_s %><br>
+    会社名・所属団体: <%= @user.basic.company.to_s %><br>
+    連絡先: <%= @user.email.to_s %><br>
+  </td>
+</tr>
+
+
+
+
+<%= render 'partial/mailer_footer' %>

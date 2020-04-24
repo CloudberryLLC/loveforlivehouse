@@ -1,0 +1,50 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+    キャンセル通知(オファーID: <%= @offer.id %>)
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+    以下のオファーがキャンセルとなりました。<br>
+  </td>
+</tr>
+
+<!--本文-->
+<tr>
+  <td style="padding:1em;">
+    キャンセルの理由: <%= cancel_due(@offer.offer_status) %><br>
+    ※引き続きパフォーマーと当該オファーのメッセージにてコミュニケーションは可能です。<br>
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em 1em;"></td></tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+    オファーID: <%= @offer.id %><br>
+    オファーを受けるグループ: <%= @performer.performer_name.to_s %><br>
+    場所: <%= @offer.place.to_s %><br>
+    パフォーマンスの開始日時: <%= @offer.meeting_time.strftime("%Y年%m月%d日(%a) %H:%M") %><br>
+    パフォーマンスの終了日時: <%= @offer.release_time.strftime("%Y年%m月%d日(%a) %H:%M") %><br>
+  </td>
+</tr>
+
+<%= render 'cancel_policy' %>
+
+<tr><td style="padding:1em;"></td></tr>
+
+<!--リンクパネル-->
+<tr>
+  <td style="padding:1em;background-color:#eeeeee;">
+    ご不明な点がある場合は<%= link_to "お問い合わせフォーム", new_inquiry_url %> よりお問い合わせください。
+  </td>
+</tr>
+
+
+<%= render 'partial/mailer_footer' %>

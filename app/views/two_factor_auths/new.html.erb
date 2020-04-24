@@ -1,0 +1,42 @@
+<div class="container pagetop">
+
+  <h2>二段階認証を設定する</h2>
+
+  <hr>
+
+  <div class="margin-top-1em margin__botttom__2em">
+    <p>
+      二段階認証にはiOSアプリ「Google Authenticator」、またはAndroidアプリ「Google認証システム」が必要です。<br>
+      以下のステップに進む前にスマートフォンにインストールしてから、QRコードを読み取ってください。
+    </p>
+    <div class="app__link center">
+      <%= link_to image_tag('app_store.png', class: "app_icon"), "https://apps.apple.com/jp/app/google-authenticator/id388497605" %>
+      <%= link_to image_tag('google_play.png', class: "app_icon"), "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=ja" %>
+    </div>
+  </div>
+
+  <% if @error %>
+    <div><%= @error %></div>
+  <% end %>
+
+  <div class="margin-1em margin__botttom__2em">
+    <p>1. スマートフォンでQRコードを読み込んでください。</p>
+    <div class="margin-1em center"><%= raw @qr_code %></div>
+  </div>
+
+  <div class="margin-1em">
+    <%= form_tag two_factor_auth_path do %>
+      <div class="field two_factor_auth__qrcode">
+        <%= label_tag "2. 次に上記アプリで表示された6けたの二段階認証コードを入力してください。" %><br />
+        <div class="center">
+          <%= text_field_tag :otp_attempt %>
+        </div>
+      </div>
+
+      <div class="button__area center">
+        <%= submit_tag "二段階認証を有効にする", class:"btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

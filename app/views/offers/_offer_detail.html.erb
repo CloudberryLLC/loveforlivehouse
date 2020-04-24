@@ -1,0 +1,103 @@
+<div class="container">
+
+  <% unless @offer.offer_status == 0 %>
+
+    <h4 class="title">オファー内容</h4>
+
+    <div id="offer_outline">
+      <p>
+        オファーID: <%= @offer.id %> <br>
+        クライアント名: <%= @client.basic.lastname + @client.basic.firstname %><br>
+        受注者名: <%= @contractor.basic.lastname + @contractor.basic.firstname %><br>
+        パフォーマー名: <%= @performer.performer_name %><br>
+        最終更新者: <%= show_last_updater(@last_updater) %><br>
+      </p>
+      <p>
+        <% if @offer.offer_status == 13 %>
+          <hr>
+          <%= show_phone_number_of_counterpart(@offer, @client, @contractor) %>
+        <% end %>
+      </p>
+      <p class="annotation red">
+        メッセージで決めた変更内容がある場合は、本オファー内容にその変更内容も含めて合意したものとみなされますのでご注意ください。
+      </p>
+    </div>
+
+    <h5 class="title">時間・場所</h5>
+    <table id="offer__table" class="table left">
+      <tbody>
+        <tr>
+          <td>場所</td>
+          <td><%= @offer.place %></td>
+        </tr>
+        <tr>
+          <td>入り</td>
+          <td><%= @offer.meeting_time.strftime("%Y年%m月%d日(%a) %H:%M") %></td>
+        </tr>
+        <tr>
+          <td>終了</td>
+          <td><%= @offer.release_time.strftime("%Y年%m月%d日(%a) %H:%M") %></td>
+        </tr>
+        <tr>
+          <td>演奏</td>
+          <td><%= @offer.playing_time %>分</td>
+        </tr>
+        <tr>
+          <td>拘束</td>
+          <td><%= get_duration(@offer.release_time, @offer.meeting_time)[0] %></td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h5 class="title">イベント詳細</h5>
+    <p>
+      <%= description(@offer.description) %>
+    </p>
+    <hr>
+    <h5 class="title">リクエスト</h5>
+    <p>
+      <span class="strong">選曲・演出:</span><br>
+       <%= description(@offer.request_from_client) %>
+    </p>
+    <p>
+      <span class="strong">衣装・ドレスコード:</span><br>
+      <%= description(@offer.dresscode) %>
+    </p>
+    <hr>
+    <%= render partial: 'offers/preparation', locals: { offer: @offer } %>
+    <hr>
+
+    <div id="offer_buttons" class="container padding__1em">
+      <% if client? %>
+        <% if show_offer_edit_button?(@offer.offer_status) %>
+          <div class="button__area center submit">
+            <%= link_to "オファーを編集", edit_offer_path(@offer),
+            class: "btn btn-primary",
+            data: { confirm: "一度時間が決まったオファーを変更すると、パフォーマー側で再見積りが必要になる場合があります。変更しますか。"} %>
+          </div>
+        <% end %>
+
+      <% elsif performer? %>
+        <% if show_offer_accept_button?(@offer.offer_status) %>
+          <div class="button__area center">
+            <div class="offer-button">
+              <%= link_to "オファーを受ける(見積り作成)", edit_offer_path(@offer), class: "btn btn-success" %>
+            </div>
+            <div class="offer-button">
+              <%= form_with model: @offer, local: true do |status2| %>
+                <%= status2.hidden_field :offer_status, value: 3 %>
+                <%= status2.submit "オファーを見送る",
+                  class: "btn btn-secondary",
+                  data: { confirm: "このオファーを見送りますか? 見送った場合、クライアントにこのオファーが非承認となった旨が通知されます。"}%>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+  <% else #オファーの詳細が存在しない時 %>
+    <%= render partial: 'offers/offer_detail_no_offer', locals: { offer: @offer } %>
+  <% end %>
+
+</div>

@@ -1,0 +1,15 @@
+<h4 class="title">請求書・領収証</h4>
+<div id="invoice_and_reciept_buttons" class="left margin-1em">
+  <% if show_invoice?(current_user, @offer.offer_status) %>
+    <%= link_to "請求書を表示", invoice_path(@offer), class: "btn btn-info", target: "blank" %>
+  <% end %>
+  <% if show_reciept?(current_user, @offer.offer_status) %>
+    <%= link_to "領収書を表示", reciept_path(@offer), class: "btn btn-info", target: "blank" %>
+  <% end %>
+</div>
+
+<% if show_no_invoices?(current_user, @offer.offer_status) %>
+  <p>請求書・領収書はまだ作成されません。</p>
+<% end %>
+
+<hr>

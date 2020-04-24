@@ -1,0 +1,64 @@
+<div class="navbar__area"></div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+  <span id="brand-text">
+    <%= link_to image_tag("brand_logo.png", alt: "MUSICIANBOOK", class: 'navbar-brand brand-logo'), '/' %>
+    <span class="brand-font">MUSICIANBOOK</span>
+  </span>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse bg-light" id="navbarToggler">
+
+    <ul class="navbar-nav mr-auto"></ul>
+
+    <ul class="navbar-nav">
+      <li class="dropdown">
+
+        <% if (user_signed_in?) %>
+          <!-- ログインしているとき -->
+          <li class="nav-item"><%= link_to "ダッシュボード", dashboard_path(current_user), class: "nav-link right" %></li>
+
+          <% if current_user.certified == true %>
+            <% if client? %>
+              <li class="nav-item"><%= link_to "オファー", offers_path(current_user), class: "nav-link right" %></li>
+              <li class="nav-item"><%= link_to "お気に入り", favorites_path(current_user), class: "nav-link right" %></li>
+            <% end %>
+
+            <% if performer? %>
+              <li class="nav-item"><%= link_to "オファー", offers_path(current_user), class: "nav-link right" %></li>
+              <li class="nav-item"><%= link_to "グループ", mygroups_path(current_user), class: "nav-link right" %></li>
+            <% end %>
+          <% end %>
+            <li class="nav-item"><%= link_to "ヘルプ", helps_path, class: "nav-link right" %></li>
+            <li class="nav-item"><%= link_to "アカウント", edit_profile_path(current_user), class: "nav-link right" %></li>
+            <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link right" %></li>
+
+            <% if (current_user.basic.present? && current_user.basic.profile_photo.attached?) %>
+              <li class="nav-item">
+                <div class="login_user__profile_photo"><%= image_tag(current_user.basic.profile_photo, class:"profile-32round") %></div>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <div class="login_user__profile_photo nav-link right"><%= current_user.email %>さん</div>
+              </li>
+            <% end %>
+
+        <% else %>
+         <!-- ログインしていないとき -->
+          <li class="nav-item"><%= link_to "ユーザー登録", new_user_registration_path, class: "nav-link right" %></li>
+          <li class="nav-item"><%= link_to "サービスについて", about_path, class:"nav-link right" %></li>
+          <li class="nav-item"><%= link_to "演奏家の方へ", for_musicians_path, class:"nav-link right" %></li>
+          <li class="nav-item"><%= link_to "よくある質問", helps_path, class: "nav-link right" %></li>
+          <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link right" %></li>
+        <% end %>
+      </li>
+    </ul>
+
+    <%= render 'partial/search_component' %>
+
+  </div>
+</nav>

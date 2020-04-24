@@ -1,0 +1,12 @@
+<% unless resource.errors.empty? %>
+
+　<script type= "text/javascript">
+	toastr.options = {
+		"timeOut": "2000",
+	    "extendedTimeOut": "0",};
+　　<% resource.errors.full_messages.each do |msg| %>
+　　　toastr.error('<%= msg %>');
+　　<% end %>
+　</script>
+
+<% end %>

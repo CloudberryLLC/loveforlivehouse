@@ -1,0 +1,19 @@
+{
+  "name": "starboard",
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "4.2.2",
+    "babel-preset-react": "^6.24.1",
+    "prop-types": "^15.7.2",
+    "pug-plain-loader": "^1.0.0",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
+    "react_ujs": "^2.4.4",
+    "vue": "^2.6.11",
+    "vue-loader": "^15.9.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.10.3"
+  }
+}

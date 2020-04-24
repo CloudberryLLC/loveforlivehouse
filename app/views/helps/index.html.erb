@@ -1,0 +1,95 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+
+  <div class="pagetop">
+    <h2>ヘルプ記事一覧</h2>
+  </div>
+
+  <hr>
+
+  <!--検索ボックス-->
+  <div class="help__search_box">
+    <h5>カテゴリー</h5>
+    <%= form_with url: helps_path, method: 'get', id:'search_form', local: true do %>
+      <%= select_tag :category, options_for_select(category_array), {id:"search_box", class: "form-control"} %>
+      <div style="display:none;" >
+        <%= submit_tag 'カテゴリー検索', class:"btn btn-info" %>
+      </div>
+    <% end %>
+  </div>
+
+
+  <!--検索結果の表示-->
+  <% unless (user_signed_in? && admin?) %>
+
+    <table class="table table-bordered">
+      <thead class="thead table-success">
+        <tr>
+          <th scope="col">タイトル</th>
+          <th scope="col">更新日</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @helps.each do |help| %>
+          <tr>
+            <td class="left"><%= link_to help.title, help %></td>
+            <td><%= help.updated_at.strftime("%m/%d") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+
+  <% else %>
+    <% #adminのみ編集可能 %>
+    <table class="table table-bordered">
+      <thead class="thead table-success">
+        <tr>
+          <th scope="col">タイトル</th>
+          <th scope="col">操作</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @helps.each do |help| %>
+          <tr>
+            <td class="left"><%= link_to help.title, help %></td>
+            <td class="">
+              <%= link_to '(編集)', edit_help_path(help) %>
+              <%= link_to '(削除)', help, method: :delete, data: { confirm: '本当に削除しますか?' } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+
+    <hr>
+
+    <div class="button__area">
+      <%= link_to '新しいヘルプ記事を作成する', new_help_path, class:"btn btn-primary" %>
+    </div>
+
+  <% end %>
+
+  <%= render partial: 'partial/pagination', locals: {elements: @helps} %>
+
+  <hr>
+
+  <div class="to_inquiry">
+    ヘルプ記事で解決しない、またはご意見等: <%= link_to "お問い合わせフォーム", new_inquiry_path %>
+  </div>
+
+</div>
+
+<script>
+  $(function(){
+    $("#search_box").val('<%= @category %>');
+  });
+
+  $("#search_box").on("change", function(){
+    $('#search_form').find('[type="submit"]').trigger('click');
+  });
+</script>

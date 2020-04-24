@@ -1,0 +1,8 @@
+<div class="container">
+  <h5 class="title">検索結果 (<%= @performers.count %>件)</h5>
+  <div id="performer_search__result">
+    <%= render partial: 'partial/performer_list', locals: {performers: @performers} %>
+  </div>
+</div>
+
+<%= render partial: 'partial/pagination', locals: {elements: @performers} %>

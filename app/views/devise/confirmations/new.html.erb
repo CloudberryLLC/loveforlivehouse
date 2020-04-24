@@ -1,0 +1,29 @@
+<div class="container pagetop">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+
+			<h2>演奏家登録する</h2>
+			<h4>（登録確認メールの再送）</h4>
+
+			<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+			  <%= render 'partial/deviseErrorMsg' %>
+
+			  <div class="field">
+			    <%= f.label :Eメールアドレス %><br />
+			    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+			  </div>
+        <p class="annotation left margin-top-1em">
+          携帯電話のメールアドレスで登録する場合、あらかじめ携帯電話会社のメール受信設定から、
+          ドメイン「giftport.jp」からのメールを受信できるようにしておいてください。
+        </p>
+
+			  <br>
+
+			  <div class="actions">
+			    <%= f.submit "登録確認メールを受け取る", class: "btn btn-info" %>
+			  </div>
+			<% end %>
+
+		</div>
+	</div>
+</div>

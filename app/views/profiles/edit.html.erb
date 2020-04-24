@@ -1,0 +1,36 @@
+<div class="container pagetop">
+  <div class="row justify-content-center">
+    <div class="text-center">
+
+      <h2>ユーザー情報登録</h2>
+      <hr>
+
+      <div>
+        <% case current_user.user_type when 1 %>
+          <%= render 'client_basic_profile' %>
+        <% when 3 %>
+          <%= render 'performer_basic_profile' %>
+        <% end %>
+        <hr>
+      </div>
+
+      <p class="padding__1em">
+      アカウント情報（メールアドレス、パスワード、二段階認証）の変更は<%= link_to "こちら", edit_user_registration_path %>
+      </p>
+
+    </div>
+  </div>
+</div>
+
+<script>
+$(function() {
+  return $("#user_basic_attributes_zipcode").jpostal({
+    postcode: ["#user_basic_attributes_zipcode"],
+    address: {
+      "#user_basic_attributes_pref": "%3",
+      "#user_basic_attributes_city": "%4",
+      "#user_basic_attributes_street": "%5"
+    }
+  });
+});
+</script>

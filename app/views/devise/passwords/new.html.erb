@@ -1,0 +1,26 @@
+<div class="container pagetop">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+
+
+			<h2>パスワードの再設定</h2>
+
+			<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+			  <%= render 'partial/deviseErrorMsg' %>
+
+			  <div class="field">
+			    <%= f.label :email %><br />
+			    <%= f.email_field :email, autofocus: true %>
+			  </div>
+
+			  <br>
+
+			  <div class="actions">
+			    <%= f.submit "パスワードを再設定する", class: "btn btn-info" %>
+			  </div>
+
+			<% end %>
+
+		</div>
+	</div>
+</div>

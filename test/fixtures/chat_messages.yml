@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  contact: one
+  from: 1
+  to: 1
+  body: MyText
+
+two:
+  contact: two
+  from: 1
+  to: 1
+  body: MyText

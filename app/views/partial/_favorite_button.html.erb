@@ -1,0 +1,8 @@
+<% if (user_signed_in?) %>
+
+	<%= link_to clip_favorite_path(:user_id => current_user, :performer => @performer_profile), method:'post' do %>
+		<%= fa_icon 'heart', class: favorite_toggle(@favorite_status) %>
+	<% end %>
+	<span><%= @number_of_favorites %></span>
+
+<% end %>

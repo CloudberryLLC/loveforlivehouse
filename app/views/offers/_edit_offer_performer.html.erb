@@ -1,0 +1,84 @@
+<div class="pagetop">
+  <h2 class="title center">見積り作成・編集</h2>
+</div>
+
+<%= form_with model: @offer, html: {multipart: true}, local: true do |form| %>
+
+  <% if @offer.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <ul>
+        <% @offer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!--見積りー詳細-->
+
+  <hr>
+
+  <%= form.fields_for :estimation, @offer.estimation || Estimation.new do |estimation| %>
+
+  <p class="annotation red underline margin__vertical__2em">※見積り金額はすべて消費税込で記載してください。</p>
+
+  <h5 class="title">演奏料等</h5>
+  <p class="annotation">単位:円。スタッフ人件費のみ入力可。ほかは自動計算されます。</p>
+    <div class="form-group">
+      <%= estimation.label :guarantee %>
+      <%= estimation.text_field :guarantee, id: "guarantee",
+        value: estimate_guarantee(@offer, @performer),
+        readonly:"readonly", class:"form-control right" %>
+    </div>
+    <div class="form-group">
+      <%= estimation.label :staff %>
+      <%= estimation.text_field :staff, id: "staff", placeholder: 0, class: "form-control no-nil right", placeholder: "スタッフ人件費", autofocus: true %>
+    </div>
+    <div class="form-group">
+      <%= estimation.label :withholding_tax %>
+      <%= estimation.text_field :withholding_tax, id: "withholding_tax", placeholder: 0, readonly:"readonly", class:"form-control right" %>
+    </div>
+    <div class="form-group">
+      <%= estimation.label :system_fee %>
+      <%= estimation.text_field :system_fee, id: "system_fee", placeholder: 0, readonly:"readonly", class:"form-control right" %>
+    </div>
+  <h5 class="title">事前精算経費</h5>
+    <p class="annotation">
+      パフォーマー側で手配するもので、事前精算を希望する場合のみ入力してください(単位:円)。
+    </p>
+    <p class="annotation red">
+      ※クライアント側で手配するものを見積りに含めないでください。レビューに影響する可能性があります。
+    </p>
+    <div class="form-group">
+      <%= estimation.label :transport %>
+      <%= estimation.text_field :transport, placeholder: 0, class:"form-control no-nil right" %>
+    </div>
+    <div class="form-group">
+      <%= estimation.label :accommodation %>
+      <%= estimation.text_field :accommodation, placeholder: 0, class:"form-control no-nil right" %>
+    </div>
+    <div>
+      <%= estimation.label :carriage %>
+      <%= estimation.text_field :carriage, placeholder: 0, class:"form-control no-nil right" %>
+    </div>
+    <div class="form-group">
+      <%= estimation.label :equipment %>
+      <%= estimation.text_field :equipment, placeholder: 0, class:"form-control no-nil right" %>
+    </div>
+    <div class="form-group">
+      <%= estimation.label :other_expenses %>
+      <%= estimation.text_field :other_expenses, placeholder: 0, class:"form-control no-nil right" %>
+    </div>
+    <div class="form-group">
+      <%= estimation.label :detail %>
+      <%= estimation.text_area :detail, rows: 7, class:"form-control", placeholder:"新幹線チケット事前購入費: ○○円 など" %>
+    </div>
+  <% end %>
+
+  <hr>
+
+  <div class="actions">
+    <%= form.submit "更新する", class: "btn btn-primary" %>
+  </div>
+
+<% end %>

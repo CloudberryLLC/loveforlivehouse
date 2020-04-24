@@ -1,0 +1,93 @@
+<div class="container pagetop">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+
+      <h2 class="title">支払確認・承認</h2>
+      <p>入金を承認する前に、必ず見積りと支払いに相違がないか確認してください。</p>
+
+      <hr>
+
+      <div>
+        <h4 class="title">概要</h4>
+        <div class="margin__left__1em">
+          <p>
+            オファーID: <%= @offer.id %> （支払ID: <%= @offer.payment.id %>）<br>
+            <br>
+            パフォーマー連絡先: <%= @contractor.email %><br>
+            パフォーマー電話番号: <%= @contractor.basic.phone.to_s %><br>
+            <br>
+            クライアント連絡先: <%= @client.email %><br>
+            クライアント電話番号: <%= @client.basic.phone.to_s %><br>
+          </p>
+        </div>
+
+        <hr>
+
+        <h4 class="title">支払内容</h4>
+        <div class="margin__left__1em">
+          <p>
+            <h5 class="title underline">支払総額: <%= @offer.payment.total.to_s(:delimited) %>円</h5>
+            支払方法: <%= view_payment_option(@offer.payment.payment_options) %><br>
+            支払期限: <%= @offer.payment.payment_due.strftime("%m/%d %H:%M") %><br>
+          </p>
+          <p>(内訳)</p>
+          <p>
+            パフォーマーの手取り金額: <%= @offer.payment.guarantee.to_s(:delimited) %>円<br>
+            マネジメント手数料: <%= @offer.payment.management_fee.to_s(:delimited) %>円<br>
+            スタッフ人件費: <%= @offer.payment.staff.to_s(:delimited) %>円<br>
+            源泉税・特別復興加算税: <%= @offer.payment.withholding_tax.to_s(:delimited) %>円<br>
+            システム利用料: <%= @offer.payment.system_fee %>円<br>
+            交通費: <%= @offer.payment.transport.to_s(:delimited) %>円<br>
+            宿泊費: <%= @offer.payment.accommodation.to_s(:delimited) %>円<br>
+            運搬費: <%= @offer.payment.carriage.to_s(:delimited) %>円<br>
+            機材費: <%= @offer.payment.equipment.to_s(:delimited) %>円<br>
+            その他経費: <%= @offer.payment.other_expenses.to_s(:delimited) %>円<br>
+          </p>
+        </div>
+      </div>
+
+      <hr>
+
+      <div>
+        <h4 class="title">見積内容</h4>
+        <div class="margin__left__1em">
+          <p>
+            <h5 class="title underline">支払総額: <%= total(@offer.estimation).to_s(:delimited) %>円</h5>
+            承認日時: <%= @offer.estimation.updated_at.strftime("%m/%d %H:%M") %><br>
+          </p>
+          <p>(内訳)</p>
+          <p>
+            パフォーマーの手取り金額: <%= @offer.estimation.guarantee.to_s(:delimited) %>円<br>
+            事前精算経費:
+            <%= (
+              @offer.estimation.transport +
+              @offer.estimation.accommodation +
+              @offer.estimation.carriage +
+              @offer.estimation.equipment +
+              @offer.estimation.other_expenses).to_s(:delimited)
+            %>円<br>
+            スタッフ人件費: <%= @offer.estimation.staff.to_s(:delimited) %>円<br>
+            源泉税・特別復興加算税: <%= @offer.estimation.withholding_tax.to_s(:delimited) %>円<br>
+            システム利用料: <%= @offer.estimation.system_fee.to_s(:delimited) %>円<br>
+          </p>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="container">
+        <div class="button__area center">
+          <%= form_with model: @offer, url: offer_path, local: true do |f| %>
+            <%= f.hidden_field :offer_status, value: 13 %>
+            <%= f.fields_for :payment, @offer.payment do |payment| %>
+              <%= payment.hidden_field :paid, value: true %>
+              <%= payment.hidden_field :recieved_at, value: DateTime.now %>
+            <% end %>
+            <%= f.submit "支払完了を確認しました", class: "btn btn-success" %>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

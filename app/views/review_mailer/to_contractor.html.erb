@@ -1,0 +1,63 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+    レビューが届きました
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+    クライアントよりレビューが届いています。<br>
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em 1em;"></td></tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+    <p style="font-weight:bold;">オファーID: <%= @offer.id %></p>
+    送信者: <%= @client.basic.lastname.to_s %> 様<br>
+    パフォーマー: <%= @performer.performer_name.to_s %><br>
+
+    <p style="font-weight:bold;">公開レビュー</p>
+    トータルスコア: <%= @review.total_review %> / 5.0 <br>
+    <br>
+    クオリティ: <%= @review.quality %> / 5.0 <br>
+    仕事のしやすさ: <%= @review.confortability %> / 5.0 <br>
+    コスト: <%= @review.cost_performance %> / 5.0 <br>
+    マナー: <%= @review.manners %> / 5.0 <br>
+    返信の速さ: <%= @review.fast_response %> / 5.0 <br>
+    <br>
+    コメント:<br>
+    <%= simple_format(@review.comment) %>
+  </td>
+</tr>
+
+<!--本文-->
+<tr>
+  <td style="padding:1em;">
+    この度はMUSICIANBOOKよりお仕事を遂行くださりありがとうございました。<br>
+    <br>
+    パフォーマーの皆様にもっと使いやすいサービスにするために、フィードバック及び改善リクエストをお願いしています。<br>
+    以下の「フィードバックを送る」からアクセス、カテゴリーを「ご意見・改善リクエスト」として貴重なご意見をぜひお寄せください。<br>
+    <br>
+    今後とも本サービスをよろしくお願い致します。<br>
+  </td>
+</tr>
+
+
+<tr><td style="padding:1em;"></td></tr>
+
+<!--リンクパネル-->
+<tr>
+  <td style="padding:1em;background-color:#eeeeee;">
+    <%= link_to 'フィードバックを送る', new_inquiry_url %>
+  </td>
+</tr>
+
+
+<%= render 'partial/mailer_footer' %>

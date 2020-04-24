@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name_card: one
+  amount: 1
+  delivery_date: 2019-03-03
+  price: 1
+  payment_option: 1
+  payment_limit: 2019-03-03
+  paid: false
+  zipcode: MyString
+  pref: MyString
+  city: MyString
+  street: MyString
+  bldg: MyString
+  reciever_name: MyString
+  ordered: false
+
+two:
+  name_card: two
+  amount: 1
+  delivery_date: 2019-03-03
+  price: 1
+  payment_option: 1
+  payment_limit: 2019-03-03
+  paid: false
+  zipcode: MyString
+  pref: MyString
+  city: MyString
+  street: MyString
+  bldg: MyString
+  reciever_name: MyString
+  ordered: false

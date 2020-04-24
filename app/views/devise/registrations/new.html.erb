@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <h2 class="title">ユーザー登録</h2>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+        <%= render 'partial/deviseErrorMsg' %>
+
+        <div class="form-group">
+          <%= f.label :メールアドレス %>
+          <%= f.email_field :email, class: "form-control", placeholder: "Eメールアドレス", autofocus: true %>
+          <p class="annotation left margin-top-1em">
+            当サービスからのメールが迷惑メール設定によりブロックされないよう、事前にご確認をお願いいたします。<br>
+            <%= link_to "迷惑メール設定の確認方法", help_path(5), target:"blank" %>
+          </p>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :パスワード %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> 文字以上)</em>
+          <% end %><br />
+          <%= f.password_field :password, class: "form-control", placeholder: "パスワード（10文字以上）", autocomplete: "off" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :パスワード（確認） %><br />
+          <%= f.password_field :password_confirmation, class: "form-control", placeholder: "パスワード（確認）", autocomplete: "off" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :区分 %><br>
+          <div id="registration__type__button_area" class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-outline-primary">
+              <%= f.radio_button :user_type, 1 %> クライアント
+            </label>
+            <label class="btn btn-outline-primary">
+              <%= f.radio_button :user_type, 3 %> ミュージシャン
+            </label>
+          </div>
+          <p class="annotation left margin-top-1em">
+            演奏(パフォーマンス)を依頼される方は「クライアント」、演奏者(パフォーマー)として登録する方は「パフォーマー」を選択してください。
+          </p>
+        </div>
+
+        <div class="form-check">
+          <label class="form-check-label">
+            <%= f.check_box :rule_confirmation, class: "form-check-input" %>
+            <%= link_to "利用規約", terms_of_services_path, target:"blank" %>に同意する。
+          </label>
+        </div>
+
+        <%= f.hidden_field :certified, value: false %>
+
+        <div class="button__area actions">
+          <%= f.submit "ユーザー登録する", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+
+    </div>
+  </div>
+</div>

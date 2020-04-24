@@ -1,0 +1,17 @@
+#jumbotron-about1 {
+  // 背景画像を暗くする
+  background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), image-url("about-top.png");
+	background-size: cover;
+	// 背景画像の位置を決める
+	background-position: 50% 50%;
+	height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.service__explanation__title {
+  padding: 1em 0em;
+  text-align: center;
+}

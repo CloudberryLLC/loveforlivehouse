@@ -1,0 +1,13 @@
+<div class="chat__wrapper">
+  <% unless chat_message.from == (current_user.id)  %>
+    <div class="chat-sender">
+      <%= image_tag photo(get_sender_photo(chat_message.from)), class: "profile-32round" %>
+      <%= get_sender_name(chat_message.from) %>
+    </div>
+  <% end %>
+
+  <div class="chat-body <%= message_color(chat_message.from) %>" >
+    <%= simple_format(chat_message.body) %>
+  </div>
+  <p class="post-time"><%= chat_message.created_at.strftime("%m/%d %H:%M") %></p>
+</div>
