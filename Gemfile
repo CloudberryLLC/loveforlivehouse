@@ -62,6 +62,7 @@ gem 'acts-as-taggable-on' #タグ付け機能
 gem 'chart-js-rails', '~> 0.1.4' #レビューのレーダーチャート
 gem 'rails_admin', '~> 2.0' #admin関連
 gem 'cancancan'
+gem 'aws-sdk', '< 2.0'
 gem "aws-sdk-s3", require: false
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'trix-rails', require: 'trix'
