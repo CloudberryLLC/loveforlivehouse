@@ -30,7 +30,7 @@ module OffersHelper
     return offer_status_array
   end
 
-  #オファー一覧の相手写真を表示
+  #支援画面の相手写真を表示
   def get_photo_of_counterpart(client, contractor, performer)
 		begin
 			if client == current_user.id
@@ -358,9 +358,9 @@ module OffersHelper
   end
 
   def set_decline_status_value
-    if performer?
+    if livehouse?
       return 3
-    elsif client?
+    elsif supporter?
       return 6
     end
   end

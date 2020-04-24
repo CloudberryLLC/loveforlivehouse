@@ -4,7 +4,7 @@ class NameCardOrderMailer < ApplicationMailer
   before_action { set_order_data }
 
   def order_confirmed
-    mail(to: @user.email, subject: '[love_for_live_house] 名刺のオーダーを完了しました。')
+    mail(to: @user.email, subject: '[LOVE for Live House] 名刺のオーダーを完了しました。')
   end
 
   def coming_order

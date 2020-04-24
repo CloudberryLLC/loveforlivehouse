@@ -1,9 +1,9 @@
 <% unless @offers.nil? %>
-  <h4 class="title">直近のオファー</h4>
+  <h4 class="title">支援履歴</h4>
   <%= render partial: 'offers/offer_list', locals: { offers: @offers } %>
   <p class="right"><%= link_to '(もっと見る)', offers_path(current_user) %></p>
 <% else %>
-  <span>オファーがまだありません。</span>
+  <span>まだ支援を行っていません。</span>
 <% end %>
 
 <hr>

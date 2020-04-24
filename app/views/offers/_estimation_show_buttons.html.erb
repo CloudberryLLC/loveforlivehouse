@@ -1,4 +1,4 @@
-<% if client? %>
+<% if supporter? %>
   <h5>ご注意</h5>
   <p>
     パフォーマーによってはこのほか当日、または後日精算の経費が発生する場合があります。<br>
@@ -22,7 +22,7 @@
     <% end %>
   <% end %>
 
-<% elsif performer? %>
+<% elsif livehouse? %>
   <% if show_estimation_edit_button?(offer.offer_status) %>
     <%= link_to "見積りを変更する", edit_offer_path(offer), class: "btn btn-info right" %>
   <% end %>

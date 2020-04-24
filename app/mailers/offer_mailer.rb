@@ -5,35 +5,35 @@ class OfferMailer < ApplicationMailer
   before_action { set_offer_data(@offer) }
 
   def new_offer #1
-    mail(to: @contractor.email, subject: '[love_for_live_house] クライアントよりオファーが届きました。')
+    mail(to: @contractor.email, subject: '[LOVE for Live House] クライアントよりオファーが届きました。')
   end
 
   def offer_changed #2
-    mail(to: @contractor.email, subject: '[love_for_live_house] オファーの内容が変更されました。')
+    mail(to: @contractor.email, subject: '[LOVE for Live House] オファーの内容が変更されました。')
   end
 
   def performer_unaccepted #3
-    mail(to: @client.email, subject: '[love_for_live_house] オファーが成立しませんでした。')
+    mail(to: @client.email, subject: '[LOVE for Live House] オファーが成立しませんでした。')
   end
 
   def estimation_to_client #4
-    mail(to: @client.email, subject: '[love_for_live_house] パフォーマーより見積りが届きました。')
+    mail(to: @client.email, subject: '[LOVE for Live House] パフォーマーより見積りが届きました。')
   end
 
   def re_estimate_order #5
-    mail(to: @contractor.email, subject: '[love_for_live_house] クライアントから再見積り依頼がありました。')
+    mail(to: @contractor.email, subject: '[LOVE for Live House] クライアントから再見積り依頼がありました。')
   end
 
   def client_unaccepted #6
-    mail(to: @contractor.email, subject: '[love_for_live_house] オファーが成立しませんでした。')
+    mail(to: @contractor.email, subject: '[LOVE for Live House] オファーが成立しませんでした。')
   end
 
   def estimation_accepted #7
-      mail(to: @contractor.email, subject: '[love_for_live_house] クライアントが見積りを承認しました。')
+      mail(to: @contractor.email, subject: '[LOVE for Live House] クライアントが見積りを承認しました。')
   end
 
   def payment_request_to_client #7
-    mail(to: @client.email, subject: '[love_for_live_house] オファー承諾後のお支払いについて')
+    mail(to: @client.email, subject: '[LOVE for Live House] オファー承諾後のお支払いについて')
   end
 
   def charge_created #9
@@ -42,35 +42,35 @@ class OfferMailer < ApplicationMailer
   end
 
   def contact_expired_to_client #10
-    mail(to: @client.email, subject: '[love_for_live_house] オファーが期限切れのためキャンセルとなりました。')
+    mail(to: @client.email, subject: '[LOVE for Live House] オファーが期限切れのためキャンセルとなりました。')
   end
 
   def contact_expired_to_contractor #10
-    mail(to: @contractor.email, subject: '[love_for_live_house] オファーが期限切れのためキャンセルとなりました。')
+    mail(to: @contractor.email, subject: '[LOVE for Live House] オファーが期限切れのためキャンセルとなりました。')
   end
 
   def offer_expired_to_client #12
-    mail(to: @client.email, subject: '[love_for_live_house] オファーが支払期限切れのためキャンセルとなりました。')
+    mail(to: @client.email, subject: '[LOVE for Live House] オファーが支払期限切れのためキャンセルとなりました。')
   end
 
   def offer_expired_to_contractor #12
-    mail(to: @contractor.email, subject: '[love_for_live_house] オファーが支払期限切れのためキャンセルとなりました。')
+    mail(to: @contractor.email, subject: '[LOVE for Live House] オファーが支払期限切れのためキャンセルとなりました。')
   end
 
   def offer_confirmed_to_client #13
-    mail(to: @client.email, subject: '[love_for_live_house] オファー確定のお知らせ。')
+    mail(to: @client.email, subject: '[LOVE for Live House] オファー確定のお知らせ。')
   end
 
   def offer_confirmed_to_contractor #13
-    mail(to: @contractor.email, subject: '[love_for_live_house] オファー確定のお知らせ。')
+    mail(to: @contractor.email, subject: '[LOVE for Live House] オファー確定のお知らせ。')
   end
 
   def offer_cancelled_to_client #14, 15, 16
-    mail(to: @client.email, subject: '[love_for_live_house] オファーがキャンセルされました。')
+    mail(to: @client.email, subject: '[LOVE for Live House] オファーがキャンセルされました。')
   end
 
   def offer_cancelled_to_contractor #14, 15, 16
-    mail(to: @contractor.email, subject: '[love_for_live_house] オファーがキャンセルされました。')
+    mail(to: @contractor.email, subject: '[LOVE for Live House] オファーがキャンセルされました。')
   end
 
   def offer_cancelled_to_admin #14, 15, 16
@@ -79,7 +79,7 @@ class OfferMailer < ApplicationMailer
   end
 
   def offer_complited_to_client #17
-    mail(to: @client.email, subject: '[love_for_live_house] レビューをお願い致します。')
+    mail(to: @client.email, subject: '[LOVE for Live House] レビューをお願い致します。')
   end
 
 private

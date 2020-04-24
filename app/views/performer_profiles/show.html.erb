@@ -15,29 +15,27 @@
 		<div class="col-lg-8 margin__vertical__1em">
 			<h4 class="performer__name"><%= @performer_profile.performer_name %></h4>
 			<div class="reviews__and__favorites">
-				<span class="average_total"></span>
-				<span><%= review_score(@total_review) %> | </span>
-				<span class="number_of_review"><%= @reviews.count %>件のレビュー</span>
-			</div>
-			<div class="reviews__and__favorites">
 				<span><%= render 'partial/favorite_button' %>件のお気に入り</span>
 			</div>
 
-			<table id="performer__profile__table" class="table table-bordered">
+			<table id="performer__profile__table" class="table left">
 			  <tbody>
 			    <tr>
-			      <th scope="row">編成</th>
-			      <td><%= render 'performer_profiles/tag_list', tag_list: @performer_profile.instrument_list %></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">エリア</th>
+			      <th scope="row" style="width:7em;">地域</th>
 			      <td><%= @performer_profile.area %></td>
 			    </tr>
 			    <tr>
+			      <th scope="row" style="width:7em;">ジャンル</th>
+			      <td><%= @performer_profile.genre %></td>
+			    </tr>
+			    <tr>
+			      <th scope="row" style="width:7em;">キャパシティ</th>
+			      <td><%= @performer_profile.conditions %></td>
+			    </tr>
+			    <tr>
 			      <td colspan="2" class="left">
-							<%= show_performer_rank(@performer_profile.performer_rank) %> <%= @performer_profile.number_of_member %>人<br>
-							基本演奏料：<strong><%= calculate_price(@performer_profile.basic_guarantee * @performer_profile.number_of_member)[3].to_i.to_s(:delimited)+"円" %></strong><br>
-							(演奏家の報酬: <%= calculate_price(@performer_profile.basic_guarantee * @performer_profile.number_of_member)[1].to_i.to_s(:delimited)+"円" %>)
+							月間目標金額：<strong><%= calculate_price(@performer_profile.basic_guarantee * @performer_profile.number_of_member)[3].to_i.to_s(:delimited)+"円" %></strong><br>
+							集まった金額：<strong><%= calculate_price(@performer_profile.basic_guarantee * @performer_profile.number_of_member)[3].to_i.to_s(:delimited)+"円" %></strong><br>
 						</td>
 			    </tr>
 			  </tbody>
@@ -53,10 +51,10 @@
 		<% if current_user.id == @performer_profile.user_id %>
 		  	<p class="center"><%= link_to "編集", edit_performer_profile_path, class: "btn btn-info" %></p>
 		<% else %>
-		  	<p class="center"><%= link_to "オファー・問い合わせ", new_offer_path(:user => current_user, :contractor => @performer_profile.user_id, :offered_performer => @performer_profile), class: "btn btn-success" %></p>
+		  	<p class="center"><%= link_to "このライブハウスを支援する", new_offer_path(:user => current_user, :contractor => @performer_profile.user_id, :offered_performer => @performer_profile), class: "btn btn-success" %></p>
 		<% end %>
 	<% else %>
-	  	<p class="center"><%= link_to "会員登録して連絡を取る", new_user_registration_path, class: "btn btn-success" %></p>
+	  	<p class="center"><%= link_to "会員登録して支援する", new_user_registration_path, class: "btn btn-success" %></p>
 	<% end %>
 </div>
 
@@ -67,7 +65,7 @@
 <!--演奏動画-->
 <div class="container">
 	<div id="PlayingVideos">
-		<h4 class="title">この演奏家の動画</h4>
+		<h4 class="title">ライブハウスの動画</h4>
 		<div class = "row">
 			<%= movie(@performer_profile.sample_movie_url1) %>
 			<%= movie(@performer_profile.sample_movie_url2) %>
@@ -82,14 +80,13 @@
 
 <!--プロフィール詳細-->
 <div class="container">
-	<h4 class="title">プロフィール</h4>
+	<h4 class="title">プロフィール・メッセージ</h4>
 	<div class="profile__textarea">
 		<%= description(@performer_profile.profile_long) %>
 	</div>
 
-	<h4 class="title">演奏条件</h4>
+	<h4 class="title">備考</h4>
 	<div class="profile__textarea">
-		<p><%= description(@performer_profile.conditions) %></p>
 		<p><%= description(@performer_profile.conditions_detail) %></p>
 	</div>
 </div>
@@ -104,24 +101,12 @@
 		<div class="row">
 			<div id="reviews__headline" class="col-lg-4">
 				<!--スコアとレーダーチャート-->
-				<h4 class="title">レビュー</h4>
+				<h4 class="title">支援者とメッセージ</h4>
 				<p>
-					<span class="average_total"></span>
-					<span class="avarage_total_value"><%= review_score(@total_review) %> | </span>
-					<span><%= @reviews.count %>件のレビュー</span>
+					<span><%= @reviews.count %>人からのメッセージ</span>
 				</p>
-
-				<% if @reviews.blank? %>
-					<span>レビューはまだありません。</span>
-				<% end %>
-
-				<!--レーダーチャート-->
-				<div class="radarchart__wrapper">
-					<canvas id="radarchart" class="radarchart"></canvas>
-				</div>
 			</div>
-
-		<!-- 個別レビュー -->
+			<!-- 個別レビュー -->
 			<div id="reviews_detail" class="col-lg-8">
 				<div class="reviews__detail__wrapper">
 					<% @reviews.each do |review| %>
@@ -147,7 +132,7 @@
 <!--この演奏家の所属グループ-->
 <div class="container">
 	<div id="Belongs">
-		<h4 class="title">この演奏家のいるグループ</h4>
+		<h4 class="title">この運営者の他のライブハウス</h4>
 	</div>
 </div>
 

@@ -3,6 +3,7 @@
   <hr>
   <p>ユーザー情報</p>
     ユーザーID: <%= @user.id %><br>
+    ユーザー区分: <%= show_user_type(@user) %><br>
   	メールアドレス: <%= @user.email %><br>
     お名前: <%= @user.basic.lastname %> <%= @user.basic.firstname %> 様<br>
     お名前フリガナ: <%= @user.basic.lastname_kana %> <%= @user.basic.firstname_kana %><br>

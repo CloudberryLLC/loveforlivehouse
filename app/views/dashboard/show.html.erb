@@ -6,10 +6,10 @@
     <%= render 'dashboard_top' %>
   </div>
 
-  <% if client? %>
+  <% if supporter? %>
     <%= render 'dashboard_client' %>
 
-  <% elsif performer? %>
+  <% elsif livehouse? %>
     <br>
     <div id="dashboard-performer" >
       <%= render 'dashboard_performer' %>

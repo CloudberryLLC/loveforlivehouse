@@ -68,7 +68,7 @@
     <hr>
 
     <div id="offer_buttons" class="container padding__1em">
-      <% if client? %>
+      <% if supporter? %>
         <% if show_offer_edit_button?(@offer.offer_status) %>
           <div class="button__area center submit">
             <%= link_to "オファーを編集", edit_offer_path(@offer),
@@ -77,7 +77,7 @@
           </div>
         <% end %>
 
-      <% elsif performer? %>
+      <% elsif livehouse? %>
         <% if show_offer_accept_button?(@offer.offer_status) %>
           <div class="button__area center">
             <div class="offer-button">

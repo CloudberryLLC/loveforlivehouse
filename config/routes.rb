@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   get '/user/:id/mygroups', to: 'performer_profiles#index', as: 'mygroups'
   get '/offers/:id/invoice', to: 'invoices#show', as:'invoice'
   get '/offers/:id/reciept', to: 'reciepts#show', as:'reciept'
-	get '/performers/:id', to:'performer_profiles#show', as: 'performer'
+	get '/livehouse/:id', to:'performer_profiles#show', as: 'performer'
   get '/performer_profiles/admincheck/:id', to: 'performer_profiles#admin_check', as: 'admin_check'
   get '/profiles/admincheck/:id', to: 'profiles#admin_check', as: 'admin_check_user'
   get '/payments/:id/confirmation', to:'payments#confirmation', as:'payment_confirmation'

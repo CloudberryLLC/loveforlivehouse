@@ -1,18 +1,18 @@
 <div class="container">
 
-	<h3 class="title">グループ作成・管理</h3>
+	<h3 class="title">ライブハウス登録・管理</h3>
 
 	<hr>
 
 	<div id="make__new__group" class="button__area center">
-		<h4 class="title">登録済みのグループ一覧</h4>
-		<%= link_to "新しいグループを作成", new_user_performer_profile_path(current_user), class:"btn btn-primary" %>
+		<h4 class="title">ライブハウスの新規登録</h4>
+		<%= link_to "新規登録", new_user_performer_profile_path(current_user), class:"btn btn-primary" %>
 	</div>
 
 	<hr>
 
 	<div class="container">
-		<h4 class="title">登録済みのグループ一覧</h4>
+		<h4 class="title">登録済みのライブハウス</h4>
 		<div class="row">
 			<% @groups.each do |group| %>
 				<div class="col-md-6 padding__1em">

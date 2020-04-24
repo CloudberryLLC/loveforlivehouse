@@ -1,16 +1,29 @@
 module ApplicationHelper
 
 #ユーザータイプの判定
-	def client?
+	def supporter?
 		current_user.user_type == 1
 	end
 
-	def performer?
+	def livehouse?
 		current_user.user_type == 3
 	end
 
 	def admin?
 		current_user.admin == true
+	end
+
+	def show_user_type(user)
+		begin
+			case user.user_type
+			when 1
+				return "支援者"
+			when 3
+				return "ライブハウス"
+			end
+		rescue
+			return "ユーザータイプが取得できませんでした。"
+		end
 	end
 
 #プロフィール写真があればそれを、なければnophoto.pngを返す

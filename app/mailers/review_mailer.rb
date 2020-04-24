@@ -7,15 +7,15 @@ class ReviewMailer < ApplicationMailer
   before_action { set_offer_data(@offer) }
 
   def to_admin
-    mail(to: @admin, subject: '[love_for_live_house] フィードバックが届きました。')
+    mail(to: @admin, subject: '[LOVE for Live House] フィードバックが届きました。')
   end
 
   def to_contractor
-    mail(to: @contractor.email, subject: '[love_for_live_house] レビューが投稿されました。')
+    mail(to: @contractor.email, subject: '[LOVE for Live House] レビューが投稿されました。')
   end
 
   def to_client
-    mail(to: @client.email, subject: '[love_for_live_house] レビューを投稿しました。')
+    mail(to: @client.email, subject: '[LOVE for Live House] レビューを投稿しました。')
   end
 
 private

@@ -1,21 +1,20 @@
 <% unless @user.performer_profiles.present? %>
   <h5 class="title">ステップ2</h5>
-  <h5 class="title">グループを作成しましょう。</h5>
+  <h5 class="title">ライブハウスを登録しましょう。</h5>
 
   <p class="text__area">
-    グループとは、あなたが参加しているバンドやユニットなどのことです。<br>
-    ソロ演奏も同様にグループ登録できます。<br>
-    グループは複数登録することができます。</p>
-  <p>さっそく登録してみましょう。</p>
+    運営・所有しているライブハウスを登録しましょう。<br>
+    5店まで登録できます。<br>
+  <p>下の「ライブハウスを登録する」をクリックして情報を入力しましょう。</p>
 
 
   <% if @user.certified? %>
 	<p class="button__area center">
-    <%= link_to "新しいグループを作成する", new_user_performer_profile_path(current_user), class:"btn btn-success" %>
+    <%= link_to "ライブハウスを登録する", new_user_performer_profile_path(current_user), class:"btn btn-success" %>
   </p>
   <% else %>
   <p class="annotation red">
-    グループは本人確認が完了した後にユーザー登録承認メールが届き次第、作成が可能になります。<br>
+    ライブハウスは本人確認が完了した後に登録が可能になります。<br>
   </p>
   <% end %>
 
