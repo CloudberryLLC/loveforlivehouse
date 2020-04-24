@@ -4,7 +4,7 @@ class ApplicationMailer < ActionMailer::Base
   before_action {@admin_url = ENV["ADMIN_URL"]}
   before_action {@admin_email = Rails.application.credentials.ADMIN_EMAIL}
 
-  default from: 'noreply@musicianbook.jp'
+  default from: 'noreply@love_for_live_house.jp'
 
   layout 'mailer'
 end

@@ -3,7 +3,7 @@ class InquiryMailer < ApplicationMailer
   before_action { @inquiry = params[:inquiry] }
 
   def inquiry_sent_successfly
-    mail(to: @inquiry.email, subject: '[MUSICIANBOOK] お問い合わせを受け付けました。')
+    mail(to: @inquiry.email, subject: '[love_for_live_house] お問い合わせを受け付けました。')
   end
 
   def new_inquiry

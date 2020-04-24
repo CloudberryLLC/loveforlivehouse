@@ -24,9 +24,9 @@ private
   def mail_subject(sender, offer)
     case sender.id
     when offer.client
-      return "[MUSICIANBOOK] クライアントからコンタクトがありました。"
+      return "[love_for_live_house] クライアントからコンタクトがありました。"
     when offer.contractor
-      return "[MUSICIANBOOK] パフォーマーからコンタクトがありました。"
+      return "[love_for_live_house] パフォーマーからコンタクトがありました。"
     else
       return "先方からコンタクトがありました。"
     end

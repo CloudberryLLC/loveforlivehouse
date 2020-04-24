@@ -2,7 +2,7 @@
 
 ActiveSupport::Reloader.to_prepare do
   ApplicationController.renderer.defaults.merge!(
-    http_host: 'www.musicianbook.jp',
+    http_host: 'www.love_for_live_house.jp',
     https: true
   )
 end
