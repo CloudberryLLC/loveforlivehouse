@@ -2,14 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="description" content="love_for_live_house - ミュージシャンブックは、近くのミュージシャンに気軽に演奏を依頼できる、新しい演奏マッチングサービスです。">
+    <meta name="description" content="ライブハウス緊急支援 | LOVE for live house">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="google-site-verification" content="Af98TzfyS4zXKSN9A8LCIZo_WCWPB_1DZ096qvWHQCI" />
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <title>近くの演奏家に気軽に演奏を依頼できる | love_for_live_house - ミュージシャンブック</title>
+    <title>ライブハウス緊急支援 | LOVE for live house</title>
 
     <%= favicon_link_tag asset_path('favicon.ico'), :rel => 'favicon' %>
     <%= favicon_link_tag asset_path('apple-touch-icon.png'), :rel => 'apple-touch-icon', :type => 'image/png' %>
@@ -83,7 +83,7 @@
   <footer>
     <div id="footer__content">
       <p>
-      <%= link_to '利用規約', root_path, class:"footer__link" %><br><!-- #terms_of_service-->
+      <%= link_to '利用規約', terms_of_services_path, class:"footer__link" %><br><!-- #terms_of_service-->
       <%= link_to 'プライバシーポリシー', root_path, class:"footer__link" %><br><!-- #privacy_policy-->
       <%= link_to '特定商取引法に基づく表記', root_path, class:"footer__link" %><br><!-- #tokushouhou-->
       <%= link_to '運営会社', root_path, class:"footer__link" %><br><!-- #'https://giftport.herokuapp.com'-->

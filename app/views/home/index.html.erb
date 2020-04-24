@@ -2,28 +2,38 @@
   <div id="home__jumbotron__wrapper">
     <h1 class="jumbotron__eyecatch__text">
       <span class="home__slogan">ライブハウスに</span>
-      <span class="home__slogan">簡単に支援を届ける</span><br>
+      <span class="home__slogan">今すぐ支援を届ける</span><br>
     </h1>
       <p id="home__slogan__subtext">
-        <span class="slogan_subtext">ライブハウス支援特化型</span>
-        <span class="slogan_subtext">クラウドファンディングサービス</span>
+        <span class="slogan_subtext">ライブハウス緊急支援専用</span>
+        <span class="slogan_subtext">クラウドファンディング</span>
       </p>
+      <div class="center button__area">
+        <%= link_to "サービスについて", "#about", class: "btn btn-primary" %>
+      </div>
       <div id="performer__search__box">
         <%= form_with url: performer_search_path, method: :get, local: true do |performer_search| %>
-          <%= performer_search.text_field :keyword, placeholder: "ライブハウス名・地域", id: "performer-search-input", class:"form-control rounded-pill" %>
+          <%= performer_search.text_field :keyword, placeholder: "地域 / ライブハウス名で検索", id: "performer-search-input", class:"form-control rounded-pill" %>
         <% end %>
       </div>
+
   </div>
 </div>
 
 <div id="new__performers">
-  <h4 class="title center">新着ライブハウス</h4>
+  <h3 class="title center">新着ライブハウス</h3>
   <%= render partial: 'partial/performer_list', locals: { performers: @new_performers} %>
 </div>
 
 <hr>
 
 <div id="recently__viewed">
-  <h4 class="title center">最近見たライブハウス</h4>
+  <h3 class="title center">最近見たライブハウス</h3>
   <%= render 'partial/recently_viewed_performers' %>
+</div>
+
+<hr>
+
+<div id="about">
+  <%= render 'about' %>
 </div>

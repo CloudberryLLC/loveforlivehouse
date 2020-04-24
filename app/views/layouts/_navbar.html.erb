@@ -4,7 +4,7 @@
 
   <span id="brand-text">
     <%= link_to image_tag("brand_logo.png", alt: "love_for_live_house", class: 'navbar-brand brand-logo'), '/' %>
-    <span class="brand-font">love_for_live_house</span>
+    <span class="brand-font">LOVE for Live House</span>
   </span>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,9 +49,7 @@
 
         <% else %>
          <!-- ログインしていないとき -->
-          <li class="nav-item"><%= link_to "ユーザー登録", new_user_registration_path, class: "nav-link right" %></li>
-          <li class="nav-item"><%= link_to "サービスについて", about_path, class:"nav-link right" %></li>
-          <li class="nav-item"><%= link_to "演奏家の方へ", for_musicians_path, class:"nav-link right" %></li>
+          <li class="nav-item"><%= link_to "サービスについて", '#about', class:"nav-link right" %></li>
           <li class="nav-item"><%= link_to "よくある質問", helps_path, class: "nav-link right" %></li>
           <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link right" %></li>
         <% end %>

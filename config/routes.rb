@@ -32,7 +32,6 @@ Rails.application.routes.draw do
   resources :screenshots
   resources :inquiries, only:[:new, :create, :show, :index]
 
-  get '/about', to: 'abouts#show', as: 'about'
 	get '/for_musicians', to: 'abouts#for_musicians', as: 'for_musicians'
   get '/how_to_use', to: 'how_to_uses#show', as: 'how_to_use'
 	get '/terms_of_services', to:'terms_of_services#show', as: 'terms_of_services'
