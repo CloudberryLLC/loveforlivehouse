@@ -27,7 +27,7 @@ class PerformerProfilesController < ApplicationController
     end
 
     def show
-      @groups = PerformerProfile.where(user_id: @performer_profile.user_id).where.not(id: @performer_profile.id).where.not(performer_rank: 3)
+      @groups = PerformerProfile.where(user_id: @performer_profile.user_id).where.not(id: @performer_profile.id)
       @reviews = Review.where('reviewee = ?', @performer_profile.id).order("created_at DESC")
       set_review_scores(@reviews)
       @favorite_status = FavoritePerformer.where(user_id: current_user, performer: @performer_profile.id).present?

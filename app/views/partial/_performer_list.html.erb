@@ -17,14 +17,14 @@
                     <span class="card-text"><%= performer.genre %></span><br>
                     <span class="card-text"><%= performer.set_of_instruments %></span><br>
                     <span class="card-text">
-                      <%= calculate_price(performer.basic_guarantee * performer.number_of_member)[3].to_i.to_s(:delimited)+"円" %>
+                      月間目標金額: <%= performer.basic_guarantee.to_s(:delimited) %>円
                     </span>
                   </p>
                 </div>
               </div>
             </div>
             <div class="profile_card__link_button">
-                <span class="center"><%= link_to 'プロフィールを見る', performer_path(performer.id), class:'btn btn-sm btn-primary stretched-link' %></span>
+                <span class="center"><%= link_to '詳細を見る', performer_path(performer.id), class:'btn btn-sm btn-primary stretched-link' %></span>
             </div>
           </div>
         </div>

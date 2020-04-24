@@ -34,8 +34,8 @@
 			    </tr>
 			    <tr>
 			      <td colspan="2" class="left">
-							月間目標金額：<strong><%= calculate_price(@performer_profile.basic_guarantee * @performer_profile.number_of_member)[3].to_i.to_s(:delimited)+"円" %></strong><br>
-							集まった金額：<strong><%= calculate_price(@performer_profile.basic_guarantee * @performer_profile.number_of_member)[3].to_i.to_s(:delimited)+"円" %></strong><br>
+							月間目標金額：<strong><%= @performer_profile.basic_guarantee.to_s(:delimited) %>円</strong><br>
+							集まった金額：<strong><%= @performer_profile.basic_guarantee.to_s(:delimited) %>円</strong><br>
 						</td>
 			    </tr>
 			  </tbody>
@@ -133,10 +133,10 @@
 <div class="container">
 	<div id="Belongs">
 		<h4 class="title">この運営者の他のライブハウス</h4>
+		<%= render partial: 'partial/performer_list', locals: { performers: @groups} %>
 	</div>
 </div>
 
-<%= render partial: 'partial/performer_list', locals: { performers: @groups} %>
 
 <div class="container">
 	<hr>
@@ -149,26 +149,3 @@
 	</div>
 </div>
 -->
-
-<!--scripts-->
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.GOOGLE_MAP_API_KEY %>&libraries=drawing&language=ja"></script>
-<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
-<%= javascript_tag do %>
-	draw_graph(
-		<%= @total_quality || 3.0 %>,
-		<%= @total_confortability || 3.0 %>,
-		<%= @total_cost_performance || 3.0 %>,
-		<%= @total_manners || 3.0 %>,
-		<%= @total_fast_response || 3.0 %>
-		);
-<% end %>
-<%= javascript_tag do %>
-	//全てのレビュー
-	$('.average_total').raty({
-		score: $('.avarage_total_value').text(),
-		readOnly: true,
-	  starOff: '<%= asset_path('star-off.png') %>',
-	  starHalf: '<%= asset_path('star-half.png') %>',
-	  starOn : '<%= asset_path('star-on.png') %>',
-	});
-<% end %>

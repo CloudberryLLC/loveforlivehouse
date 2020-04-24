@@ -1,130 +1,29 @@
 <div class="container pagetop">
 
-<h3>名刺の作成・リンク共有</h3>
+<h3>リンク共有</h3>
   <div class="right margin-1em">パフォーマー名: <%= @performer.performer_name %></div>
-  <br>
-  <div class="namecard__choose__button">
-    <div class="button__area center">
-    <button class="btn btn-outline-success" id="namecard__choice__make_from_this_site" type="button">名刺をつくる</button>
-    <button class="btn btn-outline-success" id="namecard__choice__make_myself" type="button">リンクの共有</button>
-    </div>
-  </div>
-
-  <div id="namecard__choose__explaination"></div>
 
   <hr>
 
   <div id="namecard__form__wrapper">
-
-    <div id="namecard__make_form">
-      <h4>名刺をつくる</h4>
-      <div class="row">
-        <div class="col-lg-6">
-          <%= render 'namecard_preview' %>
-        </div>
-        <hr>
-
-        <div class="col-lg-6">
-          <div class="annotation">
-            <p>以下項目を入力すると、プレビュー画面にリアルタイムで反映されます。</p>
-          </div>
-          <%= form_with model: @namecard, local: true do |f| %>
-            <div class="form-input">
-              <%= f.label :your_part %>
-              <%= f.text_field :your_part, id:"partname-form", class:'form-control', placeholder: "パート・楽器名", autofocus: true %>
-              <%= f.label :your_name %><span class="required"> *</span>
-              <%= f.text_field :your_name, id:"performername-form", class:'form-control', placeholder: "お名前", required: true, autofocus: true %>
-              <%= f.label :your_name_kana %>
-              <%= f.text_field :your_name_kana, id:"performernamesub-form", class:'form-control', placeholder: "お名前（フリガナ等）", autofocus: true %>
-              <%= f.label :your_group %>
-              <%= f.text_field :your_group, id:"units-form", class:'form-control', placeholder: "アピール(20文字以内)", maxlength: 20, autofocus: true %>
-            </div>
-            <div class="form-submit actions">
-              <%= f.submit "オーダー画面に進む", class: "btn btn-info" %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-
-    <div id="namecard__qr_download">
-
-      <h4>リンクの共有</h4>
-
-      <div class="copy_url margin__top_and_botttom__2em">
-        <p>
-          <h5>このグループのリンク</h5>
-          <input id="copyTarget" type="text" value="<%= performer_url(@performer) %>" leadonly>
-          <button onclick="copyToClipboard()" class="btn btn-sm btn-info">コピー</button>
-        </p>
-        </div>
-        <div class="annotation margin__botttom__2em">
-          <p>
-            ※コピーボタンをクリックまたはタップし、LINEなどで共有できます。
-          </p>
-        </div>
-
+    <h4>リンクの共有</h4>
+    <div class="copy_url margin__top_and_botttom__2em">
       <p>
-        <h5>このグループのQRコード</h5>
+        <h5>このグループのリンク</h5>
+        <input id="copyTarget" type="text" value="<%= performer_url(@performer) %>" leadonly>
+        <button onclick="copyToClipboard()" class="btn btn-sm btn-info">コピー</button>
       </p>
-      <div id="qrcode__dl__wrapper" class="margin-1em qrcode__for_download">
-        <span class="qrcode__preview"><%= qrcode_tag performer_profile_url(@performer), module_size: 2.4 %></span>
-      </div>
-      <div class="annotation">
-        <p>
-          ※環境によりQRコードが読み取れない、またはダウンロードできない場合がございます。<br>
-          その場合はスクリーンショットをお取り頂くか、上に記載の「このグループのリンク」のURLをご使用ください。
-        </p>
-      </div>
-      <div class="button__area left">
-        <button id="qrcode__output" class="btn btn-sm btn-primary">ダウンロード</button>
-        <a id="download" href="#"></a>
-      </div>
     </div>
-
+    <div class="annotation margin__botttom__2em">
+      <p>
+        ※コピーボタンをクリックまたはタップし、LINEなどで共有できます。
+      </p>
+    </div>
   </div>
+  
 </div>
 
 <script>
-
-  $(function(){
-    $('#namecard__form__wrapper').hide();
-  });
-
-  $("#namecard__choice__make_from_this_site").on({
-    'click': function(e) {
-      $('#namecard__choice__make_myself').removeClass("btn-success");
-      $('#namecard__choice__make_from_this_site').addClass("btn-success");
-      $('#namecard__choose__explaination').html("マイページへのリンク付き名刺をオーダーできます。<br>デザインは最小限ですがQRコード付き名刺が簡単に作成できます。<br>配布するとクライアントからのオファーのチャンスが広がります。<br>名刺料金(消費税送料込): 100枚 2,500円 / 200枚 4,000円");
-      $('#namecard__form__wrapper').show(100);
-      $('#namecard__qr_download').hide(100);
-      $('#namecard__make_form').show(100);
-    }
-  });
-
-  $("#namecard__choice__make_myself").on({
-    'click': function(e) {
-      $('#namecard__choice__make_from_this_site').removeClass("btn-success");
-      $('#namecard__choice__make_myself').addClass("btn-success");
-      $('#namecard__choose__explaination').html("このグループのページURL、及びQRコードを共有できます。<br>ご自身の名刺にQRコードをつけたい場合やリンクを共有したいときにご活用ください。<br>ご自身のウェブサイトやSNSにも自由に貼っていただけます<br>");
-      $('#namecard__form__wrapper').show(100);
-      $('#namecard__make_form').hide(100);
-      $('#namecard__qr_download').show(100);
-    }
-  });
-
-  $("#partname-form").on('load input', function() {
-    $('#partname-preview').text($("#partname-form").val());
-  });
-  $("#performername-form").on('load input', function() {
-    $('#performername-preview').text($("#performername-form").val());
-  });
-  $("#performernamesub-form").on('load input', function() {
-    $('#performernamesub-preview').text($("#performernamesub-form").val());
-  });
-  $("#units-form").on('load input', function() {
-    $('#units-preview').text($("#units-form").val());
-  });
 
   function copyToClipboard() {
     var copyTarget = document.getElementById("copyTarget");
