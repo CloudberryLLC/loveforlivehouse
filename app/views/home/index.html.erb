@@ -1,17 +1,16 @@
 <div id="home__jumbotron">
   <div id="home__jumbotron__wrapper">
     <h1 class="jumbotron__eyecatch__text">
-      <span class="home__slogan">ミュージシャンの</span>
-      <span class="home__slogan">暮らしを</span><br>
-      <span class="home__slogan">もっとハッピーに</span>
+      <span class="home__slogan">ライブハウスに</span>
+      <span class="home__slogan">簡単に支援を届ける</span><br>
     </h1>
       <p id="home__slogan__subtext">
-        <span class="slogan_subtext">業界初 ミュージシャン支援型</span>
-        <span class="slogan_subtext">演奏マッチングサービス</span>
+        <span class="slogan_subtext">ライブハウス支援特化型</span>
+        <span class="slogan_subtext">クラウドファンディングサービス</span>
       </p>
       <div id="performer__search__box">
         <%= form_with url: performer_search_path, method: :get, local: true do |performer_search| %>
-          <%= performer_search.text_field :keyword, placeholder: "演奏家名・ジャンル・楽器・地域", id: "performer-search-input", class:"form-control rounded-pill" %>
+          <%= performer_search.text_field :keyword, placeholder: "ライブハウス名・地域", id: "performer-search-input", class:"form-control rounded-pill" %>
         <% end %>
       </div>
   </div>
