@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
 
-      <h2 class="title">ユーザー登録</h2>
+      <h2 class="title">登録</h2>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
@@ -10,7 +10,7 @@
 
         <div class="form-group">
           <%= f.label :メールアドレス %>
-          <%= f.email_field :email, class: "form-control", placeholder: "Eメールアドレス", autofocus: true %>
+          <%= f.email_field :email, class: "form-control", placeholder: "メールアドレス", autofocus: true %>
           <p class="annotation left margin-top-1em">
             当サービスからのメールが迷惑メール設定によりブロックされないよう、事前にご確認をお願いいたします。<br>
             <%= link_to "迷惑メール設定の確認方法", help_path(5), target:"blank" %>
@@ -34,15 +34,12 @@
           <%= f.label :区分 %><br>
           <div id="registration__type__button_area" class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-outline-primary">
-              <%= f.radio_button :user_type, 1 %> クライアント
+              <%= f.radio_button :user_type, 1 %> 支援者
             </label>
             <label class="btn btn-outline-primary">
-              <%= f.radio_button :user_type, 3 %> ミュージシャン
+              <%= f.radio_button :user_type, 3 %> ライブハウス
             </label>
           </div>
-          <p class="annotation left margin-top-1em">
-            演奏(パフォーマンス)を依頼される方は「クライアント」、演奏者(パフォーマー)として登録する方は「パフォーマー」を選択してください。
-          </p>
         </div>
 
         <div class="form-check">

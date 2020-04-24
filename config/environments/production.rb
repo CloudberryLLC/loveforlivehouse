@@ -80,12 +80,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'https://loveforlivehouse.herokuapp.com ' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.sendgrid.net",
+    address: "smtp.gmail.com",
     port: 587,
-    domain: Rails.application.credentials.SG_DOMAIN,
-    user_name: Rails.application.credentials.SG_USER,
-    password: Rails.application.credentials.SG_PASS,
-    authentication:"plain",
+    domain: 'gmail.com',
+    user_name: Rails.application.credentials.EMAIL_HIDDEN,
+    password: Rails.application.credentials.PASSWORD_HIDDEN,
+    authentication: :login,
     enable_starttls_auto: true
   }
 
