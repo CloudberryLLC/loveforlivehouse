@@ -6,6 +6,13 @@
 
       <hr>
 
+      <h5 class="title">ページURL(編集不可)</h5>
+      <input id="copyTarget" type="text" value="<%= performer_url(@performer_profile) %>" readonly>
+      <button onclick="copyToClipboard()" class="btn btn-sm btn-info">コピー</button>
+      <p class="annotation margin__vertical__1em">このページURLはLINEやSNS等でシェアできます。</p>
+
+      <hr>
+
       <%= form_for @performer_profile, :html => {:multipart => true}  do |p| %>
 
       <% if @performer_profile.errors.any? %>
@@ -18,15 +25,84 @@
         </div>
       <% end %>
 
-      <!--ミュージシャンプロフィール-->
+      <!--ライブハウス情報-->
 
-        <h5 class="title">プロフィール</h5>
+        <h5 class="title">ライブハウス及び運営者情報</h5>
 
         <div class="form-group">
           <%= p.label :performer_name %>
           <span class="required"> *</span><br>
           <%= p.text_field :performer_name, class: "form-control", placeholder: "ライブハウス名", autofocus: true %>
         </div>
+
+        <div class="form-group">
+          <%= p.label :zipcode %>
+          <span class="required"> *</span><br>
+          <%= p.text_field :zipcode, maxlength: 7, class: "form-control", placeholder: "ハイフンなし", autofocus: true, required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= p.label :pref %>
+          <span class="required"> *</span><br>
+          <%= p.text_field :pref, class: "form-control", placeholder: "都道府県", autofocus: true, required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= p.label :city %>
+          <span class="required"> *</span><br>
+          <%= p.text_field :city, class: "form-control", placeholder: "市区町村", autofocus: true, required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= p.label :street %>
+          <span class="required"> *</span><br>
+          <%= p.text_field :street, class: "form-control", placeholder: "番地", autofocus: true, required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= p.label :bldg %>
+          <%= p.text_field :bldg, class: "form-control", placeholder: "建物名", autofocus: true %>
+        </div>
+
+        <div class="form-group">
+          <%= p.label :shop_url %>
+          <span class="required"> *</span><br>
+          <%= p.text_field :shop_url, class: "form-control", placeholder: "ホームページURL", autofocus: true %>
+        </div>
+
+        <div class="form-group">
+          <%= p.label :shop_email %>
+          <span class="required"> *</span><br>
+          <%= p.text_field :shop_email, class: "form-control", placeholder: "ライブハウスの公式メールアドレス", autofocus: true %>
+        </div>
+
+        <div class="form-group">
+          <%= p.label :shop_phone %>
+          <span class="required"> *</span><br>
+          <%= p.text_field :shop_phone, maxlength: 11, class: "form-control", placeholder: "携帯電話不可", autofocus: true, required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= p.label :company %>
+          <span class="required"> *</span><br>
+          <%= p.text_field :company, class: "form-control", placeholder: "ない場合は「なし」と記入してください。", autofocus: true, required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= p.label :manager %>
+          <span class="required"> *</span><br>
+          <%= p.text_field :manager, class: "form-control", placeholder: "店舗責任者のお名前", autofocus: true, required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= p.label :owner %>
+          <span class="required"> *</span><br>
+          <%= p.text_field :owner, class: "form-control", placeholder: "オーナーのお名前", autofocus: true, required: true %>
+        </div>
+
+        <hr>
+
+        <h5 class="title">掲載する内容</h5>
 
         <div class="form-group">
           <%= p.label :basic_guarantee %>
@@ -54,6 +130,12 @@
         </div>
 
         <div class="form-group">
+          <%= p.label :conditions %>
+          <span class="required"> *  </span><br>
+          <%= p.text_field :conditions, class: "form-control", placeholder: "(例)最大40名", autofocus: true %>
+        </div>
+
+        <div class="form-group">
           <%= p.label :profile_short %>
           <span class="required"> *  </span><br>
           <%= p.text_area :profile_short, rows: 3, maxlength: 100, class: "form-control", placeholder: "100文字以内", autofocus: true %>
@@ -65,30 +147,16 @@
           <%= p.text_area :profile_long, rows: 7, maxlength: 1000, class: "form-control", placeholder: "1000文字以内", autofocus: true %>
         </div>
 
-      <hr>
-
-      <h5 class="title">ライブハウス写真</h5>
-
-          <div class="form-group">
-            <%= p.label :profile_photo %>
-            <%= image_tag(@performer_profile.profile_photo, class:"profile-64round") if @performer_profile.profile_photo.attached? %>
-            <%= p.file_field :profile_photo, id: :performer_profiles_profile_photo, accept: 'image/jpg,image/jpeg,image/png,image/gif', class: "form-control" %>
-          </div>
-
-          <div class="form-group">
-            <%= p.label :cover_photo %>
-            <%= image_tag(@performer_profile.cover_photo, class:"profile-64round") if @performer_profile.cover_photo.attached? %>
-            <%= p.file_field :cover_photo, id: :performer_profiles_cover_photo, accept: 'image/jpg,image/jpeg,image/png,image/gif', class: "form-control" %>
-          </div>
-
-      <hr>
-
-      <h5 class="title">備考</h5>
+        <div class="form-group">
+          <%= p.label :profile_photo %>
+          <%= image_tag(@performer_profile.profile_photo, class:"profile-64round") if @performer_profile.profile_photo.attached? %>
+          <%= p.file_field :profile_photo, id: :performer_profiles_profile_photo, accept: 'image/jpg,image/jpeg,image/png,image/gif', class: "form-control" %>
+        </div>
 
         <div class="form-group">
-          <%= p.label :conditions %>
-          <span class="required"> *  </span><br>
-          <%= p.text_field :conditions, class: "form-control", placeholder: "(例)最大40名", autofocus: true %>
+          <%= p.label :cover_photo %>
+          <%= image_tag(@performer_profile.cover_photo, class:"profile-64round") if @performer_profile.cover_photo.attached? %>
+          <%= p.file_field :cover_photo, id: :performer_profiles_cover_photo, accept: 'image/jpg,image/jpeg,image/png,image/gif', class: "form-control" %>
         </div>
 
         <div class="form-group">
@@ -96,26 +164,22 @@
           <%= p.text_area :conditions_detail, rows: 5, maxlength: 400, class: "form-control", placeholder: "備考欄（400文字以内）", autofocus: true %>
         </div>
 
-      <hr>
-
-      <h5 class="title">動画</h5>
-
         <div class="form-group">
           <%= p.label :sample_movie_url1 %>
-          <%= p.text_field :sample_movie_url1, class: "form-control", placeholder: "Youtubeのみ", autofocus: true %>
+          <%= p.text_field :sample_movie_url1, class: "form-control", placeholder: "Youtubeのリンクのみ", autofocus: true %>
         </div>
 
         <div class="form-group">
           <%= p.label :sample_movie_url2 %>
-          <%= p.text_field :sample_movie_url2, class: "form-control", placeholder: "Youtubeのみ", autofocus: true %>
+          <%= p.text_field :sample_movie_url2, class: "form-control", placeholder: "Youtubeのリンクのみ", autofocus: true %>
         </div>
 
         <div class="form-group">
           <%= p.label :sample_movie_url3 %>
-          <%= p.text_field :sample_movie_url3, class: "form-control", placeholder: "Youtubeのみ", autofocus: true %>
+          <%= p.text_field :sample_movie_url3, class: "form-control", placeholder: "Youtubeのリンクのみ", autofocus: true %>
         </div>
 
-        <div class="form-check">
+        <div class="form-check center margin__vertical__2em">
           <%= p.label :published %>
           <%= p.check_box :published, data: {on: '公開', off: '非公開', onstyle: 'success', offstyle: 'secondary'} %>
         </div>
@@ -125,7 +189,7 @@
 
     <hr>
 
-        <div class="actions">
+        <div class="actions center">
           <%= p.submit "公開審査を依頼する", class: "btn btn-info" %>
         </div>
 
@@ -133,7 +197,7 @@
 
     <hr>
 
-        <div>
+        <div class="button__area center">
           <%= link_to "このグループを削除する", performer_path(@performer_profile), method: "delete",
            class: "btn btn-danger btn-sm", data: { confirm: "一度削除すると元に戻せません。本当にこのグループを削除しますか?"} %>
         </div>
@@ -174,4 +238,22 @@ $(document).on('turbolinks:load', function() {
   });
 
  });
+
+  function copyToClipboard() {
+    var copyTarget = document.getElementById("copyTarget");
+    copyTarget.select();
+    document.execCommand("Copy");
+    alert("リンクをクリップボードにコピーしました");
+  }
+
+$(function() {
+  return $("#performer_profile_zipcode").jpostal({
+    postcode: ["#performer_profile_zipcode"],
+    address: {
+      "#performer_profile_pref": "%3",
+      "#performer_profile_city": "%4",
+      "#performer_profile_street": "%5"
+    }
+  });
+});
 </script>

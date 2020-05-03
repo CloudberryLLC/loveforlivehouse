@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_16_065051) do
+ActiveRecord::Schema.define(version: 2020_05_03_082329) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -118,6 +118,25 @@ ActiveRecord::Schema.define(version: 2020_04_16_065051) do
     t.integer "offer_id"
     t.index ["offer_id"], name: "index_contacts_on_offer_id"
     t.index ["user_id"], name: "index_contacts_on_user_id"
+  end
+
+  create_table "donations", force: :cascade do |t|
+    t.string "name"
+    t.integer "amount"
+    t.string "email"
+    t.string "phone"
+    t.string "zipcode"
+    t.string "pref"
+    t.string "city"
+    t.string "street"
+    t.string "bldg"
+    t.text "message"
+    t.text "bank_address"
+    t.boolean "confirmation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "livehouse_id"
+    t.string "nickname"
   end
 
   create_table "estimations", force: :cascade do |t|
@@ -300,6 +319,17 @@ ActiveRecord::Schema.define(version: 2020_04_16_065051) do
     t.string "set_of_instruments"
     t.boolean "certified"
     t.boolean "published"
+    t.string "zipcode"
+    t.string "pref"
+    t.string "city"
+    t.string "street"
+    t.string "bldg"
+    t.string "shop_email"
+    t.string "shop_phone"
+    t.string "shop_url"
+    t.string "company"
+    t.string "owner"
+    t.string "manager"
     t.index ["user_id"], name: "index_performer_profiles_on_user_id"
   end
 

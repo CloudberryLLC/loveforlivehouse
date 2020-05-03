@@ -44,17 +44,13 @@
 	</div>
 </div>
 
-<!--オファーボタン-->
+<!--寄付ボタン-->
 <div id="performer__profiles__button">
-	<% if (user_signed_in?) %>
+	<% if (user_signed_in? && current_user.id == @performer_profile.user_id) %>
 		<!--自分には依頼と問い合わせをできないようにする-->
-		<% if current_user.id == @performer_profile.user_id %>
-		  	<p class="center"><%= link_to "編集", edit_performer_profile_path, class: "btn btn-info" %></p>
-		<% else %>
-		  	<p class="center"><%= link_to "このライブハウスを支援する", new_offer_path(:user => current_user, :contractor => @performer_profile.user_id, :offered_performer => @performer_profile), class: "btn btn-success" %></p>
-		<% end %>
+		<p class="center"><%= link_to "編集", edit_performer_profile_path, class: "btn btn-info" %></p>
 	<% else %>
-	  	<p class="center"><%= link_to "会員登録して支援する", new_user_registration_path, class: "btn btn-success" %></p>
+		<p class="center"><%= link_to "このライブハウスを支援する", new_donation_path(hash: livehouse_hash(@performer_profile), id: encode_livehouse_id(@performer_profile.id)), class: "btn btn-success" %></p>
 	<% end %>
 </div>
 
@@ -95,27 +91,27 @@
 	<hr>
 </div>
 
-<!-- レビュー -->
+<!-- メッセージ -->
 <div class="container">
-	<div id="Review">
+	<div id="Donate">
 		<div class="row">
-			<div id="reviews__headline" class="col-lg-4">
+			<div id="donations__headline" class="col-lg-4">
 				<!--スコアとレーダーチャート-->
 				<h4 class="title">支援者とメッセージ</h4>
 				<p>
-					<span><%= @reviews.count %>人からのメッセージ</span>
+					<span><%= @donators.count %>人からのメッセージ</span>
 				</p>
 			</div>
 			<!-- 個別レビュー -->
 			<div id="reviews_detail" class="col-lg-8">
 				<div class="reviews__detail__wrapper">
-					<% @reviews.each do |review| %>
+					<% @donators.each do |donator| %>
 						<p>
-							<span><%= image_tag show_reviewer_photo(review.reviewer), class:"profile-32round" %></span>
-							<span><%= show_reviewer_name(review.reviewer) %></span>
+							<span class="annotation"><%= donator.nickname %> さん</span>
+							<span class="annotation">(支援金額: <%= donator.amount.to_s(:delimited) %> 円)</span>
 						</p>
 						<p>
-							<%= simple_format(review.comment) %>
+							<%= simple_format(donator.message) %>
 						</p>
 						<hr>
 					<% end %>
@@ -141,11 +137,3 @@
 <div class="container">
 	<hr>
 </div>
-
-<!--近隣の他のミュージシャン
-<div class="container">
-	<div id="OtherGroupsNear">
-		<h4 class="title">近隣の他のミュージシャン</h4>
-	</div>
-</div>
--->

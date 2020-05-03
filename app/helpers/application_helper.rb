@@ -183,4 +183,21 @@ end
 		end
 	end
 
+#Donation#Newを作る時の確認用ハッシュ生成
+	def livehouse_hash(livehouse)
+		return Digest::SHA256.hexdigest(livehouse.id.to_s + livehouse.shop_email.to_s + livehouse.user_id.to_s)
+	end
+
+	def encode_livehouse_id(livehouse)
+		return (livehouse.to_i * 357) + 6775636
+	end
+
+	def decode_livehouse_id(livehouse)
+		if (livehouse.to_i - 6775636) % 357 == 0
+			return (livehouse.to_i - 6775636) / 357
+		else
+			return -1
+		end
+	end
+
 end

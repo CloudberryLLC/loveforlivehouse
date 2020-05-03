@@ -18,18 +18,33 @@
   <div>
     <p>登録を希望するライブハウスの情報</p>
     <p>
-    ライブハウスID: <%= @performer_profile.id %><br>
-    ライブハウス名: <%= @performer_profile.performer_name %><br>
-    月間目標金額: <%= @performer_profile.basic_guarantee %><br>
-    ジャンル: <%= @performer_profile.genre %><br>
-    地域: <%= @performer_profile.area %><br>
-    キャパシティ: <%= @performer_profile.conditions %><br>
-    プロフィール(見出し): <%= @performer_profile.profile_short %><br>
-    プロフィール(詳細): <%= @performer_profile.profile_long %><br>
-    備考: <%= @performer_profile.conditions_detail %><br>
-    サンプル動画URL1: <%= @performer_profile.sample_movie_url1 %><br>
-    サンプル動画URL2: <%= @performer_profile.sample_movie_url2 %><br>
-    サンプル動画URL3: <%= @performer_profile.sample_movie_url3 %><br>
+      ライブハウスID: <%= @performer_profile.id %><br>
+      ライブハウス名: <%= @performer_profile.performer_name %><br>
+    </p>
+
+    <p>運営者情報</p>
+    <p>
+      ライブハウス所在地:
+      <%= @performer_profile.zipcode %> <%= @performer_profile.pref %><%= @performer_profile.city %><%= @performer_profile.street %><%= @performer_profile.bldg %><br>
+      ライブハウスURL: <%= @performer_profile.shop_url %><br>
+      電話番号: <%= @performer_profile.shop_phone %><br>
+      メールアドレス: <%= @performer_profile.shop_email %><br>
+      運営会社: <%= @performer_profile.company %><br>
+      責任者名: <%= @performer_profile.manager %><br>
+      オーナー名: <%= @performer_profile.owner %><br>
+    </p>
+    <p>掲載を希望する内容</p>
+    <p>
+      月間目標金額: <%= @performer_profile.basic_guarantee %><br>
+      ジャンル: <%= @performer_profile.genre %><br>
+      地域: <%= @performer_profile.area %><br>
+      キャパシティ: <%= @performer_profile.conditions %><br>
+      プロフィール(見出し): <%= @performer_profile.profile_short %><br>
+      プロフィール(詳細): <%= @performer_profile.profile_long %><br>
+      備考: <%= @performer_profile.conditions_detail %><br>
+      サンプル動画URL1: <%= @performer_profile.sample_movie_url1 %><br>
+      サンプル動画URL2: <%= @performer_profile.sample_movie_url2 %><br>
+      サンプル動画URL3: <%= @performer_profile.sample_movie_url3 %><br>
     </p>
     <p>
     登録日: <%= @performer_profile.created_at %><br>
@@ -40,7 +55,7 @@
   <hr>
 
   <div>
-    <%= link_to "ライブハウスページを確認する", performer_path(@performer_profile), target: "blank" %> 
+    <%= link_to "ライブハウスページを確認する", performer_path(@performer_profile), target: "blank" %>
   </div>
 
   <div class="button__area center">

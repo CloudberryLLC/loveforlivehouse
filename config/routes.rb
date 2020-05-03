@@ -19,8 +19,7 @@ Rails.application.routes.draw do
   resources :profiles, only:[:show, :edit, :update, :destroy]
   resources :musicians, only: [:index, :show] #ゆくゆく個々のミュージシャンをSNSで繋げられるようにする
   resources :performer_profiles, only: [:edit, :update, :destroy]
-	resources :name_cards
-	resources :name_card_orders
+	resources :donations, only: [:new, :create, :index, :show]
   resources :contacts, only:[:index, :show, :new]
   resources :chat_messages, only:[:new]
 	resources :offers

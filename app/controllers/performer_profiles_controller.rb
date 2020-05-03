@@ -28,8 +28,7 @@ class PerformerProfilesController < ApplicationController
 
     def show
       @groups = PerformerProfile.where(user_id: @performer_profile.user_id).where.not(id: @performer_profile.id)
-      @reviews = Review.where('reviewee = ?', @performer_profile.id).order("created_at DESC")
-      set_review_scores(@reviews)
+      @donators = Donation.where(livehouse_id: @performer_profile.id).limit(100)
       @favorite_status = FavoritePerformer.where(user_id: current_user, performer: @performer_profile.id).present?
       @number_of_favorites = FavoritePerformer.where(performer: @performer_profile.id).length
       write_recently_viewed_performer_cookies(@performer_profile)
@@ -81,15 +80,13 @@ class PerformerProfilesController < ApplicationController
     def user_params
       params.require(:user).permit(
         :_destroy, :id,
-        performer_profiles_attributes: [:user_id, :performer_name, :performer_rank, :genre, :music_genre_list, :area, :number_of_member, :set_of_instruments, :instrument_list, :profile_short, :profile_long, :basic_guarantee, :conditions, :conditions_detail, :sample_movie_url1, :sample_movie_url2, :sample_movie_url3, :profile_photo, :cover_photo, :profile_photo_cache, :cover_photo_cache, :certified, :published, :_destroy, :id]
+        performer_profiles_attributes: [:user_id, :performer_name, :performer_rank, :genre, :zipcode, :pref, :city, :street, :bldg, :shop_email, :shop_phone, :shop_url, :company, :owner, :manager, :music_genre_list, :area, :number_of_member, :set_of_instruments, :instrument_list, :profile_short, :profile_long, :basic_guarantee, :conditions, :conditions_detail, :sample_movie_url1, :sample_movie_url2, :sample_movie_url3, :profile_photo, :cover_photo, :profile_photo_cache, :cover_photo_cache, :certified, :published, :_destroy, :id]
         )
     end
 
     def performer_params
       params.require(:performer_profile).permit(
-        :performer_name, :performer_rank, :genre, :music_genre_list, :area, :number_of_member, :set_of_instruments, :instrument_list, :profile_short, :profile_long, :basic_guarantee, :conditions, :conditions_detail, :sample_movie_url1, :sample_movie_url2, :sample_movie_url3, :profile_photo, :cover_photo, :profile_photo_cache, :cover_photo_cache, :certified, :published, :_destroy, :id,
-        name_card_attributes: [:your_part, :your_name, :your_group, :_destroy, :id],
-        reviews_attributes: [:performer_id, :client_id, :stars, :comment, :_destroy, :id]
+        :performer_name, :performer_rank, :zipcode, :pref, :city, :street, :bldg, :shop_email, :shop_phone, :shop_url, :company, :owner, :manager, :genre, :music_genre_list, :area, :number_of_member, :set_of_instruments, :instrument_list, :profile_short, :profile_long, :basic_guarantee, :conditions, :conditions_detail, :sample_movie_url1, :sample_movie_url2, :sample_movie_url3, :profile_photo, :cover_photo, :profile_photo_cache, :cover_photo_cache, :certified, :published, :_destroy, :id,
       )
     end
 
