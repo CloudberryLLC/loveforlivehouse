@@ -5,6 +5,9 @@ class PerformerProfile < ApplicationRecord
   has_one_attached :profile_photo
   has_one_attached :cover_photo
 
+  acts_as_ordered_taggable
+  acts_as_ordered_taggable_on :instruments, :music_genres
+
   validates :basic_guarantee, :performer_name, :profile_short, :profile_long, :zipcode, :pref, :city, :street, :shop_email, :shop_phone, :shop_url, :company, :owner, :manager, on: :update, presence: true
   validates :number_of_member, :basic_guarantee, on: :update, numericality: { only_integer: true, allow_blank: true, message: "は、半角数字で入力してください" }
 

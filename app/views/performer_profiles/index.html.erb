@@ -18,11 +18,10 @@
 				<div class="col-md-6 padding__1em">
 					<%= image_tag thumbnail(group.profile_photo), class:"profile-64round" %>
 					<h5 class="inline margin-left-1em"><%= group.performer_name %></h5>
-					<p>月間目標金額：<%= group.basic_guarantee.to_s(:delimited) %>円</p>
+					<p>月間目標金額：<%= group.basic_guarantee.to_s(:delimited) rescue 0 %>円</p>
 						<p class="buttons">
 					    <%= link_to "プレビュー", performer_path(group.id), class:"btn btn-primary" %>
 					    <%= link_to "編集", edit_performer_profile_path(group.id), class:"btn btn-info" %>
-					    <%= link_to "シェア", new_name_card_path(id: group.id), class:"btn btn-outline-success" %>
 						</p>
 				</div>
 			<% end %>
