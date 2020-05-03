@@ -1,6 +1,6 @@
 <% unless @offers.nil? %>
   <h4 class="title">支援履歴</h4>
-  <%= render partial: 'offers/offer_list', locals: { offers: @offers } %>
+  <%= render partial: 'donations/supporter_list', locals: { supporters: @supporters } %>
   <p class="right"><%= link_to '(もっと見る)', offers_path(current_user) %></p>
 <% else %>
   <span>まだ支援を行っていません。</span>
