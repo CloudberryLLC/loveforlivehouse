@@ -1,28 +1,33 @@
 <h5>支援金額の詳細</h5>
 <br>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-9">
-      ライブハウス名
-    </div>
-    <div class="col-md-3">
-      <span class="right">支援人数 / 支援金総額</span>
-    </div>
-  </div>
-  <hr>
+<table class="table">
+  <tr>
+    <th class="left">店舗名</th>
+    <th class="right">人数</th>
+    <th class="right">支援総額(受取可能額)</th>
+    <th></th>
+  </tr>
   <% @user.performer_profiles.each do |group| %>
-    <div class="row">
-      <div class="col-md-9">
-        <span class="dashboard__index left">
-    		<%= image_tag(group.profile_photo, class:"profile-64round") if group.profile_photo.attached? %>
-    		<%= group.performer_name %>
-        </span>
-      </div>
-      <div class="col-md-3">
-        <!--当月の報酬を表示する-->
-        <span class="dashboard__index right middle_height"><%= show_reward(group)[0] %>回 / <%= show_reward(group)[1].to_s(:delimited) %>円</span>
-      </div>
-    </div>
+  <tr>
+    <td class="dashboard__index middle_height left">
+      <span>
+  		<%= image_tag(group.profile_photo, class:"profile-48round") if group.profile_photo.attached? %>
+  		<%= group.performer_name %>
+      </span>
+    </td>
+    <td class="dashboard__index middle_height right">
+      <%= show_reward(group)[0] %>人
+    </td>
+    <td class="dashboard__index middle_height right">
+      <%= show_reward(group)[1].to_s(:delimited) %>円<br>
+      (<%= show_reward(group)[2].to_s(:delimited) %>円)
+    </td>
+    <td>
+      <%= link_to '詳細', root_path, class: "btn btn-info btn-sm" %>
+    </td>
+  </tr>
   <% end %>
-</div>
+</table>
+
+<p class="annotation">※受取可能額は既に当月にお引き出しされた金額も含まれますのでご了承ください。</p>
