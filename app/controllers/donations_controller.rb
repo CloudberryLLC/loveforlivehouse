@@ -1,5 +1,7 @@
 class DonationsController < ApplicationController
   include ApplicationHelper
+  before_action :authenticate_user!, only: [:index]
+  before_action :admin_only, only: [:index]
 
   def new
     begin
@@ -15,10 +17,11 @@ class DonationsController < ApplicationController
     @donation = Donation.create(donation_params)
     @livehouse = PerformerProfile.find(@donation.livehouse_id)
     @donation.reciever = @livehouse.user_id
+    @donation.paid = false
     if @donation.save
-      redirect_to performer_path(@donation.livehouse_id), notice: "このライブハウスに支援を行いました"
+
     else
-      render 'new', alart: "お支払いが失敗しました"
+      render 'new'
     end
   end
 
@@ -26,13 +29,25 @@ class DonationsController < ApplicationController
   end
 
   def show
+    @donation = Donation.find(params[:id])
+  end
+
+  def update
+    @donation = Donation.find(params[:id])
+    if create_charge(@donation)
+      @donation.paid = true
+      @donation.save!
+      redirect_to performer_path(@donation.livehouse_id), notice: "ありがとうございます。お支払いが正常に行われました。"
+    else
+      render 'create'
+    end
   end
 
 private
 
   def donation_params
     params.require(:donation).permit(
-      :nickname, :amount, :message, :name, :email, :phone, :zipcode, :pref, :city, :street, :bldg, :confirmation, :livehouse_id
+      :nickname, :amount, :message, :name, :email, :phone, :zipcode, :pref, :city, :street, :bldg, :confirmation, :livehouse_id, :stripeToken
       )
   end
 
@@ -46,15 +61,13 @@ private
 
 #stripeの支払い
   def create_charge(donation)
-    token = params[:stripeToken]
     source = params[:stripeTokenType]
     Stripe::Charge.create(
-      :amount => donation.amount,
-      :currency => "jpy",
-      :source => token,
-      :description => "支援ID: " + donation.id.to_s + " - 様からの寄付"
+      amount: donation.amount,
+      currency: "jpy",
+      source: params[:stripeToken],
+      description: "支援ID: " + donation.id.to_s + " - 様からの寄付"
     )
   end
-
 
 end

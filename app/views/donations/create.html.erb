@@ -1,2 +1,47 @@
-<h1>Donations#create</h1>
-<p>Find me in app/views/donations/create.html.erb</p>
+<div class="container pagetop">
+  <div class="row justify_content_center">
+    <div class="col-lg-1"></div>
+
+    <div class="col-lg-10">
+      <h3 class="title"><%= @livehouse.performer_name %>に寄付を行う</h3>
+      <hr>
+      <h5 class="title">支援内容</h5>
+      <p class="annotation">以下の内容でサイトに寄付内容が公表されます</p>
+      <div id="public_post">
+        <p>お名前: <%= @donation.nickname %></p>
+        <p>支援金額: <%= @donation.amount.to_s(:delimited) %>円</p>
+        <p>メッセージ: <%= simple_format(@donation.message) %></p>
+      </div>
+      <hr>
+      <h5 class="title">ご支援者様情報</h5>
+      <p class="annotation">お名前とメールアドレスのみライブハウス運営者に共有される場合がありますが、その他には一切公開されません。</p>
+      <div id="supporter_info">
+        <p>ご支援者様本名: <%= @donation.name %> 様</p>
+        <p>メールアドレス: <%= @donation.email %></p>
+        <p>お電話番号: <%= @donation.phone %></p>
+        <p>ご住所:<br>
+          <%= @donation.zipcode %> <%= @donation.pref %><%= @donation.city %><%= @donation.street %><br>
+          <%= @donation.bldg %>
+        </p>
+      </div>
+
+      <%= form_with model: @donation, local: true do |f| %>
+        <div id="card-transaction-button" class="padding__1em hide-stripe-button">
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-label="クレジットカード決済"
+            data-amount="<%= @donation.amount %>"
+            data-name="loveforlivehouse"
+            data-description="カード決済を行います。"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto"
+            data-currency="jpy">
+          </script>
+        </div>
+        <%= f.submit "規約に同意して支払いを実行する", class: "btn btn-success" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
