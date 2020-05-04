@@ -13,7 +13,8 @@ class DonationsController < ApplicationController
 
   def create
     @donation = Donation.create(donation_params)
-    create_charge(@donation)
+    @livehouse = PerformerProfile.find(@donation.livehouse_id)
+    @donation.reciever = @livehouse.user_id
     if @donation.save
       redirect_to performer_path(@donation.livehouse_id), notice: "このライブハウスに支援を行いました"
     else
