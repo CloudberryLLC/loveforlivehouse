@@ -1,5 +1,4 @@
 class ChatMessageMailer < ApplicationMailer
-  add_template_helper(OffersHelper)
   before_action { set_mail_content }
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -17,8 +16,7 @@ private
     @sender = User.find(params[:sender])
     @reciever = User.find(params[:reciever])
     @body = params[:body]
-    @offer = Offer.find(params[:offer_id])
-    @subject = mail_subject(@sender, @offer)
+    @subject = mail_subject(@sender)
   end
 
   def mail_subject(sender, offer)
