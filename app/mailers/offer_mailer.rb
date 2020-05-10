@@ -12,12 +12,12 @@ class OfferMailer < ApplicationMailer
     mail(to: @contractor.email, subject: '[LOVE for Live House] オファーの内容が変更されました。')
   end
 
-  def performer_unaccepted #3
+  def livehouse_unaccepted #3
     mail(to: @client.email, subject: '[LOVE for Live House] オファーが成立しませんでした。')
   end
 
   def estimation_to_client #4
-    mail(to: @client.email, subject: '[LOVE for Live House] パフォーマーより見積りが届きました。')
+    mail(to: @client.email, subject: '[LOVE for Live House] ライブハウスより見積りが届きました。')
   end
 
   def re_estimate_order #5
@@ -87,7 +87,7 @@ private
   def set_offer_data(offer)
     @client = User.find(offer.client)
     @contractor = User.find(offer.contractor)
-    @performer = PerformerProfile.find(offer.offered_performer)
+    @livehouse = Livehouse.find(offer.offered_livehouse)
   end
 
 end

@@ -80,13 +80,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'https://loveforlivehouse.herokuapp.com ' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
+    address: "smtp.sendgrid.net",
     port: 587,
-    domain: 'gmail.com',
-    user_name: Rails.application.credentials.EMAIL_HIDDEN,
-    password: Rails.application.credentials.PASSWORD_HIDDEN,
+    domain: Rails.application.credentials.SG_DOMAIN,
+    user_name: Rails.application.credentials.SG_USER,
+    password: Rails.application.credentials.SG_PASS,
     authentication: :login,
-    enable_starttls_auto: true
+    enable_starttls_auto: true,
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

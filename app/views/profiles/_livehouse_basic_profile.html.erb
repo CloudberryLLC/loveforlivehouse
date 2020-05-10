@@ -1,0 +1,121 @@
+<%= form_for @user, url: profile_path, :html => {:multipart => true}  do |f| %>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!--基本情報-->
+
+  <div class="container margin__top__1em">
+    <h5>登録者情報</h5>
+  </div>
+
+  <div id="basic-profile" class="container">
+
+    <%= f.fields_for :basic, @user.basic || Basic.new do |basic| %>
+
+    <div class="form-group">
+      <%= basic.label :lastname %>
+      <span class="required"> *</span><br>
+      <%= basic.text_field :lastname, class: "form-control", placeholder: "山田", autofocus: true, required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= basic.label :firstname %>
+      <span class="required"> *</span><br>
+      <%= basic.text_field :firstname, class: "form-control", placeholder: "太郎", autofocus: true, required: true %>
+    </div>
+
+
+    <div class="form-group">
+      <%= basic.label :phone %>
+      <span class="required"> *</span><br>
+      <%= basic.text_field :phone, maxlength: 11, class: "form-control", placeholder: "電話番号", autofocus: true, required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= basic.label :zipcode %>
+      <span class="required"> *</span><br>
+      <%= basic.text_field :zipcode, maxlength: 7, class: "form-control", placeholder: "ハイフンなし", autofocus: true, required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= basic.label :pref %>
+      <span class="required"> *</span><br>
+      <%= basic.text_field :pref, class: "form-control", placeholder: "都道府県", autofocus: true, required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= basic.label :city %>
+      <span class="required"> *</span><br>
+      <%= basic.text_field :city, class: "form-control", placeholder: "市区町村", autofocus: true, required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= basic.label :street %>
+      <span class="required"> *</span><br>
+      <%= basic.text_field :street, class: "form-control", placeholder: "番地", autofocus: true, required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= basic.label :bldg %>
+      <%= basic.text_field :bldg, class: "form-control", placeholder: "建物名", autofocus: true %>
+    </div>
+
+    <div class="form-group">
+      <%= basic.label :company %>
+      <span class="required"> *</span><br>
+      <%= basic.text_field :company, class: "form-control", placeholder: "個人の方は「なし」と記入してください。", autofocus: true, required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= basic.label :department %>
+      <%= basic.text_field :department, class: "form-control", placeholder: "部署名", autofocus: true %>
+    </div>
+
+    <hr>
+
+    <p class="left padding__1em">プロフィール写真</p>
+
+    <div class="form-group">
+      <%= basic.label :profile_photo %>
+      <% if (@user.basic.present? && @user.basic.profile_photo.attached?) %>
+        <%= image_tag(@user.basic.profile_photo, class:"profile-64round") %>
+      <% end %>
+      <%= basic.file_field :profile_photo, id: :basic_profile_photo_photo, accept: 'image/jpg,image/jpeg,image/png,image/gif', class: "form-control-file" %>
+    </div>
+
+  <hr>
+
+    <p class="left padding__1em">本人確認書類</p>
+
+    <div class="form-group">
+      <%= basic.label :id_front %>
+      <span class="required"> *</span><br>
+      <%= basic.file_field :id_front, id: :basic_id_front_photo, accept: 'image/jpg,image/jpeg,image/png,image/gif', class: "form-control-file" %>
+    </div>
+
+    <div class="form-group">
+      <%= basic.label :id_back %>
+      <%= basic.file_field :id_back, id: :basic_id_back_photo, accept: 'image/jpg,image/jpeg,image/png,image/gif', class: "form-control-file", placeholder: "※裏面に記載事項がある場合" %>
+    </div>
+
+    <% end %>
+
+  </div>
+
+<hr><!--基本情報終わり-->
+
+  <div class="button__area actions padding__1em">
+    <%= f.submit "プロフィールを更新し、利用申請をする",
+     class: "btn btn-primary",
+     data: { confirm: "当社にて申請内容の審査を行ったのち、サービスのご利用(または再開)となります。少々お時間を頂きますのでご了承ください。"} %>
+  </div>
+
+<% end %>

@@ -1,20 +1,9 @@
-<div class="container">
+<div class="container pagetop">
   <h2 class="title">ダッシュボード</h2>
   <hr>
-
-  <div id="dashboard-top">
-    <%= render 'dashboard_top' %>
-  </div>
-
   <% if supporter? %>
-    <%= render 'dashboard_client' %>
-
+    <%= render 'supporter_page' %>
   <% elsif livehouse? %>
-    <br>
-    <div id="dashboard-performer" >
-      <%= render 'dashboard_performer' %>
-    </div>
-
+    <%= render 'livehouse_page' %>
   <% end %>
-
 </div>

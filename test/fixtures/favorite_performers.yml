@@ -2,10 +2,10 @@
 
 one:
   user: one
-  performer: 1
+  performer_profiles: 1
   favorite: false
 
 two:
   user: two
-  performer: 1
+  livehouse: 1
   favorite: false

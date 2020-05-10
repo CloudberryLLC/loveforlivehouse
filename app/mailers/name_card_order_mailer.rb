@@ -17,7 +17,7 @@ private
   def set_order_data
     @order = params[:name_card_order]
     @namecard = NameCard.find(@order.name_card_id)
-    @performer = PerformerProfile.find(@namecard.performer_profile_id)
-    @user = User.find(@performer.user_id)
+    @livehouse = Livehouse.find(@namecard.livehouse_id)
+    @user = User.find(@livehouse.user_id)
   end
 end

@@ -17034,8 +17034,8 @@ a#download {
   margin-bottom: 3em;
 }
 
-/* line 1, app/assets/stylesheets/performer_profiles.scss */
-#performer__profile__photo {
+/* line 1, app/assets/stylesheets/livehouses.scss */
+#livehouse__profile__photo {
   height: 300px;
   display: -webkit-box;
   display: flex;
@@ -17045,47 +17045,47 @@ a#download {
           align-items: center;
 }
 
-/* line 8, app/assets/stylesheets/performer_profiles.scss */
-#performer__name {
+/* line 8, app/assets/stylesheets/livehouses.scss */
+#livehouse__name {
   margin-bottom: 0.5em;
 }
 
-/* line 12, app/assets/stylesheets/performer_profiles.scss */
-#performer__profile__table {
+/* line 12, app/assets/stylesheets/livehouses.scss */
+#livehouse__profile__table {
   width: 100%;
   border-radius: 1em;
   margin-top: 1em;
 }
 
-/* line 18, app/assets/stylesheets/performer_profiles.scss */
-#performer__profiles__button {
+/* line 18, app/assets/stylesheets/livehouses.scss */
+#livehouse__profiles__button {
   margin: 1em 0em 2em 0em;
 }
 
-/* line 22, app/assets/stylesheets/performer_profiles.scss */
+/* line 22, app/assets/stylesheets/livehouses.scss */
 #review {
   height: 100%;
 }
 
-/* line 29, app/assets/stylesheets/performer_profiles.scss */
+/* line 29, app/assets/stylesheets/livehouses.scss */
 #reviews_detail {
   overflow-y: scroll;
   max-height: 360px;
 }
 
-/* line 34, app/assets/stylesheets/performer_profiles.scss */
-.reviews__detail__wrapper {
+/* line 34, app/assets/stylesheets/livehouses.scss */
+.donations__detail__wrapper {
   border-left: solid thin #eeeeee;
   padding: 1em;
 }
 
-/* line 39, app/assets/stylesheets/performer_profiles.scss */
+/* line 39, app/assets/stylesheets/livehouses.scss */
 .profile__textarea {
   margin-top: 1em;
   margin-bottom: 2em;
 }
 
-/* line 44, app/assets/stylesheets/performer_profiles.scss */
+/* line 44, app/assets/stylesheets/livehouses.scss */
 .profile__photo__large {
   width: 38.2%;
   min-width: 300px;
@@ -17093,17 +17093,17 @@ a#download {
   border-radius: 1em;
 }
 
-/* line 51, app/assets/stylesheets/performer_profiles.scss */
+/* line 51, app/assets/stylesheets/livehouses.scss */
 .reviews__and__favorites {
   margin-bottom: 5px;
 }
 
-/* line 55, app/assets/stylesheets/performer_profiles.scss */
-.performer__profile__movie {
+/* line 55, app/assets/stylesheets/livehouses.scss */
+.livehouse__profile__movie {
   width: 100%;
 }
 
-/* line 59, app/assets/stylesheets/performer_profiles.scss */
+/* line 59, app/assets/stylesheets/livehouses.scss */
 .videos {
   display: -webkit-box;
   display: flex;
@@ -17114,7 +17114,7 @@ a#download {
   margin: 1em 0em;
 }
 
-/* line 66, app/assets/stylesheets/performer_profiles.scss */
+/* line 66, app/assets/stylesheets/livehouses.scss */
 .radarchart {
   display: block;
   width: 100%;
@@ -17123,7 +17123,7 @@ a#download {
   max-height: 640px;
 }
 
-/* line 74, app/assets/stylesheets/performer_profiles.scss */
+/* line 74, app/assets/stylesheets/livehouses.scss */
 .radarchart__wrapper {
   padding-top: 1em;
   height: 216px;
@@ -17611,7 +17611,7 @@ h6 {
 
 /* トップページ */
 /* line 377, app/assets/stylesheets/application.scss */
-#performer__search__box {
+#livehouse__search__box {
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: center;
@@ -17619,14 +17619,14 @@ h6 {
 }
 
 /* line 382, app/assets/stylesheets/application.scss */
-#performer-search-input {
+#livehouse-search-input {
   width: 61.8%;
   min-width: 300px;
   text-align: center;
 }
 
 /* line 397, app/assets/stylesheets/application.scss */
-.jumbotron-performer-cover {
+.jumbotron-livehouse-cover {
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3)));
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
   background-size: cover;
@@ -17849,7 +17849,7 @@ h6 {
 }
 
 /* line 601, app/assets/stylesheets/application.scss */
-.namecard__preview__performername {
+.namecard__preview__livehousename {
   display: block;
   font-size: 1.5em;
   line-height: 1.5em;
@@ -17857,7 +17857,7 @@ h6 {
 }
 
 /* line 608, app/assets/stylesheets/application.scss */
-.namecard__preview__performername__sub {
+.namecard__preview__livehousename__sub {
   display: block;
   font-size: 1em;
   margin-bottom: 0.5em;

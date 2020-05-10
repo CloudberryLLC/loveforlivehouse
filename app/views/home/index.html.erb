@@ -11,25 +11,25 @@
       <div class="center button__area">
         <%= link_to "サービスについて", "#about", class: "btn btn-primary" %>
       </div>
-      <div id="performer__search__box">
-        <%= form_with url: performer_search_path, method: :get, local: true do |performer_search| %>
-          <%= performer_search.text_field :keyword, placeholder: "地域 / ライブハウス名で検索", id: "performer-search-input", class:"form-control rounded-pill" %>
+      <div id="livehouse__search__box">
+        <%= form_with url: livehouse_search_path, method: :get, local: true do |livehouse_search| %>
+          <%= livehouse_search.text_field :keyword, placeholder: "地域 / ライブハウス名で検索", id: "livehouse-search-input", class:"form-control rounded-pill" %>
         <% end %>
       </div>
 
   </div>
 </div>
 
-<div id="new__performers">
+<div id="new__livehouses">
   <h3 class="title center">新着ライブハウス</h3>
-  <%= render partial: 'partial/performer_list', locals: { performers: @new_performers} %>
+  <%= render partial: 'partial/livehouse_list', locals: { livehouses: @new_livehouses} %>
 </div>
 
 <hr>
 
 <div id="recently__viewed">
   <h3 class="title center">最近見たライブハウス</h3>
-  <%= render 'partial/recently_viewed_performers' %>
+  <%= render 'partial/recently_viewed_livehouses' %>
 </div>
 
 <hr>

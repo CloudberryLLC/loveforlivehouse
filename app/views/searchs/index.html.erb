@@ -1,8 +1,8 @@
 <div class="container">
-  <h5 class="title">検索結果 (<%= @performers.count %>件)</h5>
-  <div id="performer_search__result">
-    <%= render partial: 'partial/performer_list', locals: {performers: @performers} %>
+  <h5 class="title">検索結果 (<%= @livehouses.count %>件)</h5>
+  <div id="livehouse_search__result">
+    <%= render partial: 'partial/livehouse_list', locals: {livehouses: @livehouses} %>
   </div>
 </div>
 
-<%= render partial: 'partial/pagination', locals: {elements: @performers} %>
+<%= render partial: 'partial/pagination', locals: {elements: @livehouses} %>

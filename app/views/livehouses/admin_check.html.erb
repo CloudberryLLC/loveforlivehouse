@@ -1,0 +1,68 @@
+<div class="container pagetop">
+  <h3 class="title">ライブハウス登録・編集 承認画面</h3>
+
+  <hr>
+
+  <div>
+    <p>登録者情報</p>
+    ユーザーID: <%= @user.id %><br>
+    お名前: <%= @user.basic.lastname %> <%= @user.basic.firstname %> 様<br>
+    お名前フリガナ: <%= @user.basic.lastname_kana %> <%= @user.basic.firstname_kana %><br>
+    会社名・所属団体: <%= @user.basic.company %><br>
+    連絡先: <%= @user.email %><br>
+    電話番号: <%= @user.basic.phone %>
+  </div>
+
+  <hr>
+
+  <div>
+    <p>登録を希望するライブハウスの情報</p>
+    <p>
+      ライブハウスID: <%= @livehouse.id %><br>
+      ライブハウス名: <%= @livehouse.livehouse_name %><br>
+    </p>
+
+    <p>運営者情報</p>
+    <p>
+      ライブハウス所在地:
+      <%= @livehouse.zipcode %> <%= @livehouse.pref %><%= @livehouse.city %><%= @livehouse.street %><%= @livehouse.bldg %><br>
+      ライブハウスURL: <%= @livehouse.shop_url %><br>
+      電話番号: <%= @livehouse.shop_phone %><br>
+      メールアドレス: <%= @livehouse.shop_email %><br>
+      運営会社: <%= @livehouse.company %><br>
+      責任者名: <%= @livehouse.manager %><br>
+      オーナー名: <%= @livehouse.owner %><br>
+    </p>
+    <p>掲載を希望する内容</p>
+    <p>
+      月間目標金額: <%= @livehouse.required_amount %><br>
+      ジャンル: <%= @livehouse.genre %><br>
+      地域: <%= @livehouse.area %><br>
+      キャパシティ: <%= @livehouse.capacity %><br>
+      プロフィール(見出し): <%= @livehouse.profile_short %><br>
+      プロフィール(詳細): <%= @livehouse.profile_long %><br>
+      備考: <%= @livehouse.conditions_detail %><br>
+      サンプル動画URL1: <%= @livehouse.sample_movie_url1 %><br>
+      サンプル動画URL2: <%= @livehouse.sample_movie_url2 %><br>
+      サンプル動画URL3: <%= @livehouse.sample_movie_url3 %><br>
+    </p>
+    <p>
+    登録日: <%= @livehouse.created_at %><br>
+    更新日: <%= @livehouse.updated_at %><br>
+    </p>
+  </div>
+
+  <hr>
+
+  <div>
+    <%= link_to "ライブハウスページを確認する", livehouse_path(@livehouse), target: "blank" %>
+  </div>
+
+  <div class="button__area center">
+    <%= form_with model: @livehouse, url: admin_approval_path do |f| %>
+      <%= f.hidden_field :certified, value: true %>
+      <%= f.submit "新規登録・変更を承認する", class: "btn btn-success" %>
+    <% end %>
+  </div>
+
+</div>

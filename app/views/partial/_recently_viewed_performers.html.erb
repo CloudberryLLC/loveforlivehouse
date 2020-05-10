@@ -1,7 +1,0 @@
-<% if @recent_viewed_performers.nil? %>
-  <p class="center margin-1em">閲覧履歴はありません。</p>
-
-<% else %>
-  <%= render partial: "partial/performer_list", locals: { performers: @recent_viewed_performers } %>
-  
-<% end %>

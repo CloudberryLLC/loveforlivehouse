@@ -26,7 +26,7 @@ private
     when offer.client
       return "[LOVE for Live House] クライアントからコンタクトがありました。"
     when offer.contractor
-      return "[LOVE for Live House] パフォーマーからコンタクトがありました。"
+      return "[LOVE for Live House] ライブハウスからコンタクトがありました。"
     else
       return "先方からコンタクトがありました。"
     end

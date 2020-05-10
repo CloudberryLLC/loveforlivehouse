@@ -20,7 +20,7 @@ class Ability
     # If you pass :all it will apply to every resource. Otherwise pass a Ruby
     # class of the resource.
     #
-    # The third argument is an optional hash of conditions to further filter the
+    # The third argument is an optional hash of capacity to further filter the
     # objects.
     # For example, here the user can only update published articles.
     #

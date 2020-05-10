@@ -1,6 +1,6 @@
 <h4 class="title">チェック済みのライブハウス</h4>
   <% unless @favorites.blank? %>
-    <%= render partial: "partial/performer_list", locals: { performers: @favorites } %>
+    <%= render partial: "partial/livehouse_list", locals: { livehouses: @favorites } %>
   <% else %>
     <p class="margin__top__1em">チェック済みのライブハウスはありません</p>
   <% end %>

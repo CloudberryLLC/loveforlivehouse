@@ -163,23 +163,23 @@ end
   end
 
 
-# partial/performer_listに格納するローカル変数がPerformerProfileクラスでない場合に
-# PerformerProfileクラスから該当するインスタンスを呼び出す
-	def set_profile_card_instance(performer)
+# partial/livehouse_listに格納するローカル変数がLivehouseクラスでない場合に
+# Livehouseクラスから該当するインスタンスを呼び出す
+	def set_profile_card_instance(livehouse)
 		begin
-			case performer
-			when PerformerProfile
-				return performer
-			when FavoritePerformer
-				performer = PerformerProfile.find(performer.performer)
-				return performer
+			case livehouse
+			when Livehouse
+				return livehouse
+			when FavoriteLivehouse
+				livehouse = Livehouse.find(livehouse.livehouse)
+				return livehouse
 			when String
-				performer = PerformerProfile.find(performer)
-				return performer
+				livehouse = Livehouse.find(livehouse)
+				return livehouse
 			end
 		rescue
-			performer = nil
-			return performer
+			livehouse = nil
+			return livehouse
 		end
 	end
 

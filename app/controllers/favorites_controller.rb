@@ -3,28 +3,28 @@ class FavoritesController < ApplicationController
   before_action :set_data, only:[:clip]
 
   def clip
-    unless FavoritePerformer.where(user_id: @user.id, performer: @performer.id).present?
-      @favorite = FavoritePerformer.new(user_id: @user.id, performer: @performer.id, favorite: true)
+    unless FavoriteLivehouse.where(user_id: @user.id, livehouse: @livehouse.id).present?
+      @favorite = FavoriteLivehouse.new(user_id: @user.id, livehouse: @livehouse.id, favorite: true)
       @favorite.save!
     else
-      @favorite = FavoritePerformer.where(user_id: @user.id, performer: @performer.id)
-      FavoritePerformer.destroy(@favorite.ids)
+      @favorite = FavoriteLivehouse.where(user_id: @user.id, livehouse: @livehouse.id)
+      FavoriteLivehouse.destroy(@favorite.ids)
     end
-    redirect_to performer_path(@performer)
+    redirect_to livehouse_path(@livehouse)
   end
 
   def index
-    @favorites = FavoritePerformer.where(user_id: current_user.id)
+    @favorites = FavoriteLivehouse.where(user_id: current_user.id)
   end
 
 private
   def clip_params
-    params.permit(:user_id, :performer, :favorite, :id, :_destroy)
+    params.permit(:user_id, :livehouse, :favorite, :id, :_destroy)
   end
 
   def set_data
     @user = current_user
-    @performer = PerformerProfile.find(params[:performer])
-    @number_of_favorites = FavoritePerformer.where(performer: @performer.id).length
+    @livehouse = Livehouse.find(params[:livehouse])
+    @number_of_favorites = FavoriteLivehouse.where(livehouse: @livehouse.id).length
   end
 end

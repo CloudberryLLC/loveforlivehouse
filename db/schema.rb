@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_07_121058) do
+ActiveRecord::Schema.define(version: 2020_05_10_142514) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -143,17 +143,15 @@ ActiveRecord::Schema.define(version: 2020_05_07_121058) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "performer_profiles", force: :cascade do |t|
+  create_table "livehouses", force: :cascade do |t|
     t.integer "user_id"
-    t.string "performer_name"
-    t.string "performer_rank"
+    t.string "livehouse_name"
     t.string "genre"
     t.string "area"
-    t.integer "number_of_member"
     t.text "profile_short"
     t.text "profile_long"
-    t.integer "basic_guarantee"
-    t.text "conditions"
+    t.integer "required_amount"
+    t.text "capacity"
     t.text "conditions_detail"
     t.text "sample_movie_url1"
     t.text "sample_movie_url2"
@@ -162,9 +160,6 @@ ActiveRecord::Schema.define(version: 2020_05_07_121058) do
     t.string "cover_photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "latitude"
-    t.float "longitude"
-    t.string "set_of_instruments"
     t.boolean "certified"
     t.boolean "published"
     t.string "zipcode"
@@ -178,7 +173,7 @@ ActiveRecord::Schema.define(version: 2020_05_07_121058) do
     t.string "company"
     t.string "owner"
     t.string "manager"
-    t.index ["user_id"], name: "index_performer_profiles_on_user_id"
+    t.index ["user_id"], name: "index_livehouses_on_user_id"
   end
 
   create_table "screenshots", force: :cascade do |t|

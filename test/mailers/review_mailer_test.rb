@@ -10,7 +10,7 @@ class ReviewMailerTest < ActionMailer::TestCase
   end
 
   test "to_contractor" do
-    mail = ReviewMailer.to_performer
+    mail = ReviewMailer.to_livehouse
     assert_equal "To contractor", mail.subject
     assert_equal ["to@example.org"], mail.to
     assert_equal ["from@example.com"], mail.from

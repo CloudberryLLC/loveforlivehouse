@@ -17009,7 +17009,7 @@ a#download {
   display: none;
 }
 
-/* line 5, app/assets/stylesheets/performer_profiles.scss */
+/* line 5, app/assets/stylesheets/livehouses.scss */
 .radar-chart {
   text-align: left;
   width: 61.8%;
@@ -17332,7 +17332,7 @@ h6 {
 }
 
 /* line 242, app/assets/stylesheets/application.scss */
-.jumbotron-performer-cover {
+.jumbotron-livehouse-cover {
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3)));
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
   background-size: cover;
@@ -17603,7 +17603,7 @@ h6 {
 }
 
 /* line 495, app/assets/stylesheets/application.scss */
-.namecard__preview__performername {
+.namecard__preview__livehousename {
   display: block;
   font-size: 1.5em;
   line-height: 1.5em;
@@ -17611,7 +17611,7 @@ h6 {
 }
 
 /* line 502, app/assets/stylesheets/application.scss */
-.namecard__preview__performername__sub {
+.namecard__preview__livehousename__sub {
   display: block;
   font-size: 1em;
   margin-bottom: 0.5em;

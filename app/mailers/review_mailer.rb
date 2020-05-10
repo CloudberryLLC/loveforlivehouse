@@ -24,7 +24,7 @@ private
     @review = offer.review
     @client = User.find(offer.client)
     @contractor = User.find(offer.contractor)
-    @performer = PerformerProfile.find(offer.offered_performer)
+    @livehouse = Livehouse.find(offer.offered_livehouse)
   end
 
 end

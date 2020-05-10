@@ -16974,7 +16974,7 @@ a#download {
 }
 
 /* line 105, app/assets/stylesheets/application.scss */
-.jumbotron-performer-cover {
+.jumbotron-livehouse-cover {
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3)));
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
   background-size: cover;
@@ -17302,7 +17302,7 @@ a#download {
 }
 
 /* line 403, app/assets/stylesheets/application.scss */
-.namecard__preview__performername {
+.namecard__preview__livehousename {
   display: block;
   font-size: 1.5em;
   line-height: 1.5em;
@@ -17310,7 +17310,7 @@ a#download {
 }
 
 /* line 410, app/assets/stylesheets/application.scss */
-.namecard__preview__performername__sub {
+.namecard__preview__livehousename__sub {
   display: block;
   font-size: 1em;
   margin-bottom: 0.5em;

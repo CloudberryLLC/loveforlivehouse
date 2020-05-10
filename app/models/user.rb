@@ -9,13 +9,13 @@ class User < ApplicationRecord
 
   has_one :basic, dependent: :destroy
   has_one :bank, dependent: :destroy
-  has_many :performer_profiles, dependent: :destroy
+  has_many :livehouses, dependent: :destroy
   has_many :contacts, dependent: :destroy
   has_many :chat_messages, through: :contacts, dependent: :destroy
   has_many :offers, dependent: :destroy
-  has_many :favorite_performers, dependent: :destroy
+  has_many :favorite_livehouses, dependent: :destroy
 
-  accepts_nested_attributes_for :basic, :bank, :performer_profiles, :contacts, :chat_messages, :offers, :favorite_performers
+  accepts_nested_attributes_for :basic, :bank, :livehouses, :contacts, :chat_messages, :offers, :favorite_livehouses
 
   acts_as_ordered_taggable
   acts_as_ordered_taggable_on :instruments

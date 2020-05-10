@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
 
+	include ApplicationHelper
+
 	before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :store_user_location!, if: :storable_location?
   protect_from_forgery with: :exception
@@ -66,8 +68,8 @@ protected
     end
   end
 
-  #パフォーマー専用ページ
-  def performer_only
+  #ライブハウス専用ページ
+  def livehouse_only
     unless current_user.user_type == 3
 			head :not_found
     end

@@ -10227,7 +10227,7 @@ if ( xhrSupported ) {
 					}
 
 					// X-Requested-With header
-					// For cross-domain requests, seeing as conditions for a preflight are
+					// For cross-domain requests, seeing as capacity for a preflight are
 					// akin to a jigsaw puzzle, we simply never set it to be sure.
 					// (it can always be set on a per-request basis or even using ajaxSetup)
 					// For same-domain requests, won't change header if already provided.
@@ -34377,7 +34377,7 @@ return $.ui.autocomplete;
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
+ furnished to do so, subject to the following capacity:
 
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.

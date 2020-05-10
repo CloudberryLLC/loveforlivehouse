@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  livehouse_name: MyString
+  livehouse_rank: MyString
+  genre: MyString
+  area: MyString
+  number_of_member: 1
+  profile_short: MyText
+  profile_long: MyText
+  required_amount: 1
+  capacity: MyText
+  conditions_detail: MyText
+  sample_movie_url1: MyText
+  sample_movie_url2: MyText
+  sample_movie_url3: MyText
+  profile_photo: MyString
+  cover_photo: MyString
+
+two:
+  user: two
+  livehouse_name: MyString
+  livehouse_rank: MyString
+  genre: MyString
+  area: MyString
+  number_of_member: 1
+  profile_short: MyText
+  profile_long: MyText
+  required_amount: 1
+  capacity: MyText
+  conditions_detail: MyText
+  sample_movie_url1: MyText
+  sample_movie_url2: MyText
+  sample_movie_url3: MyText
+  profile_photo: MyString
+  cover_photo: MyString

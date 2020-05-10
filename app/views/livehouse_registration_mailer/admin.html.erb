@@ -1,0 +1,69 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+    ライブハウス登録・変更申請
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+    以下のユーザーよりライブハウスの新規登録/登録内容変更の申請がありました。審査をお願いします。<br>
+  </td>
+</tr>
+
+<!--本文-->
+<tr>
+  <td style="padding:1em;">
+
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em 1em;"></td></tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+    ユーザー情報<br>
+    <br>
+    ユーザーID: <%= @user.id %><br>
+    お名前: <%= @user.basic.lastname.to_s %> <%= @user.basic.firstname.to_s %> 様<br>
+    会社名・所属団体: <%= @user.basic.company.to_s %><br>
+    連絡先: <%= @user.email %><br>
+    <br>
+    <br>
+    登録希望のライブハウス<br>
+    <br>
+    ライブハウスID: <%= @livehouse.id %><br>
+    ライブハウス名: <%= @livehouse.livehouse_name.to_s %><br>
+    <br>
+    1人あたりの基本演奏料: <%= @livehouse.required_amount.to_s(:delimited) %><br>
+    ジャンル: <%= @livehouse.genre.to_s %><br>
+    地域: <%= @livehouse.area.to_s %><br>
+    プロフィール(見出し): <%= simple_format(@livehouse.profile_short) %><br>
+    プロフィール(詳細): <%= simple_format(@livehouse.profile_long) %><br>
+    演奏に関する条件・制約: <%= simple_format(@livehouse.capacity) %><br>
+    演奏に関する条件・制約(詳細): <%= simple_format(@livehouse.conditions_detail) %><br>
+    <br>
+    サンプル動画URL1: <%= @livehouse.sample_movie_url1.to_s %><br>
+    サンプル動画URL2: <%= @livehouse.sample_movie_url2.to_s %><br>
+    サンプル動画URL3: <%= @livehouse.sample_movie_url3.to_s %><br>
+    <br>
+    登録日: <%= @livehouse.created_at %><br>
+    更新日: <%= @livehouse.updated_at %><br>
+  </td>
+</tr>
+
+<tr><td style="padding:1em;"></td></tr>
+
+<!--リンクパネル-->
+<tr>
+  <td style="padding:1em;background-color:#eeeeee;">
+    <%= link_to 'ライブハウス情報を承認する', admin_check_url(@livehouse.id) %> <br>
+  </td>
+</tr>
+
+
+<%= render 'partial/mailer_footer' %>

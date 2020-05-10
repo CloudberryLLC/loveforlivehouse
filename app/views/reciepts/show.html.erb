@@ -3,5 +3,5 @@
 <% end %>
 
 <% if current_user.id == @offer.contractor %>
-  <%= render partial: 'from_performer', locals: { user: @user, offer: @offer, payment: @payment } %>
+  <%= render partial: 'from_livehouse', locals: { user: @user, offer: @offer, payment: @payment } %>
 <% end %>

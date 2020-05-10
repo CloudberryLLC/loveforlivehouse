@@ -400,12 +400,12 @@ h6 {
 }
 
 /* トップページ */
-#performer__search__box {
+#livehouse__search__box {
   display: flex;
   justify-content: center;
 }
 
-#performer-search-input {
+#livehouse-search-input {
   width: 61.8%;
   min-width: 300px;
   text-align: center;
@@ -458,7 +458,7 @@ h6 {
 //旧CSS
 //その他
 
-.jumbotron-performer-cover {
+.jumbotron-livehouse-cover {
     // 背景画像を暗くする
     background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) );
 	background-size: cover;
@@ -658,14 +658,14 @@ h6 {
   margin-bottom:1em;
 }
 
-.namecard__preview__performername{
+.namecard__preview__livehousename{
   display:block;
   font-size: 1.5em;
   line-height: 1.5em;
   vertical-align: bottom;
 }
 
-.namecard__preview__performername__sub{
+.namecard__preview__livehousename__sub{
   display:block;
   font-size: 1em;
   margin-bottom:0.5em;

@@ -8,12 +8,12 @@
     <th class="right">支援総額(受取可能額)</th>
     <th></th>
   </tr>
-  <% @user.performer_profiles.each do |group| %>
+  <% @user.livehouses.each do |group| %>
   <tr>
     <td class="dashboard__index middle_height left">
       <span>
   		<%= image_tag(group.profile_photo, class:"profile-48round") if group.profile_photo.attached? %>
-  		<%= group.performer_name %>
+  		<%= group.livehouse_name %>
       </span>
     </td>
     <td class="dashboard__index middle_height right">

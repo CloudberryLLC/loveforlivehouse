@@ -30,7 +30,7 @@ private
   	@contact = Contact.find(params[:id])
   	@user1 = User.find(@contact.user1)
   	@user2 = User.find(@contact.user2)
-		@performer = PerformerProfile.find(@contact.performer)
+		@livehouse = Livehouse.find(@contact.livehouse)
 		@from = current_user
 		if @from.id == @user1.id
 			@to = @user2

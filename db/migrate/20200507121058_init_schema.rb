@@ -66,7 +66,7 @@ class InitSchema < ActiveRecord::Migration[5.2]
       t.index ["contact_id"], name: "index_chat_messages_on_contact_id"
     end
     create_table "contacts" do |t|
-      t.integer "performer"
+      t.integer "livehouse"
       t.integer "user1"
       t.integer "user2"
       t.datetime "created_at", null: false
@@ -96,13 +96,13 @@ class InitSchema < ActiveRecord::Migration[5.2]
       t.integer "reciever"
       t.boolean "paid"
     end
-    create_table "favorite_performers" do |t|
+    create_table "favorite_livehouses" do |t|
       t.integer "user_id"
-      t.integer "performer"
+      t.integer "livehouse"
       t.boolean "favorite"
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
-      t.index ["user_id"], name: "index_favorite_performers_on_user_id"
+      t.index ["user_id"], name: "index_favorite_livehouses_on_user_id"
     end
     create_table "helps" do |t|
       t.text "title"
@@ -121,17 +121,17 @@ class InitSchema < ActiveRecord::Migration[5.2]
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
     end
-    create_table "performer_profiles" do |t|
+    create_table "livehouses" do |t|
       t.integer "user_id"
-      t.string "performer_name"
-      t.string "performer_rank"
+      t.string "livehouse_name"
+      t.string "livehouse_rank"
       t.string "genre"
       t.string "area"
       t.integer "number_of_member"
       t.text "profile_short"
       t.text "profile_long"
-      t.integer "basic_guarantee"
-      t.text "conditions"
+      t.integer "required_amount"
+      t.text "capacity"
       t.text "conditions_detail"
       t.text "sample_movie_url1"
       t.text "sample_movie_url2"
@@ -156,7 +156,7 @@ class InitSchema < ActiveRecord::Migration[5.2]
       t.string "company"
       t.string "owner"
       t.string "manager"
-      t.index ["user_id"], name: "index_performer_profiles_on_user_id"
+      t.index ["user_id"], name: "index_livehouses_on_user_id"
     end
     create_table "screenshots" do |t|
       t.datetime "created_at", null: false

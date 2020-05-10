@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   }
 
   resources :user do
-      resources :performer_profiles, only: [:new, :edit]
+      resources :livehouses, only: [:new, :edit]
   end
 
   resource :two_factor_auth, only: [:new, :create, :destroy]
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :dashboard, only: [:show]
   resources :profiles, only:[:show, :edit, :update, :destroy]
   resources :musicians, only: [:index, :show] #ゆくゆく個々のミュージシャンをSNSで繋げられるようにする
-  resources :performer_profiles, only: [:edit, :update, :destroy]
+  resources :livehouses, only: [:show, :edit, :update, :destroy]
 	resources :donations, only: [:new, :create, :index, :show, :update]
   resources :contacts, only:[:index, :show, :new]
   resources :chat_messages, only:[:new]
@@ -35,27 +35,26 @@ Rails.application.routes.draw do
 	get '/terms_of_services', to:'terms_of_services#show', as: 'terms_of_services'
   get '/privacy_policy', to: 'privacy_policies#show', as: 'privacy_policy'
   get '/tokushouhou', to: 'tokushouhous#show', as: 'tokushouhou'
-  get '/user/:id/mygroups', to: 'performer_profiles#index', as: 'mygroups'
+  get '/user/:id/mygroups', to: 'livehouses#index', as: 'mygroups'
   get '/offers/:id/invoice', to: 'invoices#show', as:'invoice'
   get '/offers/:id/reciept', to: 'reciepts#show', as:'reciept'
-	get '/livehouse/:id', to:'performer_profiles#show', as: 'performer'
-  get '/performer_profiles/admincheck/:id', to: 'performer_profiles#admin_check', as: 'admin_check'
+  get '/livehouses/admincheck/:id', to: 'livehouses#admin_check', as: 'admin_check'
   get '/profiles/admincheck/:id', to: 'profiles#admin_check', as: 'admin_check_user'
   get '/payments/:id/confirmation', to:'payments#confirmation', as:'payment_confirmation'
   get '/payments/admincheck/:id', to: 'payments#admin_check', as: 'admin_check_payment'
   get '/name_card_orders/:id/order_confirmation', to: 'name_card_orders#order_confirmation', as: 'name_card_order_confirmation'
 	get '/search/help', to: 'helps#search', as: 'help_search'
-  get '/search/performer', to: 'searchs#index', as: 'performer_search'
+  get '/search/livehouse', to: 'searchs#index', as: 'livehouse_search'
 	get '/stripe/connect/oauth/', to: 'profiles#stripe_connect_oauth', as:'stripe_connect'
 
-  post '/user/:id/performer_profiles/new' => 'performer_profiles#create'
+  post '/user/:id/livehouses/new' => 'livehouses#create'
 	post '/contacts/:id' => 'contacts#post', as: 'chat_messages'
   post '/payments/:id/confirmation', to: 'payments#confirmed', as:'payment_confirmed'
   post '/name_card_orders/:id/order_confirmation', to: 'name_card_orders#order_confirmed', as: 'name_card_order_confirmed'
   post '/favorites/clip', to: 'favorites#clip', as:'clip_favorite'
 
-  patch '/user/:id/performer_profiles/new' => 'performer_profiles#create'
-  patch '/performer_profiles/admincheck/:id', to: 'performer_profiles#admin_approval', as: 'admin_approval'
+  patch '/user/:id/livehouses/new' => 'livehouses#create'
+  patch '/livehouses/admincheck/:id', to: 'livehouses#admin_approval', as: 'admin_approval'
   patch '/profiles/admincheck/:id', to: 'profiles#admin_approval', as: 'user_approval'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -6,7 +6,7 @@ class DonationsController < ApplicationController
   def new
     begin
       @livehouse_id = decode_livehouse_id(params[:id])
-      @livehouse =  PerformerProfile.find(@livehouse_id)
+      @livehouse =  Livehouse.find(@livehouse_id)
       set_new_donation
     rescue
       head :internal_server_error #500
@@ -15,7 +15,7 @@ class DonationsController < ApplicationController
 
   def create
     @donation = Donation.create(donation_params)
-    @livehouse = PerformerProfile.find(@donation.livehouse_id)
+    @livehouse = Livehouse.find(@donation.livehouse_id)
     @user = User.find(@livehouse.user_id)
     @donation.reciever = @livehouse.user_id
     @donation.paid = false
@@ -35,12 +35,12 @@ class DonationsController < ApplicationController
 
   def update
     @donation = Donation.find(params[:id])
-    @livehouse = PerformerProfile.find(@donation.livehouse_id)
+    @livehouse = Livehouse.find(@donation.livehouse_id)
     @user = User.find(@livehouse.user_id)
     @donation.paid = true
     if @donation.save
       #create_paymentIntent(@donation, @user)
-      #redirect_to performer_path(@donation.livehouse_id), notice: "ありがとうございます。お支払いが正常に行われました。"
+      #redirect_to livehouse_path(@donation.livehouse_id), notice: "ありがとうございます。お支払いが正常に行われました。"
     else
       render 'create'
     end

@@ -1,0 +1,119 @@
+<div class="container pagetop">
+  <div class="row justify-content-center">
+    <div class="text-center">
+
+      <h2>グループを新規作成する</h2>
+      <hr>
+
+      <%= form_for @user, url: new_user_livehouse_path, :html => {:multipart => true}  do |f| %>
+
+        <% if @user.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <% if @user.user_type === 3 %>
+          <div class="container">
+            <%= f.fields_for :livehouses, @livehouse || Livehouse.new do |p| %>
+              <p class="left">演奏家プロフィール</p>
+              <div class="container">
+                <div class="form-group">
+                  <%= p.label :livehouse_name %>
+                  <span class="required"> *</span><br>
+                  <%= p.text_field :livehouse_name, class: "form-control", placeholder: "アーティスト名", autofocus: true %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :required_amount %>
+                  <span class="required"> *</span><br>
+                  <%= p.text_field :required_amount, class: "form-control", placeholder: "最低額：アマチュア15,000円、プロ志望30,000円、プロ40,000円", autofocus: true %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :genre %>
+                  <%= p.text_field :genre, id: "genre", class: "form-control", placeholder: "例：クラシック、ジャズ、ポップス", autofocus: true %>
+                  <%= p.hidden_field :music_genre_list , id:"genre-tag" %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :area %>
+                  <%= p.text_field :area, class: "form-control", placeholder: "例：東京都、大阪府", autofocus: true %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :profile_short %>
+                  <%= p.text_area :profile_short, rows: 3, maxlength: 100, class: "form-control", placeholder: "100文字以内", autofocus: true %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :profile_long %>
+                  <%= p.text_area :profile_long, rows: 7, maxlength: 1000, class: "form-control", placeholder: "1000文字以内", autofocus: true %>
+                </div>
+              <hr>
+
+              <p class="left">条件</p>
+                <div class="form-group">
+                  <%= p.label :capacity %>
+                  <%= p.text_area :capacity, class: "form-control", placeholder: "出張可、音響手配可、など宿泊費負担など", autofocus: true %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :conditions_detail %>
+                  <%= p.text_area :conditions_detail, rows: 5, maxlength: 400, class: "form-control", placeholder: "条件詳細（400文字以内）", autofocus: true %>
+                </div>
+              <hr>
+
+              <p class="left">演奏動画</p>
+
+                <div class="form-group">
+                  <%= p.label :sample_movie_url1 %>
+                  <%= p.text_field :sample_movie_url1, class: "form-control", placeholder: "Youtubeのみ", autofocus: true %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :sample_movie_url2 %>
+                  <%= p.text_field :sample_movie_url2, class: "form-control", placeholder: "Youtubeのみ", autofocus: true %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :sample_movie_url3 %>
+                  <%= p.text_field :sample_movie_url3, class: "form-control", placeholder: "Youtubeのみ", autofocus: true %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+        <hr>
+        <div class="actions">
+          <%= f.submit "公開審査を依頼する", class: "btn btn-info" %>
+        </div>
+      <% end %>
+      <hr>
+
+      <p>
+      アカウント情報（メールアドレス、パスワード）の変更は<%= link_to "こちら", edit_user_registration_path %>
+      </p>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function(){
+    //タグが登録されている場合、何もせずフォームが保存されるとカンマ抜きで登録されるので、その対処
+    $("#genre-tag").val($("#genre-tag").val().replace(/\s+/g, ","));
+    $("#instrument-tag").val($("#instrument-tag").val().replace(/\s+/g, ","));
+
+    //ジャンルと楽器編成の隠しフォーム(タグ用)へフォームの内容をうつす
+    $("#genre").on('load click keyup',function(){
+      genreTags = $("#genre").val();
+      $("#genre-tag").val(genreTags);
+    });
+
+    $("#set-of-instruments").on('load click keyup',function(){
+      instrumentTags = $("#set-of-instruments").val();
+      $("#instrument-tag").val(instrumentTags);
+    });
+  });
+
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>

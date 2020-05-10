@@ -31,15 +31,6 @@
 	  本人確認書類: <%= photo(@user.basic.id_front) %><br>
 	  本人確認書類(裏面): <%= photo(@user.basic.id_back) if @user.basic.id_back.present? %><br>
 	  <br>
-	  (登録口座)<br>
-	  <br>
-	  金融機関名:  <%= @user.bank.bank_name.to_s %><br>
-	  支店名:  <%= @user.bank.bank_branch.to_s %><br>
-	  支店番号:  <%= @user.bank.bank_branch_code.to_s %><br>
-	  口座種別:  <%= @user.bank.bank_type.to_s %><br>
-	  口座番号:  <%= @user.bank.bank_number.to_s %><br>
-	  口座名義人:  <%= @user.bank.bank_owner.to_s %><br>
-	  金融機関名:  <%= @user.bank.bank_owner_kana.to_s %><br>
   </td>
 </tr>
 

@@ -1,0 +1,70 @@
+<div id="dashboard-livehouse" >
+
+  <% #ステップ1 - 会員情報の登録 %>
+  <% unless (current_user.basic.present? && current_user.bank.present?) %>
+      <p class="margin__top__2em"><h5 class="title">ステップ1</h5></p>
+      <p><h5 class="title">会員情報の登録をお願いします。</h5></p>
+
+      <p class="text__area">
+        サービスのご利用にはご本人確認が必要です。<br>
+        まずは会員情報の登録を行ってください。<br>
+      </p>
+
+      <% if livehouse? %>
+        <p class="text_area">
+          事前に以下のものがあるとスムーズです。<br>
+          ・本人確認書類(運転免許書等)<br>
+          ・振込先の銀行口座がわかるもの<br>
+        </p>
+      <% end %>
+
+      <p class="button__area center">
+        <%= link_to "会員情報登録を行う", edit_profile_path(current_user), class: "btn btn-success" %>
+      </p>
+      <hr>
+  <% end %>
+
+  <% #ステップ2 - Stripeアカウントの登録 %>
+  <% unless current_user.stripe_user_id.present? %>
+    <h5 class="title">ステップ2</h5>
+    <h5 class="title">STRIPEアカウントの作成と接続を行います。</h5>
+    <p>
+      支援金の受け取りには米国STRIPE社の提供する、STRIPEアカウントが必要になります。<br>
+      登録は一切無料です。メールアドレスと本人確認書類(免許証等)、受取口座の情報をご準備ください。
+    </p>
+    <div class="text__area">
+      <p class="strong">支援金を受け取るまでの流れと手数料について</p>
+      <p>
+        お客様にてSTRIPEアカウントを作成します。<br>
+        次に、当サービスのアカウントとお客様のSTRIPEアカウントの紐付けを行います。<br>
+        STRIPEアカウントを作成し、当サービスのアカウントに紐付けを行った後は、お客様のSTRIPEアカウント上で入金状況等をリアルタイムで確認することができます。<br>
+        また、STRIPE社の提供するスマートフォンアプリからもお客様のSTRIPEアカウントの状況を確認することが可能です。<br>
+      </p>
+    </div>
+    <div class="button__area center">
+      <%= link_to "STRIPEアカウント作成", "https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=ca_A9pMCeKyEjxM1IrBqNvzEgqQ08z8Gcqc&scope=read_write&state="+user_token(current_user), class:"btn btn-primary", target:"blank" %>
+    </div>
+    <hr>
+  <% end %>
+
+  <% unless current_user.livehouses.present? %>
+    <h5 class="title">ステップ3</h5>
+    <h5 class="title">ライブハウスを登録しましょう。</h5>
+    <p class="text__area">
+      運営・所有しているライブハウスを登録しましょう。<br>
+      5店まで登録できます。<br>
+    <p>下の「ライブハウスを登録する」をクリックして情報を入力しましょう。</p>
+    <% if current_user.certified? && current_user.stripe_user_id.present?  %>
+  	<p class="button__area center">
+      <%= link_to "ライブハウスを登録する", new_user_livehouse_path(current_user), class:"btn btn-success" %>
+    </p>
+    <% else %>
+    <p class="annotation red">
+      ライブハウスは本人確認が完了した後に登録が可能になります。<br>
+    </p>
+    <% end %>
+  <% else %>
+    <%= render 'reward' %>
+  <% end %>
+
+</div>

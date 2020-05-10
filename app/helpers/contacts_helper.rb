@@ -29,10 +29,10 @@ module ContactsHelper
 		end
 	end
 
-	def get_performer_name(performer)
+	def get_livehouse_name(livehouse)
 		begin
-			@performer = PerformerProfile.find(performer)
-			@performer.performer_name
+			@livehouse = Livehouse.find(livehouse)
+			@livehouse.livehouse_name
 		rescue
 			return nil
 		end
