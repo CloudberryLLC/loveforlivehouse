@@ -121,7 +121,7 @@ class InitSchema < ActiveRecord::Migration[5.2]
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
     end
-    create_table "livehouses" do |t|
+    create_table "performer_profiles" do |t|
       t.integer "user_id"
       t.string "livehouse_name"
       t.string "livehouse_rank"
@@ -156,7 +156,7 @@ class InitSchema < ActiveRecord::Migration[5.2]
       t.string "company"
       t.string "owner"
       t.string "manager"
-      t.index ["user_id"], name: "index_livehouses_on_user_id"
+      t.index ["user_id"], name: "index_performer_profiles_on_user_id"
     end
     create_table "screenshots" do |t|
       t.datetime "created_at", null: false
