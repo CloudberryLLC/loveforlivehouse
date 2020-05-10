@@ -1,5 +1,7 @@
 <% unless @user.performer_profiles.present? %>
-  <h5 class="title">ステップ2</h5>
+
+
+  <h5 class="title">ステップ3</h5>
   <h5 class="title">ライブハウスを登録しましょう。</h5>
 
   <p class="text__area">
@@ -21,3 +23,31 @@
 <% else %>
   <%= render 'reward' %>
 <% end %>
+
+
+
+<h5 class="title">ステップ2</h5>
+<h5 class="title">STRIPEアカウントの作成と接続を行います。</h5>
+
+<p>
+  支援金の受け取りには米国STRIPE社の提供する、STRIPEアカウントが必要になります。<br>
+  登録は一切無料です。メールアドレスと本人確認書類(免許証等)、受取口座の情報をご準備ください。
+</p>
+
+<div class="text__area">
+  <p>支援金を受け取るまでの流れと手数料について</p>
+  <p>
+    お客様にてSTRIPEアカウントを作成します。<br>
+    次に、当サービスのアカウントとお客様のSTRIPEアカウントの紐付けを行います。<br>
+    STRIPEアカウントを作成し、当サービスのアカウントに紐付けを行った後は、お客様のSTRIPEアカウント上で入金状況等をリアルタイムで確認することができます。<br>
+    また、STRIPE社の提供するスマートフォンアプリからもお客様のSTRIPEアカウントの状況を確認することが可能です。<br>
+  </p>
+  <p>手数料について</p>
+  <p>
+    サポーターからの支援金は、このアカウントに紐付けられたライブハウス運営者様のSTRIPEアカウントに直接送金されます。<br>
+    その後、お客様のSTRIPEアカウントから当サービスのシステム維持費(送金金額の5%)が差し引かれ、さらに残った金額(送金金額の95%)に対して3.6%のSTRIPE手数料が差し引かれます。<br>
+    実質手数料は約8.5%となり、残りの約91.5%がライブハウス運営者の皆さまが受け取ることのできる金額となります。<br>
+  </p>
+</div>
+
+<%= link_to "STRIPEアカウント作成", "https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=ca_A9pMCeKyEjxM1IrBqNvzEgqQ08z8Gcqc&scope=read_write&state="+user_token(current_user), class:"btn btn-primary", target:"blank" %>

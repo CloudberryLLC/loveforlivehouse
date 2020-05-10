@@ -85,6 +85,7 @@ protected
     end
   end
 
+
 #支払期限(見積り承認1週間後か本番の銀行2営業日前のうち、早い方の15時まで)
   def payment_due(t1, t2)
     time1 = t1 + 7.days #見積り承認1週間後

@@ -3,6 +3,8 @@ class DashboardController < ApplicationController
 	before_action :authenticate_user!
   before_action :user_check
 
+	include ProfilesHelper
+
   def show
 		set_data
   end

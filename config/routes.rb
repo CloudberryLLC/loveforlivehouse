@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   get '/name_card_orders/:id/order_confirmation', to: 'name_card_orders#order_confirmation', as: 'name_card_order_confirmation'
 	get '/search/help', to: 'helps#search', as: 'help_search'
   get '/search/performer', to: 'searchs#index', as: 'performer_search'
+	get '/stripe/connect/oauth/', to: 'profiles#stripe_connect_oauth', as:'stripe_connect'
 
   post '/user/:id/performer_profiles/new' => 'performer_profiles#create'
 	post '/contacts/:id' => 'contacts#post', as: 'chat_messages'

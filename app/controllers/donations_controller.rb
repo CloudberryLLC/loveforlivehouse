@@ -9,17 +9,18 @@ class DonationsController < ApplicationController
       @livehouse =  PerformerProfile.find(@livehouse_id)
       set_new_donation
     rescue
-      head :bad_request
+      head :internal_server_error #500
     end
   end
 
   def create
     @donation = Donation.create(donation_params)
     @livehouse = PerformerProfile.find(@donation.livehouse_id)
+    @user = User.find(@livehouse.user_id)
     @donation.reciever = @livehouse.user_id
     @donation.paid = false
+    create_paymentIntent(@donation, @user)
     if @donation.save
-
     else
       render 'new'
     end
@@ -34,10 +35,12 @@ class DonationsController < ApplicationController
 
   def update
     @donation = Donation.find(params[:id])
-    if create_charge(@donation)
-      @donation.paid = true
-      @donation.save!
-      redirect_to performer_path(@donation.livehouse_id), notice: "ありがとうございます。お支払いが正常に行われました。"
+    @livehouse = PerformerProfile.find(@donation.livehouse_id)
+    @user = User.find(@livehouse.user_id)
+    @donation.paid = true
+    if @donation.save
+      #create_paymentIntent(@donation, @user)
+      #redirect_to performer_path(@donation.livehouse_id), notice: "ありがとうございます。お支払いが正常に行われました。"
     else
       render 'create'
     end
@@ -68,6 +71,21 @@ private
       source: params[:stripeToken],
       description: "支援ID: " + donation.id.to_s + " - 様からの寄付"
     )
+  end
+
+  def create_paymentIntent(donation, user)
+    begin
+      @payment_intent = Stripe::PaymentIntent.create({
+        payment_method_types: ["card"],
+        amount: donation.amount.to_i,
+        currency: "jpy",
+        application_fee_amount: (donation.amount * Constants::SYSTEM_FEE).ceil.to_i,
+        description: "支援ID: " + donation.id.to_s,
+      }, stripe_account: user.stripe_user_id)
+    rescue Stripe::InvalidRequestError => e
+      flash.now[:error] = "決済(stripe)でエラーが発生しました（InvalidRequestError）#{e.message}"
+      render :new
+    end
   end
 
 end

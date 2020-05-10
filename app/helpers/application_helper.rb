@@ -183,6 +183,7 @@ end
 		end
 	end
 
+
 #Donation#Newを作る時の確認用ハッシュ生成
 	def livehouse_hash(livehouse)
 		return Digest::SHA256.hexdigest(livehouse.id.to_s + livehouse.shop_email.to_s + livehouse.user_id.to_s)
