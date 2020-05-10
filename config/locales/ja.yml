@@ -254,22 +254,6 @@ ja:
         bank_number: "口座番号"
         bank_owner: "口座名義人"
         bank_owner_kana: "口座名義人（カナ）※スペースなし"
-      musician_profile:
-        musician_name: "アーティスト名"
-        musician_class: "アーティスト区分"
-        instrument1: "演奏楽器1"
-        instrument2: "演奏楽器2"
-        area: "主な活動エリア"
-        profile_photo: "プロフィール写真"
-        cover_photo: "カバー写真"
-        profile_short: "プロフィール（見出し）"
-        profile_long: "プロフィール（詳細）"
-        sample_movie_url1: "サンプル動画URL1"
-        sample_movie_url2: "サンプル動画URL2"
-        sample_movie_url3: "サンプル動画URL3"
-        basic_guarantee: "基本報酬希望額"
-        play_condition: "演奏条件"
-        play_condition_detail: "演奏条件詳細"
       performer_profile:
         performer_name: "ライブハウス名"
         performer_rank: "区分"
@@ -347,9 +331,6 @@ ja:
         equipment: "楽器・機材レンタル費"
         other_expenses: "その他経費"
         detail: "見積り詳細"
-      arrangement:
-        client_items: "クライアント側の準備物"
-        performer_items: "パフォーマー側の持参物"
       payment:
         total: "合計金額"
         guarantee: "実演料(パフォーマー手取り収入)"
@@ -382,14 +363,6 @@ ja:
         comment: "コメント"
         report: "イレギュラー報告"
         feedback: "サービス改善リクエスト"
-      cancelled_offer:
-        cancelled_by: "キャンセル申請者"
-        cause: "キャンセル理由"
-        payback_rate: "払戻率"
-        paid_to_client: "クライアントへの払戻"
-        paid_to_performer: "パフォーマーへの支払"
-        pay_amount_to_client: "クライアント払戻額"
-        pay_amount_to_performer: "パフォーマー支払額"
       name_card:
         your_part: "項目1(演奏楽器)"
         your_name: "項目2(名前)"

@@ -25,7 +25,6 @@ Rails.application.routes.draw do
 	resources :offers
 	resources :payments
   resources :reviews, only: [:new, :create]
-  resources :cancelled_offers
   resources :favorites, only: [:index]
   resources :helps
   resources :screenshots
@@ -44,7 +43,6 @@ Rails.application.routes.draw do
   get '/profiles/admincheck/:id', to: 'profiles#admin_check', as: 'admin_check_user'
   get '/payments/:id/confirmation', to:'payments#confirmation', as:'payment_confirmation'
   get '/payments/admincheck/:id', to: 'payments#admin_check', as: 'admin_check_payment'
-  get '/cancelled_offers/admincheck/:id', to: 'cancelled_offers#admin_payback', as: 'admin_payback'
   get '/name_card_orders/:id/order_confirmation', to: 'name_card_orders#order_confirmation', as: 'name_card_order_confirmation'
 	get '/search/help', to: 'helps#search', as: 'help_search'
   get '/search/performer', to: 'searchs#index', as: 'performer_search'
@@ -59,7 +57,6 @@ Rails.application.routes.draw do
   patch '/user/:id/performer_profiles/new' => 'performer_profiles#create'
   patch '/performer_profiles/admincheck/:id', to: 'performer_profiles#admin_approval', as: 'admin_approval'
   patch '/profiles/admincheck/:id', to: 'profiles#admin_approval', as: 'user_approval'
-  patch '/cancelled_offers/:id/edit', to: 'offers#cancel', as: 'cancel'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -33,15 +33,6 @@ ActiveRecord::Schema.define(version: 2020_05_07_121058) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "arrangements", force: :cascade do |t|
-    t.integer "offer_id"
-    t.text "client_items"
-    t.text "performer_items"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["offer_id"], name: "index_arrangements_on_offer_id"
-  end
-
   create_table "banks", force: :cascade do |t|
     t.string "bank_name"
     t.string "bank_branch"
@@ -78,23 +69,6 @@ ActiveRecord::Schema.define(version: 2020_05_07_121058) do
     t.string "profile_photo"
     t.string "cover_photo"
     t.index ["user_id"], name: "index_basics_on_user_id"
-  end
-
-  create_table "cancelled_offers", force: :cascade do |t|
-    t.integer "offer_id"
-    t.integer "cancelled_by"
-    t.text "cause"
-    t.integer "payback_rate"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "paid_to_client"
-    t.integer "pay_amount_to_client"
-    t.boolean "paid_to_performer"
-    t.integer "pay_amount_to_performer"
-    t.integer "recieved_amount"
-    t.integer "deposit_for_performer"
-    t.integer "profit"
-    t.index ["offer_id"], name: "index_cancelled_offers_on_offer_id"
   end
 
   create_table "chat_messages", force: :cascade do |t|
@@ -141,24 +115,6 @@ ActiveRecord::Schema.define(version: 2020_05_07_121058) do
     t.boolean "paid"
   end
 
-  create_table "estimations", force: :cascade do |t|
-    t.integer "offer_id"
-    t.integer "guarantee"
-    t.integer "staff"
-    t.integer "withholding_tax"
-    t.integer "system_fee"
-    t.integer "transport"
-    t.integer "accommodation"
-    t.integer "carriage"
-    t.integer "equipment"
-    t.integer "other_expenses"
-    t.text "detail"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "consumption_tax"
-    t.index ["offer_id"], name: "index_estimations_on_offer_id"
-  end
-
   create_table "favorite_performers", force: :cascade do |t|
     t.integer "user_id"
     t.integer "performer"
@@ -185,116 +141,6 @@ ActiveRecord::Schema.define(version: 2020_05_07_121058) do
     t.boolean "closed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "musician_profiles", force: :cascade do |t|
-    t.string "musician_name"
-    t.string "musician_class"
-    t.string "instrument1"
-    t.string "instrument2"
-    t.string "profile_photo"
-    t.text "profile_short"
-    t.text "profile_long"
-    t.text "sample_movie_url1"
-    t.text "sample_movie_url2"
-    t.integer "basic_guarantee"
-    t.text "play_condition"
-    t.text "play_condition_detail"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.string "cover_photo"
-    t.text "sample_movie_url3"
-    t.string "area"
-    t.index ["user_id"], name: "index_musician_profiles_on_user_id"
-  end
-
-  create_table "name_card_orders", force: :cascade do |t|
-    t.integer "name_card_id"
-    t.integer "amount"
-    t.date "delivery_date"
-    t.integer "price"
-    t.integer "payment_option"
-    t.date "payment_limit"
-    t.boolean "paid"
-    t.string "zipcode"
-    t.string "pref"
-    t.string "city"
-    t.string "street"
-    t.string "bldg"
-    t.string "reciever_name"
-    t.boolean "ordered"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name_card_id"], name: "index_name_card_orders_on_name_card_id"
-  end
-
-  create_table "name_cards", force: :cascade do |t|
-    t.integer "performer_profile_id"
-    t.string "your_part"
-    t.string "your_name"
-    t.string "your_name_kana"
-    t.string "your_group"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["performer_profile_id"], name: "index_name_cards_on_performer_profile_id"
-  end
-
-  create_table "offers", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "client"
-    t.integer "contractor"
-    t.integer "offered_performer"
-    t.integer "offer_status"
-    t.integer "last_update_from"
-    t.datetime "meeting_time"
-    t.boolean "meeting_time_confirmed"
-    t.datetime "release_time"
-    t.boolean "release_time_confirmed"
-    t.integer "playing_time"
-    t.boolean "playing_time_confirmed"
-    t.string "place"
-    t.text "dresscode"
-    t.text "contract"
-    t.text "request_from_client"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "description"
-    t.text "equipments"
-    t.text "rehearsal"
-    t.text "carry_in"
-    t.text "parking"
-    t.text "dressing_room"
-    t.text "stage"
-    t.text "accommodation"
-    t.text "other_condition"
-  end
-
-  create_table "payments", force: :cascade do |t|
-    t.integer "offer_id"
-    t.integer "total"
-    t.integer "guarantee"
-    t.integer "management_fee"
-    t.integer "staff"
-    t.integer "consumption_tax"
-    t.integer "withholding_tax"
-    t.string "card"
-    t.integer "transfer_fee"
-    t.integer "system_fee"
-    t.integer "payment_options"
-    t.datetime "payment_due"
-    t.boolean "paid"
-    t.datetime "recieved_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "transport"
-    t.integer "accommodation"
-    t.integer "carriage"
-    t.integer "equipment"
-    t.integer "other_expenses"
-    t.datetime "charged_at"
-    t.text "detail"
-    t.index ["offer_id"], name: "index_payments_on_offer_id"
   end
 
   create_table "performer_profiles", force: :cascade do |t|
@@ -333,24 +179,6 @@ ActiveRecord::Schema.define(version: 2020_05_07_121058) do
     t.string "owner"
     t.string "manager"
     t.index ["user_id"], name: "index_performer_profiles_on_user_id"
-  end
-
-  create_table "reviews", force: :cascade do |t|
-    t.integer "offer_id"
-    t.integer "reviewee"
-    t.integer "reviewer"
-    t.float "total_review"
-    t.float "quality"
-    t.float "confortability"
-    t.float "manners"
-    t.float "cost_performance"
-    t.float "fast_response"
-    t.text "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "report"
-    t.text "feedback"
-    t.index ["offer_id"], name: "index_reviews_on_offer_id"
   end
 
   create_table "screenshots", force: :cascade do |t|

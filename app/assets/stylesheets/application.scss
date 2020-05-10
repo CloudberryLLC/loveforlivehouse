@@ -411,11 +411,6 @@ h6 {
   text-align: center;
 }
 
-//Offers#show 期限切れのとき背景をグレイに
-.offer_expired {
-  background-color: #aaa;
-}
-
 #declined_indicator {
   text-decoration: bold;
 }
@@ -533,10 +528,6 @@ h6 {
 }
 
 #order-confirm-button{
-  display:inline-block;
-}
-
-.offer-button{
   display:inline-block;
 }
 

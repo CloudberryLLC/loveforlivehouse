@@ -64,10 +64,11 @@ gem 'rails_admin', '~> 2.0' #admin関連
 gem 'cancancan'
 gem 'aws-sdk', '< 2.0'
 gem "aws-sdk-s3", require: false
-gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'stripe'
 gem 'trix-rails', require: 'trix'
 gem 'business_time'
 gem 'holiday_jp'
+gem 'squasher', '>= 0.6.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

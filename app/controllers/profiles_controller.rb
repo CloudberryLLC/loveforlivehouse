@@ -82,7 +82,6 @@ class ProfilesController < ApplicationController
         :email, :user_type, :certified,
         basic_attributes: [:lastname, :lastname_kana, :firstname, :firstname_kana, :company, :department, :phone, :zipcode, :pref, :city, :street, :bldg, :profile_photo, :cover_photo, :id_front, :id_back, :company_certification, :_destroy, :id],
         bank_attributes: [:bank_name, :bank_branch, :bank_branch_code, :bank_type, :bank_number, :bank_owner, :bank_owner_kana, :_destroy, :id],
-        musician_profile_attributes: [:musician_name, :musician_class,:instrument1, :instrument2, :profile_photo, :cover_photo, :profile_short, :profile_long, :sample_movie_url1, :sample_movie_url2, :sample_movie_url3, :basic_guarantee, :play_condition, :play_condition_detail, :area, :_destroy, :id]
         )
     end
 

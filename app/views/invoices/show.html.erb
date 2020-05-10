@@ -1,7 +1,0 @@
-<% if current_user.id == @offer.client %>
-  <%= render partial: 'to_client', locals: { user: @user, offer: @offer, payment: @payment } %>
-<% end %>
-
-<% if current_user.id == @offer.contractor %>
-  <%= render partial: 'from_performer', locals: { user: @user, offer: @offer, payment: @payment } %>
-<% end %>

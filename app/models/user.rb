@@ -9,15 +9,13 @@ class User < ApplicationRecord
 
   has_one :basic, dependent: :destroy
   has_one :bank, dependent: :destroy
-  has_one :musician_profile, dependent: :destroy #musician_profileはperformer_profileができたら削除
   has_many :performer_profiles, dependent: :destroy
   has_many :contacts, dependent: :destroy
   has_many :chat_messages, through: :contacts, dependent: :destroy
   has_many :offers, dependent: :destroy
   has_many :favorite_performers, dependent: :destroy
 
- #musician_profileは会員数が増えてきたら実装
-  accepts_nested_attributes_for :basic, :bank, :musician_profile, :performer_profiles, :contacts, :chat_messages, :offers, :favorite_performers
+  accepts_nested_attributes_for :basic, :bank, :performer_profiles, :contacts, :chat_messages, :offers, :favorite_performers
 
   acts_as_ordered_taggable
   acts_as_ordered_taggable_on :instruments

@@ -1,7 +1,0 @@
-<% if @offer.payment.present? %>
-  <div id="payment-detail" class="margin__vertical__1em">
-    <h4>クライアントの支払待ちです。</h4>
-    <p><%= @offer.payment.payment_due.strftime("%Y年%m月%d日(%a) %H:%M") %>までにクライアントのお支払いが確認できない場合、このオファーは不成立となります。</p>
-  </div>
-<% end %>
-<hr>
