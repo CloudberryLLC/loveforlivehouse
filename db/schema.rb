@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2020_05_10_142514) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.integer "performer"
+    t.integer "livehouse"
     t.integer "user1"
     t.integer "user2"
     t.datetime "created_at", null: false
@@ -115,13 +115,13 @@ ActiveRecord::Schema.define(version: 2020_05_10_142514) do
     t.boolean "paid"
   end
 
-  create_table "favorite_performers", force: :cascade do |t|
+  create_table "favorite_livehouses", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "performer"
+    t.integer "livehouse"
     t.boolean "favorite"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_favorite_performers_on_user_id"
+    t.index ["user_id"], name: "index_favorite_livehouses_on_user_id"
   end
 
   create_table "helps", force: :cascade do |t|

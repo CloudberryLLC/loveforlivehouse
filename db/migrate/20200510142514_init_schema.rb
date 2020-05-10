@@ -121,13 +121,11 @@ class InitSchema < ActiveRecord::Migration[5.2]
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
     end
-    create_table "performer_profiles" do |t|
+    create_table "livehouses" do |t|
       t.integer "user_id"
       t.string "livehouse_name"
-      t.string "livehouse_rank"
       t.string "genre"
       t.string "area"
-      t.integer "number_of_member"
       t.text "profile_short"
       t.text "profile_long"
       t.integer "required_amount"
@@ -140,9 +138,6 @@ class InitSchema < ActiveRecord::Migration[5.2]
       t.string "cover_photo"
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
-      t.float "latitude"
-      t.float "longitude"
-      t.string "set_of_instruments"
       t.boolean "certified"
       t.boolean "published"
       t.string "zipcode"
@@ -156,7 +151,7 @@ class InitSchema < ActiveRecord::Migration[5.2]
       t.string "company"
       t.string "owner"
       t.string "manager"
-      t.index ["user_id"], name: "index_performer_profiles_on_user_id"
+      t.index ["user_id"], name: "index_livehouses_on_user_id"
     end
     create_table "screenshots" do |t|
       t.datetime "created_at", null: false
