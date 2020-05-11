@@ -13,7 +13,7 @@
       </p>
 
       <% # 宛名 %>
-      <div id="reciept_client_name">
+      <div id="reciept_supporter_name">
         <h4 class="strong">
           <%= show_company_name(@user.basic) %> <%= @user.basic.department %><br>
           <%= @user.basic.lastname %> <%= @user.basic.firstname %> 様</h4>
@@ -25,7 +25,7 @@
         下記の通り代金を受領いたしました。
       </p>
 
-      <%= render partial: 'offers/payment_detail_for_client', locals: { offer: @offer, payment: @payment } %>
+      <%= render partial: 'offers/payment_detail_for_supporter', locals: { offer: @offer, payment: @payment } %>
 
       <% # 備考 %>
       <p>

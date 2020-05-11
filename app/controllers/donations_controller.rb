@@ -14,11 +14,7 @@ class DonationsController < ApplicationController
   end
 
   def create
-    @donation = Donation.create(donation_params)
-    @livehouse = Livehouse.find(@donation.livehouse_id)
-    @user = User.find(@livehouse.user_id)
-    @donation.reciever = @livehouse.user_id
-    @donation.paid = false
+    create_data
     create_paymentIntent(@donation, @user)
     if @donation.save
     else
@@ -50,7 +46,7 @@ private
 
   def donation_params
     params.require(:donation).permit(
-      :nickname, :amount, :message, :name, :email, :phone, :zipcode, :pref, :city, :street, :bldg, :confirmation, :livehouse_id, :stripeToken
+      :nickname, :amount, :message, :name, :email, :phone, :zipcode, :pref, :city, :street, :bldg, :confirmation, :livehouse_id, :supporter_id, :stripeToken
       )
   end
 
@@ -59,6 +55,17 @@ private
       @donation = Donation.new( :livehouse_id => @livehouse_id )
     else
       head :bad_request
+    end
+  end
+
+  def create_data
+    @donation = Donation.create(donation_params)
+    @livehouse = Livehouse.find(@donation.livehouse_id)
+    @user = User.find(@livehouse.user_id)
+    @donation.reciever = @livehouse.user_id
+    @donation.paid = false
+    if user_signed_in?
+      @donation.supporter_id = current_user.id
     end
   end
 

@@ -11,9 +11,9 @@ class ReviewMailerPreview < ActionMailer::Preview
     ReviewMailer.to_livehouse
   end
 
-  # Preview this email at http://localhost:3000/rails/mailers/review_mailer/to_client
-  def to_client
-    ReviewMailer.to_client
+  # Preview this email at http://localhost:3000/rails/mailers/review_mailer/to_supporter
+  def to_supporter
+    ReviewMailer.to_supporter
   end
 
 end

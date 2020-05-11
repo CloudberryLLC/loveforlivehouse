@@ -1,9 +1,23 @@
-<% unless @offers.nil? %>
-  <h4 class="title">支援履歴</h4>
-  <%= render partial: 'donations/supporter_list', locals: { supporters: @supporters } %>
-  <p class="right"><%= link_to '(もっと見る)', donations_path(current_user) %></p>
-<% else %>
+<h4 class="title">支援履歴</h4>
+
+<% if @donations.blank? %>
   <span>まだ支援を行っていません。</span>
+<% else %>
+  <h5 class="title">支援総額: <%= @donations.all.sum(:amount).to_s(:delimited) %>円 </h5>
+  <table class="table">
+    <tr>
+      <th>日時</th>
+      <th>ライブハウス</th>
+      <th>支援金額</th>
+    </tr>
+    <% @donations.each do |donation| %>
+      <tr>
+        <td><%= donation.created_at.strftime("%m/%d %H:%M") %></td>
+        <td><%= Livehouse.find(donation.livehouse_id).livehouse_name %></td>
+        <td><%= donation.amount.to_s(:delimited) %>円</td>
+      </tr>
+    <% end %>
+  </table>
 <% end %>
 
 <hr>

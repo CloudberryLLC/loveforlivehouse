@@ -62,7 +62,7 @@ protected
 	end
 
   #クライアント専用ページ
-  def client_only
+  def supporter_only
     unless current_user.user_type == 1
 			head :not_found
     end

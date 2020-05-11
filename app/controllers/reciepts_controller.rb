@@ -5,15 +5,13 @@ class RecieptsController < ApplicationController
 
   def show
     begin
-      @offer = Offer.find(params[:id])
-      @payment = @offer.payment
+      @donation = Donation.find(params[:id])
       @title = params[:text]
-      @request = params[:value] #請求書は1、領収書は2
-
-      if current_user.id == @offer.client
-        @user = User.find(@offer.client)
+      if livehouse?
+        @user = User.find(@offer.supporter)
         @as_a = "サービス利用料"
-      elsif current_user.id == @offer.contractor
+      end
+      if supporter?
         @user = User.find(@offer.contractor)
         @as_a = "パフォーマンス料"
       else

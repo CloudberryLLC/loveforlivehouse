@@ -21,7 +21,7 @@ private
 
   def mail_subject(sender, offer)
     case sender.id
-    when offer.client
+    when offer.supporter
       return "[LOVE for Live House] クライアントからコンタクトがありました。"
     when offer.contractor
       return "[LOVE for Live House] ライブハウスからコンタクトがありました。"

@@ -17,9 +17,9 @@ class ReviewMailerTest < ActionMailer::TestCase
     assert_match "Hi", mail.body.encoded
   end
 
-  test "to_client" do
-    mail = ReviewMailer.to_client
-    assert_equal "To client", mail.subject
+  test "to_supporter" do
+    mail = ReviewMailer.to_supporter
+    assert_equal "To supporter", mail.subject
     assert_equal ["to@example.org"], mail.to
     assert_equal ["from@example.com"], mail.from
     assert_match "Hi", mail.body.encoded

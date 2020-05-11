@@ -67,60 +67,6 @@
 
 <hr><!--基本情報終わり-->
 
-<!--銀行口座-->
-<div class="container margin__top__2em">
-  <h5 class="title">口座情報</h5>
-  <p class="annotation left">
-    (任意・記入推奨)<br>
-    当サービスで返金が発生した際の返金先になります。
-  </p>
-</div>
-
-
-<div id="bank-account" class="container">
-
-  <%= f.fields_for :bank, @user.bank || Bank.new do |bank| %>
-
-  <div class="form-group">
-    <%= bank.label :bank_name %>
-    <%= bank.text_field :bank_name, class: "form-control", placeholder: "例：○○銀行、○○信用金庫", autofocus: true %>
-  </div>
-
-  <div class="form-group">
-    <%= bank.label :bank_branch %>
-    <%= bank.text_field :bank_branch, class: "form-control", placeholder: "例：○○支店", autofocus: true %>
-  </div>
-
-  <div class="form-group">
-    <%= bank.label :bank_branch_code %>
-    <%= bank.text_field :bank_branch_code, class: "form-control", placeholder: "店番、支店コード（支店番号）", autofocus: true %>
-  </div>
-
-  <div class="form-group">
-    <%= bank.label :bank_type %>
-    <%= bank.select :bank_type, [["普通預金","普通預金"],["当座預金","当座預金"]], {}, {class: "form-control"} %>
-  </div>
-
-  <div class="form-group">
-    <%= bank.label :bank_number %>
-    <%= bank.text_field :bank_number, class: "form-control", placeholder: "半角数字（例：1234567）", autofocus: true %>
-  </div>
-
-  <div class="form-group">
-    <%= bank.label :bank_owner %>
-    <%= bank.text_field :bank_owner, class: "form-control", placeholder: "口座名義人漢字", autofocus: true %>
-  </div>
-
-  <div class="form-group">
-    <%= bank.label :bank_owner_kana %>
-    <%= bank.text_field :bank_owner_kana, class: "form-control", placeholder: "全角カタカナ、姓と名の間にスペースを入れないでください。", autofocus: true %>
-  </div>
-
-  <% end %>
-
-</div><!--銀行口座終わり-->
-
-
   <div class="button__area actions padding__1em">
     <%= f.submit "プロフィールを更新し、利用申請をする",
      class: "btn btn-primary",

@@ -27,10 +27,8 @@ class LivehousesController < ApplicationController
     end
 
     def show
-      @groups = Livehouse.where(user_id: @livehouse.user_id).where.not(id: @livehouse.id)
+      @groups = Livehouse.where(user_id: @livehouse.user_id).where(certified: true, published: true).where.not(id: @livehouse.id)
       @donators = Donation.where(livehouse_id: @livehouse.id).limit(100)
-      @favorite_status = FavoritePerformer.where(user_id: current_user, performer: @livehouse.id).present?
-      @number_of_favorites = FavoritePerformer.where(performer: @livehouse.id).length
       write_recently_viewed_livehouse_cookies(@livehouse)
     end
 

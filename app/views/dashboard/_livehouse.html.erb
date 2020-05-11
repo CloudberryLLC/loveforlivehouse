@@ -1,7 +1,7 @@
 <div id="dashboard-livehouse" >
 
   <% #ステップ1 - 会員情報の登録 %>
-  <% unless (current_user.basic.present? && current_user.bank.present?) %>
+  <% unless (current_user.basic.present?) %>
       <p class="margin__top__2em"><h5 class="title">ステップ1</h5></p>
       <p><h5 class="title">会員情報の登録をお願いします。</h5></p>
 
@@ -52,7 +52,7 @@
     <h5 class="title">ライブハウスを登録しましょう。</h5>
     <p class="text__area">
       運営・所有しているライブハウスを登録しましょう。<br>
-      5店まで登録できます。<br>
+      最大<%= Constants::MAX_GROUPS %>店まで登録できます。<br>
     <p>下の「ライブハウスを登録する」をクリックして情報を入力しましょう。</p>
     <% if current_user.certified? && current_user.stripe_user_id.present?  %>
   	<p class="button__area center">

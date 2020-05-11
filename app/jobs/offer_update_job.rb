@@ -10,13 +10,13 @@ class OfferUpdateJob < ApplicationJob
       OfferMailer.with(offer: offer).livehouse_unaccepted.deliver_later
       redirect_to offer_path(offer), notice: "このオファーを見送りました。"
     when 4 #ライブハウスが依頼を受け、見積りを出した場合
-      OfferMailer.with(offer: offer).estimation_to_client.deliver_later
+      OfferMailer.with(offer: offer).estimation_to_supporter.deliver_later
       redirect_to offer_path(offer), notice: "クライアントに見積りを送りました。"
     when 5 #クライアントより再見積り依頼が来た場合
       OfferMailer.with(offer: offer).re_estimate_order.deliver_later
       redirect_to offer_path(offer), notice: "ライブハウスに再見積りを依頼しました。"
     when 6 #クライアントよりオファーが断られた場合
-      OfferMailer.with(offer: offer).client_unaccepted.deliver_later
+      OfferMailer.with(offer: offer).supporter_unaccepted.deliver_later
       redirect_to offer_path(offer), notice: "このオファーを見送りました。"
     when 7 #クライアントが見積りを承認し、オファーが成立した場合
       OfferMailer.with(offer: offer).estimation_accepted.deliver_later

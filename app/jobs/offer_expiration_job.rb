@@ -7,7 +7,7 @@ class OfferExpirationJob < ApplicationJob
     when 1, 2, 4, 5 #承諾に至らない場合
       @offer.offer_status = 10 #不成立(期限切れ)
       if @offer.save
-        OfferMailer.with(offer: @offer).contact_expired_to_client.deliver_later
+        OfferMailer.with(offer: @offer).contact_expired_to_supporter.deliver_later
         OfferMailer.with(offer: @offer).contact_expired_to_contractor.deliver_later
       end
     else

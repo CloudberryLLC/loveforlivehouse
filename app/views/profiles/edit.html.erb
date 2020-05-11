@@ -6,12 +6,17 @@
       <hr>
 
       <div>
-        <% case current_user.user_type when 1 %>
-          <%= render 'client_basic_profile' %>
-        <% when 3 %>
-          <%= render 'livehouse_basic_profile' %>
+
+        <% if supporter? %>
+          <%= render 'supporter' %>
         <% end %>
+
+        <% if livehouse? %>
+          <%= render 'livehouse' %>
+        <% end %>
+
         <hr>
+
       </div>
 
       <p class="padding__1em">

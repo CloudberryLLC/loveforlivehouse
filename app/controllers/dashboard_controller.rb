@@ -12,8 +12,8 @@ class DashboardController < ApplicationController
 private
 	def set_data
 		@user = current_user
-		@favorites = FavoritePerformer.where('user_id = ?', current_user.id).page(params[:page]).per(10)
 		@recent_viewed_livehouses = cookies[:recently_viewed_livehouses].split(',') if cookies[:recently_viewed_livehouses]
+		@donations = Donation.where(supporter_id: @user.id)
 	end
 
 end

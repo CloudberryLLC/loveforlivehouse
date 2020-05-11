@@ -18,14 +18,6 @@
     <% if @user.basic.id_back.present? %>
       <%= image_tag(photo(@user.basic.id_back)) %><br>
     <% end %>
-  <p>登録口座</p>
-    金融機関名:  <%= @user.bank.bank_name %><br>
-    支店名:  <%= @user.bank.bank_branch %><br>
-    支店番号:  <%= @user.bank.bank_branch_code %><br>
-    口座種別:  <%= @user.bank.bank_type %><br>
-    口座番号:  <%= @user.bank.bank_number %><br>
-    口座名義人:  <%= @user.bank.bank_owner %><br>
-    金融機関名:  <%= @user.bank.bank_owner_kana %><br>
   <hr>
   <div class="container">
     <%= form_with model: @user, url: user_approval_path(@user), local: true do |f| %>

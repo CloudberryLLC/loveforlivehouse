@@ -6,7 +6,6 @@
     <th class="left">店舗名</th>
     <th class="right">人数</th>
     <th class="right">支援総額(受取可能額)</th>
-    <th></th>
   </tr>
   <% @user.livehouses.each do |group| %>
   <tr>
@@ -21,10 +20,6 @@
     </td>
     <td class="dashboard__index middle_height right">
       <%= show_reward(group)[1].to_s(:delimited) %>円<br>
-      (<%= show_reward(group)[2].to_s(:delimited) %>円)
-    </td>
-    <td>
-      <%= link_to '詳細', root_path, class: "btn btn-info btn-sm" %>
     </td>
   </tr>
   <% end %>
