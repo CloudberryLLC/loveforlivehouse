@@ -42,7 +42,7 @@
       </p>
     </div>
     <div class="button__area center">
-      <%= link_to "STRIPEアカウント作成", "https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=ca_A9pMCeKyEjxM1IrBqNvzEgqQ08z8Gcqc&scope=read_write&state="+user_token(current_user), class:"btn btn-primary", target:"blank" %>
+      <%= link_to "STRIPEアカウント作成", "https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id="+Rails.configuration.stripe[:oauth_client_id]+"&scope=read_write&state="+user_token(current_user), class:"btn btn-primary", target:"blank" %>
     </div>
     <hr>
   <% end %>
