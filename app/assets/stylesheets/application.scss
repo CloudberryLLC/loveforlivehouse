@@ -451,8 +451,27 @@ h6 {
   text-align: center;
 }
 
+//棒グラフ
+.graph {
+  position: relative;
+  margin: 1em 0em;
+  background: #dddddd;
+  width: 100%;
+  height: 20px;
+  border-radius: 2.5px;
+}
 
-
+.graph .bar {
+  display: block;
+  position: relative;
+  text-align: center;
+  color: white;
+  height: 100%;
+  background: darkorange;
+  line-height: 20px;
+  border-radius: 2.5px;
+}
+.graph .bar span { position: absolute; left: 1em; }
 
 
 //旧CSS
@@ -587,14 +606,6 @@ h6 {
 	margin: 1em;
 }
 
-
-
-.map-large {
-  display: block;
-  height :400px;
-  width: 100%;
-}
-
 //フォーム関係
 .form-input{
   margin: 1em;
@@ -613,97 +624,6 @@ h6 {
   padding-bottom:1em;
 }
 
-//名刺作成系
-.namecard__example{
-  position: relative;
-  width: 480px;
-  height: 300px;
-  border: 1px solid black;
-  border-radius: 5px;
-  margin: 1em;
-  padding: 0.5em;
-}
-
-.namecard__preview_frame{
-  position: relative;
-  width: 480px;
-  height: 300px;
-  border: 1px solid black;
-  border-radius: 5px;
-  margin: 1em;
-  padding: 2em;
-}
-
-.namecard__preview__qrcode__wrapper{
-  display:block;
-  position: absolute;
-  top: 2.5em;
-  right: 2.5em;
-}
-
-.qrcode__for_download{
-  width:110px;
-  height:110px;
-  padding:10px;
-}
-
-.qrcode__preview{
-  display:block;
-  text-align: center !important;
-}
-
-.namecard__preview__partname{
-  display:block;
-  font-size: 1.1em;
-  margin-bottom:1em;
-}
-
-.namecard__preview__livehousename{
-  display:block;
-  font-size: 1.5em;
-  line-height: 1.5em;
-  vertical-align: bottom;
-}
-
-.namecard__preview__livehousename__sub{
-  display:block;
-  font-size: 1em;
-  margin-bottom:0.5em;
-}
-
-.namecard__preview__unitindex{
-  display:block;
-  font-size: 1em;
-}
-
-.namecard__preview__units{
-  display:block;
-  margin-top:1.25em;
-  font-size: 1.125em;
-}
-
-.namecard__preview__servicename{
-  display:block;
-  position: absolute;
-  bottom:2em;
-  line-height: 1.2em;
-  font-size: 0.9em;
-}
-
-.namecard__preview__annotation{
-  display:block;
-  font-size: 0.8em;
-  text-align: center;
-}
-
-.copy_url{
-  margin-top:2em;
-  margin-bottom:2em;
-}
-
-#payment-view{
-  display:inline;
-}
 //チャット表示系
 
 .chat__wrapper {
@@ -723,7 +643,6 @@ h6 {
   align-items: center;
 	padding: 1em 1em 0 1em;
 }
-
 
 .chat-sender-body {
 	display: inline-block;

@@ -36,7 +36,7 @@
         <div id="card-process" role="alert"></div>
         <div id="card-errors" role="alert"></div>
 
-        <%= f.submit "規約に同意して支払いを実行する", data: {secret: @payment_intent.client_secret}, class: "btn btn-success", id:"submit" %>
+        <%= f.submit "規約に同意して支払いを実行する", data: {secret: @payment_intent.client_secret}, class: "btn btn-success", id:"card-button" %>
       <% end %>
 
     </div>
@@ -45,7 +45,9 @@
 
 
 <%= javascript_tag do %>
-  var stripe = Stripe('<%= Rails.configuration.stripe[:publishable_key] %>');
+  var stripe = Stripe('<%= Rails.configuration.stripe[:publishable_key] %>', {
+  stripeAccount: '<%= @user.stripe_user_id %>'
+  });
 
   var elements = stripe.elements();
 
@@ -73,11 +75,11 @@
 
   form.addEventListener('submit', function(ev) {
     ev.preventDefault();
-    stripe.confirmCardPayment(<%= @payment_intent.client_secret %>, {
+    stripe.confirmCardPayment('<%= @payment_intent.client_secret %>', {
       payment_method: {
         card: card,
         billing_details: {
-          name: "<%= @donation.nickname %>"
+          name: "'<%= @donation.nickname %>'"
         }
       }
     }).then(function(result) {

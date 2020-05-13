@@ -3,6 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 #レビューのレーダーチャート
+
+###
 window.draw_graph = (q, c, cp, m, r)->
 
   ctx = document.getElementById("radarchart").getContext('2d')
@@ -38,3 +40,4 @@ window.draw_graph = (q, c, cp, m, r)->
         }
       }
   })
+###

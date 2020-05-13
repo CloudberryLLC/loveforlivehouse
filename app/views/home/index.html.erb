@@ -10,6 +10,7 @@
       </p>
       <div class="center button__area">
         <%= link_to "サービスについて", "#about", class: "btn btn-primary" %>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#RegistrationConfirmationModal">ライブハウス登録</button>
       </div>
       <div id="livehouse__search__box">
         <%= form_with url: livehouse_search_path, method: :get, local: true do |livehouse_search| %>
