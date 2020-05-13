@@ -28,7 +28,7 @@
       <script src="https://js.stripe.com/v3/"></script>
 
       <%= form_with model: @donation, local: true, id:"payment-form" do |f| %>
-        <div id="card-element">
+        <div id="card-element" class="margin__vertical__2em">
           <!-- Elements will create input elements here -->
         </div>
 
@@ -36,7 +36,9 @@
         <div id="card-process" role="alert"></div>
         <div id="card-errors" role="alert"></div>
 
-        <%= f.submit "規約に同意して支払いを実行する", data: {secret: @payment_intent.client_secret}, class: "btn btn-success", id:"card-button" %>
+        <div class="button__area center">
+          <%= f.submit "規約に同意して支払いを実行する", data: {secret: @payment_intent.client_secret}, class: "btn btn-success", id:"card-button" %>
+        </div>
       <% end %>
 
     </div>
@@ -54,11 +56,25 @@
   // Set up Stripe.js and Elements to use in checkout form
   var style = {
     base: {
-      color: "#32325d",
-    }
+      iconColor: '#666ee8',
+      color: '#31325f',
+      fontWeight: 400,
+      fontFamily:
+        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+      fontSmoothing: 'antialiased',
+      fontSize: '15px',
+      '::placeholder': {
+        color: '#aab7c4',
+      },
+      ':-webkit-autofill': {
+        color: '#666ee8',
+      },
+    },
   };
 
-  var card = elements.create("card", { style: style });
+
+
+  var card = elements.create("card", { style: style, hidePostalCode: true });
   card.mount("#card-element");
 
   //display any errors
