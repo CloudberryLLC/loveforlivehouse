@@ -11,21 +11,21 @@ class OfferUpdateJob < ApplicationJob
       redirect_to offer_path(offer), notice: "このオファーを見送りました。"
     when 4 #ライブハウスが依頼を受け、見積りを出した場合
       OfferMailer.with(offer: offer).estimation_to_supporter.deliver_later
-      redirect_to offer_path(offer), notice: "クライアントに見積りを送りました。"
-    when 5 #クライアントより再見積り依頼が来た場合
+      redirect_to offer_path(offer), notice: "支援者に見積りを送りました。"
+    when 5 #支援者より再見積り依頼が来た場合
       OfferMailer.with(offer: offer).re_estimate_order.deliver_later
       redirect_to offer_path(offer), notice: "ライブハウスに再見積りを依頼しました。"
-    when 6 #クライアントよりオファーが断られた場合
+    when 6 #支援者よりオファーが断られた場合
       OfferMailer.with(offer: offer).supporter_unaccepted.deliver_later
       redirect_to offer_path(offer), notice: "このオファーを見送りました。"
-    when 7 #クライアントが見積りを承認し、オファーが成立した場合
+    when 7 #支援者が見積りを承認し、オファーが成立した場合
       OfferMailer.with(offer: offer).estimation_accepted.deliver_later
       PaymentExpiredJob.set(wait_until: payment_due(offer.updated_at, offer.release_time)).perform_later(offer)
       redirect_to new_payment_path(offer, id: offer.id, estimation: offer.estimation), notice: "このオファーを承認しました。"
-    when 8 #クライアントが見積りを承認し、オファーが成立した場合
+    when 8 #支援者が見積りを承認し、オファーが成立した場合
       create_charge(offer.id, offer.payment.total)
       redirect_to offer_path(offer), notice: "このオファーの支払いを行いました。"
-    when 13 #クライアントが支払を完了した場合
+    when 13 #支援者が支払を完了した場合
       FinishedOfferJob.set(wait_until: offer.release_time).perform_later(offer)
       redirect_to new_payment_path(offer, id: offer.id), notice: "お支払いが完了しました。"
     else

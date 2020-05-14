@@ -282,7 +282,7 @@ ja:
         published: "公開設定"
       contact:
         livehouse_id: "演奏家ID"
-        user1: "クライアント"
+        user1: "支援者"
         user2: "受注者"
       chat_message:
         contact_id: "コンタクトID"

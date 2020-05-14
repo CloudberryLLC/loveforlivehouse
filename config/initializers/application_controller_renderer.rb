@@ -2,7 +2,7 @@
 
 ActiveSupport::Reloader.to_prepare do
   ApplicationController.renderer.defaults.merge!(
-    http_host: 'loveforlivehouse.herokuapp.com',
+    http_host: 'www.loveforlivehouse.com/',
     https: true
   )
 end

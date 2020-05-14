@@ -22,7 +22,7 @@ private
   def mail_subject(sender, offer)
     case sender.id
     when offer.supporter
-      return "[LOVE for Live House] クライアントからコンタクトがありました。"
+      return "[LOVE for Live House] 支援者からコンタクトがありました。"
     when offer.contractor
       return "[LOVE for Live House] ライブハウスからコンタクトがありました。"
     else
