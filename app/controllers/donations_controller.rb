@@ -10,6 +10,10 @@ class DonationsController < ApplicationController
   end
 
   def show
+    unless @donation.paid == true
+      @donation.paid = true
+      @donation.update!
+    end
   end
 
   def new
@@ -57,15 +61,14 @@ class DonationsController < ApplicationController
     end
   end
 
-  def charge
-    create_paymentIntent(@donation, @user)
-    @donation.paid
-    if @donation.save
-      redirect_to donation_path(@donation), notice: "ありがとうございます。お支払いが正常に行われました。"
-    else
-      render 'new', alart: "エラーが発生しました。繰り返し発生する場合はサポートにお尋ねください。"
-    end
+  def stripe_webhook
+    @donation = Donation.find(params[:id])
+    perform_webhook(@donation)
   end
+
+
+
+
 
 private
 
@@ -92,7 +95,7 @@ private
     @livehouse = Livehouse.find(@donation.livehouse_id)
     @livehouse_id = @livehouse.id
     @user = User.find(@livehouse.user_id)
-    
+
     @donation.reciever = @livehouse.user_id
     @donation.paid = false
     @donation.phone = "なし" if @donation.phone.blank?
@@ -116,12 +119,46 @@ private
         currency: "jpy",
         application_fee_amount: (donation.amount * Constants::SYSTEM_FEE).ceil.to_i,
         receipt_email: donation.email,
-        description: "支援ID: " + donation.id.to_s,
+        description: "ライブハウス緊急支援サイト「LOVE for Live House」を通じたご寄付 (支援ID: " + donation.id.to_s + ")",
       }, stripe_account: user.stripe_user_id)
     rescue Stripe::InvalidRequestError => e
       flash.now[:error] = "決済(stripe)でエラーが発生しました（InvalidRequestError）#{e.message}"
       render :new
     end
+  end
+
+  def perform_webhook(@donation)
+    endpoint_secret = Rails.application.credentials.STRIPE_WEBHOOK_ENDPOINT_SECRET
+    payload = request.body.read
+    event = nil
+
+    # Verify webhook signature and extract the event
+    # See https://stripe.com/docs/webhooks/signatures for more information.
+    sig_header = request.env['HTTP_STRIPE_SIGNATURE']
+    begin
+      event = Stripe::Webhook.construct_event(
+        payload, sig_header, endpoint_secret
+      )
+    rescue JSON::ParserError => e
+      head :bad_request # Invalid payload
+      return
+    rescue Stripe::SignatureVerificationError => e
+      head :bad_request # Invalid signature
+      return
+    end
+
+    # Handle the checkout.session.completed event
+    if event['type'] == 'payment_intent.succeeded'
+      @donation.paid = true
+        if @donation.save
+          redirect_to donation_path(@donation), notice: "ありがとうございます。お支払いに成功しました。"
+        end
+      #session = event['data']['object']
+      # Fulfill the purchase...
+      #handle_checkout_session(session)
+    end
+
+    # status 200
   end
 
 end

@@ -44,6 +44,7 @@ Rails.application.routes.draw do
 	post '/contacts/:id' => 'contacts#post', as: 'chat_messages'
   post '/payments/:id/confirmation', to: 'payments#confirmed', as:'payment_confirmed'
   post '/favorites/clip', to: 'favorites#clip', as:'clip_favorite'
+	post '/stripe/webhook', to: 'donations#stripe_webhook', as:'stripe_webhook'
 
   patch '/user/:id/livehouses/new' => 'livehouses#create'
   patch '/livehouses/admincheck/:id', to: 'livehouses#admin_approval', as: 'admin_approval'
