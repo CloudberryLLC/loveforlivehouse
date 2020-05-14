@@ -1,0 +1,109 @@
+<h3 class="title"><%= @livehouse.livehouse_name %>に支援(寄付)を行う</h3>
+
+<hr>
+
+<%= form_with model: @donation, local: true do |form| %>
+
+  <% if @donation.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <ul>
+        <% @donation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h5 class="title">支援内容</h5>
+  <p class="annotation">以下3項目は本サイト上に公表されます。</p>
+
+  <div class="form-group">
+    <%= form.label :nickname %><span class="required"> ※</span>
+    <%= form.text_field :nickname, class:"form-control", autofocus: true %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :amount %><span class="required"> ※</span>
+    <%= form.text_field :amount, placeholder: '金額を日本円(半角数字)で入力してください', class: "form-control", id:"Amount" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :message %><span class="required"> ※</span>
+    <%= form.text_area :message, rows: 7, maxlength: 200, placeholder: '200文字以内 (ご自由にご記入ください)', class: "form-control" %>
+  </div>
+
+  <hr>
+
+  <h5 class="title">ご支援者様情報</h5>
+
+  <p class="annotation">
+    <span class="red">領収証が必要な場合は全てご記入ください。</span><br>
+    <span>お名前とメールアドレスのみライブハウス運営者に共有される場合がありますが、その他は一切公開されません。</span>
+  </p>
+
+  <div class="form-group">
+    <%= form.label :name %><span class="required"> ※</span><br>
+    <%= form.text_field :name, class:"form-control", placeholder: "寄付された方の本名(法人名可)", autofocus: true %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :email %><span class="required"> ※</span><br>
+    <%= form.email_field :email, class: "form-control", placeholder: "メールアドレス", autofocus: true %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :phone %>
+    <%= form.text_field :phone, maxlength: 11, class: "form-control", placeholder: "電話番号", autofocus: true %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :zipcode %>
+    <%= form.text_field :zipcode, maxlength: 7, id:"donation_zipcode", class: "form-control", placeholder: "ハイフンなし", autofocus: true %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :pref %>
+    <%= form.text_field :pref, id:"donation_pref", class: "form-control", placeholder: "都道府県", autofocus: true %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :city %>
+    <%= form.text_field :city, id:"donation_city", class: "form-control", placeholder: "市区町村", autofocus: true %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :street %>
+    <%= form.text_field :street, id:"donation_street", class: "form-control", placeholder: "番地", autofocus: true %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :bldg %>
+    <%= form.text_field :bldg, class: "form-control", placeholder: "建物名", autofocus: true %>
+  </div>
+
+  <div class="hidden_group">
+    <%= form.hidden_field :livehouse_id, value: @livehouse_id %>
+    <%= form.hidden_field :confirmation, value: true %>
+  </div>
+
+  <hr>
+
+  <div class="actions button__area center">
+    <%= form.submit "確認画面へ進む", class: "btn btn-success btn-sm" %>
+  </div>
+  <p class="annotation red center">現時点ではクレジット・デビットカードのみとなります。</p>
+
+<% end %>
+
+<script>
+  $(function() {
+    return $("#donation_zipcode").jpostal({
+      postcode: ["#donation_zipcode"],
+      address: {
+        "#donation_pref": "%3",
+        "#donation_city": "%4",
+        "#donation_street": "%5"
+      }
+    });
+  });
+</script>

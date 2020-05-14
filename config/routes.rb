@@ -17,14 +17,10 @@ Rails.application.routes.draw do
   resource :tutorials, only: [:show]
   resources :dashboard, only: [:show]
   resources :profiles, only:[:show, :edit, :update, :destroy]
-  resources :musicians, only: [:index, :show] #ゆくゆく個々のミュージシャンをSNSで繋げられるようにする
   resources :livehouses, only: [:show, :edit, :update, :destroy]
-	resources :donations, only: [:new, :create, :index, :show, :update]
+	resources :donations, only: [:new, :create, :edit, :update, :index, :show]
   resources :contacts, only:[:index, :show, :new]
   resources :chat_messages, only:[:new]
-	resources :offers
-	resources :payments
-  resources :reviews, only: [:new, :create]
   resources :favorites, only: [:index]
   resources :helps
   resources :screenshots
@@ -36,21 +32,17 @@ Rails.application.routes.draw do
   get '/privacy_policy', to: 'privacy_policies#show', as: 'privacy_policy'
   get '/tokushouhou', to: 'tokushouhous#show', as: 'tokushouhou'
   get '/user/:id/mygroups', to: 'livehouses#index', as: 'mygroups'
-  get '/offers/:id/invoice', to: 'invoices#show', as:'invoice'
-  get '/offers/:id/reciept', to: 'reciepts#show', as:'reciept'
   get '/livehouses/admincheck/:id', to: 'livehouses#admin_check', as: 'admin_check'
   get '/profiles/admincheck/:id', to: 'profiles#admin_check', as: 'admin_check_user'
-  get '/payments/:id/confirmation', to:'payments#confirmation', as:'payment_confirmation'
-  get '/payments/admincheck/:id', to: 'payments#admin_check', as: 'admin_check_payment'
-  get '/name_card_orders/:id/order_confirmation', to: 'name_card_orders#order_confirmation', as: 'name_card_order_confirmation'
 	get '/search/help', to: 'helps#search', as: 'help_search'
   get '/search/livehouse', to: 'searchs#index', as: 'livehouse_search'
 	get '/stripe/connect/oauth/', to: 'profiles#stripe_connect_oauth', as:'stripe_connect'
+	get '/donations/confirmation/:id', to: 'donations#confirmation', as: 'donation_confirmation'
 
+#	post '/donations/confirmation', to: 'donations#confirmation', as: 'donation_confirmation'
   post '/user/:id/livehouses/new' => 'livehouses#create'
 	post '/contacts/:id' => 'contacts#post', as: 'chat_messages'
   post '/payments/:id/confirmation', to: 'payments#confirmed', as:'payment_confirmed'
-  post '/name_card_orders/:id/order_confirmation', to: 'name_card_orders#order_confirmed', as: 'name_card_order_confirmed'
   post '/favorites/clip', to: 'favorites#clip', as:'clip_favorite'
 
   patch '/user/:id/livehouses/new' => 'livehouses#create'
@@ -59,5 +51,3 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
-
-#余分なルーティングの削除
