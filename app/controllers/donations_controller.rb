@@ -5,7 +5,7 @@ class DonationsController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :admin_only, only: [:index]
   before_action :set_data, only: [:show, :edit, :update, :confirmation, :charge]
-  skip_before_filter :verify_authenticity_token, only: [:stripe_webhook]
+  skip_before_action :verify_authenticity_token, only: [:stripe_webhook]
 
   def index
   end
