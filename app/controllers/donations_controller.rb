@@ -130,9 +130,6 @@ private
     sig_header = request.env['HTTP_STRIPE_SIGNATURE']
     begin
       event = Stripe::Webhook.construct_event(payload, sig_header, endpoint_secret)
-      p event
-      p event
-      p event
     rescue JSON::ParserError => e
       head :bad_request # Invalid payload
       return
@@ -141,21 +138,11 @@ private
       return
     end
     if event['type'] == 'payment_intent.succeeded'
-      p event['data']['object']['metadata']['donation_id']
-      p event['data']['object']['metadata']['donation_id']
-      p event['data']['object']['metadata']['donation_id']
-      p event['data']['object']['metadata']['donation_id']
-      p event['data']['object']['metadata']['donation_id']
-      p event['data']['object']['metadata']['donation_id']
-      p event['data']['object']['metadata']['donation_id']
-      p event['data']['object']['metadata']['donation_id']
-      p event['data']['object']['metadata']['donation_id']
-      p event['data']['object']['metadata']['donation_id']
-      p event['data']['object']['metadata']['donation_id']
-#      @donation.paid = true
-#        if @donation.save
-#          redirect_to donation_path(@donation), notice: "ありがとうございます。お支払いに成功しました。"
-#        end
+      @donation = Donation.find(event['data']['object']['metadata']['donation_id'])
+      @donation.paid = true
+        if @donation.save
+          redirect_to donation_path(@donation), notice: "ありがとうございます。お支払いに成功しました。"
+        end
       #session = event['data']['object']
       # Fulfill the purchase...
       #handle_checkout_session(session)
