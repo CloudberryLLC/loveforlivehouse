@@ -136,15 +136,11 @@ private
     if event['type'] == 'payment_intent.succeeded'
       @donation = Donation.find(event['data']['object']['metadata']['donation_id'])
       @donation.paid = true
-        if @donation.save
-          redirect_to donation_path(@donation), notice: "ありがとうございます。お支払いに成功しました。"
-        end
-      #session = event['data']['object']
-      # Fulfill the purchase...
-      #handle_checkout_session(session)
+      if @donation.save
+        render 'show'
+        head :OK
+      end
     end
-
-    # status 200
   end
 
 end
