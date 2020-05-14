@@ -28,7 +28,7 @@ class LivehousesController < ApplicationController
 
     def show
       @groups = Livehouse.where(user_id: @livehouse.user_id).where(certified: true, published: true).where.not(id: @livehouse.id)
-      @donators = Donation.where(livehouse_id: @livehouse.id).limit(100)
+      @donators = Donation.where(livehouse_id: @livehouse.id, paid: true).limit(100)
       @percentage = (100 * @donators.all.sum(:amount) / @livehouse.required_amount).to_i
       write_recently_viewed_livehouse_cookies(@livehouse)
     end

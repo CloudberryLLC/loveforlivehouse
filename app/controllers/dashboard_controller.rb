@@ -13,7 +13,7 @@ private
 	def set_data
 		@user = current_user
 		@recent_viewed_livehouses = cookies[:recently_viewed_livehouses].split(',') if cookies[:recently_viewed_livehouses]
-		@donations = Donation.where(supporter_id: @user.id)
+		@donations = Donation.where(supporter_id: @user.id, paid: true)
 	end
 
 end
