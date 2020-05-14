@@ -141,16 +141,17 @@ private
       return
     end
     if event['type'] == 'payment_intent.succeeded'
-      p event['data']['metadata']['donation_id']
-      p event['data']['metadata']['donation_id']
-      p event['data']['metadata']['donation_id']
-      p event['data']['metadata']['donation_id']
-      p event['data']['metadata']['donation_id']
-      p event['data']['metadata']['donation_id']
-      p event['data']['metadata']['donation_id']
-      p event['data']['metadata']['donation_id']
-      p event['data']['metadata']['donation_id']
-      p event['data']['metadata']['donation_id']
+      p event['data']['object']['metadata']['donation_id']
+      p event['data']['object']['metadata']['donation_id']
+      p event['data']['object']['metadata']['donation_id']
+      p event['data']['object']['metadata']['donation_id']
+      p event['data']['object']['metadata']['donation_id']
+      p event['data']['object']['metadata']['donation_id']
+      p event['data']['object']['metadata']['donation_id']
+      p event['data']['object']['metadata']['donation_id']
+      p event['data']['object']['metadata']['donation_id']
+      p event['data']['object']['metadata']['donation_id']
+      p event['data']['object']['metadata']['donation_id']
 #      @donation.paid = true
 #        if @donation.save
 #          redirect_to donation_path(@donation), notice: "ありがとうございます。お支払いに成功しました。"
