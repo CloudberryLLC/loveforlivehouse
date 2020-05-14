@@ -5,6 +5,7 @@ class DonationsController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :admin_only, only: [:index]
   before_action :set_data, only: [:show, :edit, :update, :confirmation, :charge]
+  skip_before_filter :verify_authenticity_token, only: [:stripe_webhook]
 
   def index
   end
@@ -122,8 +123,6 @@ private
   end
 
   def perform_webhook
-    protect_from_forgery
-
     endpoint_secret = Rails.application.credentials.STRIPE_WEBHOOK_ENDPOINT_SECRET
     payload = request.body.read
     event = nil
