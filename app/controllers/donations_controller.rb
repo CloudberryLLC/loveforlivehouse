@@ -11,10 +11,6 @@ class DonationsController < ApplicationController
   end
 
   def show
-    unless @donation.paid == true
-      @donation.paid = true
-      @donation.update!
-    end
   end
 
   def new
