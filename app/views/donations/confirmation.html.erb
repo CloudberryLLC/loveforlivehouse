@@ -19,7 +19,7 @@
 
       <script src="https://js.stripe.com/v3/"></script>
 
-      <%= form_with model: @donation, id:"payment-form" do |f| %>
+      <%= form_with model: @donation, id:"payment-form", local: true do |f| %>
         <div id="card-element" class="margin__vertical__2em">
           <!-- Elements will create input elements here -->
         </div>
@@ -30,7 +30,6 @@
           <%= f.submit "規約に同意して支払いを実行する", data: {secret: @payment_intent.client_secret}, class: "btn btn-success", id:"card-button" %>
         </div>
       <% end %>
-
     </div>
   </div>
 </div>
@@ -87,13 +86,13 @@
         billing_details: {
           name: "<%= @donation.nickname %>",
           email: "<%= @donation.email %>",
-          phone: "<%= @donation.phone %>",
+          phone: ("<%= @donation.phone %>" || null),
           address: {
-            postal_code: "<%= @donation.zipcode %>",
-            state: "<%= @donation.pref %>",
-            city: "<%= @donation.city %>",
-            line1: "<%= @donation.street %>",
-            line2: "<%= @donation.bldg %>"
+            postal_code: ("<%= @donation.zipcode %>" || null),
+            state: ("<%= @donation.pref %>" || null),
+            city: ("<%= @donation.city %>" || null),
+            line1: ("<%= @donation.street %>" || null),
+            line2: ("<%= @donation.bldg %>" || null)
           }
         }
       }

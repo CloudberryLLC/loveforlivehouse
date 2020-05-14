@@ -97,12 +97,6 @@ private
 
     @donation.reciever = @livehouse.user_id
     @donation.paid = false
-    @donation.phone = "なし" if @donation.phone.blank?
-    @donation.zipcode = "なし" if @donation.zipcode.blank?
-    @donation.pref = "なし" if @donation.pref.blank?
-    @donation.city = "なし" if @donation.city.blank?
-    @donation.street = "なし" if @donation.street.blank?
-    @donation.bldg = "建物名なし" if @donation.bldg.blank?
 
     if user_signed_in?
       @donation.supporter_id = current_user.id
@@ -128,6 +122,8 @@ private
   end
 
   def perform_webhook
+    protect_from_forgery
+
     endpoint_secret = Rails.application.credentials.STRIPE_WEBHOOK_ENDPOINT_SECRET
     payload = request.body.read
     event = nil
