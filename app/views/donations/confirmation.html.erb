@@ -19,7 +19,7 @@
 
       <script src="https://js.stripe.com/v3/"></script>
 
-      <%= form_with model: @donation, url: stripe_webhook_path(@donation), method: "post", local: true, id:"payment-form" do |f| %>
+      <%= form_with model: @donation, id:"payment-form" do |f| %>
         <div id="card-element" class="margin__vertical__2em">
           <!-- Elements will create input elements here -->
         </div>
@@ -72,8 +72,6 @@
   const displayError = document.getElementById('card-errors');
   if (error) {
       displayError.textContent = error.message;
-      let inputElement = $('input[type="submit"]');
-      inputElement.prop('disabled', false);
     } else {
       displayError.textContent = '';
     }

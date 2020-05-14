@@ -62,8 +62,7 @@ class DonationsController < ApplicationController
   end
 
   def stripe_webhook
-    @donation = Donation.find(params[:id])
-    perform_webhook(@donation)
+    perform_webhook
   end
 
 
@@ -120,6 +119,7 @@ private
         application_fee_amount: (donation.amount * Constants::SYSTEM_FEE).ceil.to_i,
         receipt_email: donation.email,
         description: "ライブハウス緊急支援サイト「LOVE for Live House」を通じたご寄付 (支援ID: " + donation.id.to_s + ")",
+        metadata: { donation_id: donation.id },
       }, stripe_account: user.stripe_user_id)
     rescue Stripe::InvalidRequestError => e
       flash.now[:error] = "決済(stripe)でエラーが発生しました（InvalidRequestError）#{e.message}"
@@ -127,18 +127,17 @@ private
     end
   end
 
-  def perform_webhook(@donation)
+  def perform_webhook
     endpoint_secret = Rails.application.credentials.STRIPE_WEBHOOK_ENDPOINT_SECRET
     payload = request.body.read
     event = nil
 
-    # Verify webhook signature and extract the event
-    # See https://stripe.com/docs/webhooks/signatures for more information.
     sig_header = request.env['HTTP_STRIPE_SIGNATURE']
     begin
-      event = Stripe::Webhook.construct_event(
-        payload, sig_header, endpoint_secret
-      )
+      event = Stripe::Webhook.construct_event(payload, sig_header, endpoint_secret)
+      p event
+      p event
+      p event
     rescue JSON::ParserError => e
       head :bad_request # Invalid payload
       return
@@ -146,13 +145,21 @@ private
       head :bad_request # Invalid signature
       return
     end
-
-    # Handle the checkout.session.completed event
     if event['type'] == 'payment_intent.succeeded'
-      @donation.paid = true
-        if @donation.save
-          redirect_to donation_path(@donation), notice: "ありがとうございます。お支払いに成功しました。"
-        end
+      p event['data']['metadata']['donation_id']
+      p event['data']['metadata']['donation_id']
+      p event['data']['metadata']['donation_id']
+      p event['data']['metadata']['donation_id']
+      p event['data']['metadata']['donation_id']
+      p event['data']['metadata']['donation_id']
+      p event['data']['metadata']['donation_id']
+      p event['data']['metadata']['donation_id']
+      p event['data']['metadata']['donation_id']
+      p event['data']['metadata']['donation_id']
+#      @donation.paid = true
+#        if @donation.save
+#          redirect_to donation_path(@donation), notice: "ありがとうございます。お支払いに成功しました。"
+#        end
       #session = event['data']['object']
       # Fulfill the purchase...
       #handle_checkout_session(session)
