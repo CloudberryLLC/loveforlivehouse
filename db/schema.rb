@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_11_062934) do
+ActiveRecord::Schema.define(version: 2020_05_15_165535) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(version: 2020_05_11_062934) do
     t.integer "reciever"
     t.boolean "paid"
     t.integer "supporter_id"
+    t.integer "update_count", default: 0
+    t.string "payment_intent_id"
   end
 
   create_table "favorite_livehouses", force: :cascade do |t|

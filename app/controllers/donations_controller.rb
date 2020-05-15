@@ -11,6 +11,7 @@ class DonationsController < ApplicationController
   end
 
   def show
+    head :not_found unless donation_token(@donation) == params[:hash]
   end
 
   def new
@@ -25,6 +26,7 @@ class DonationsController < ApplicationController
 
   def create
     @donation = Donation.create(donation_params)
+    @donation.update_count = 1
     set_subdata
     if @donation.save
       redirect_to donation_confirmation_path(id: @donation.id, hash: donation_token(@donation))
@@ -35,11 +37,14 @@ class DonationsController < ApplicationController
 
   def edit
     head :internal_server_error unless params[:hash] == donation_token(@donation) #500
+    head :bad_request if @donation.paid == true
   end
 
   def update
+    @donation.update_count += 1
+    @intent = params[:carrionshine]
     if @donation.update(donation_params)
-      redirect_to donation_confirmation_path(id: @donation.id, hash: donation_token(@donation))
+      redirect_to donation_confirmation_path(hash: donation_token(@donation), id: @donation.id)
     else
       render 'edit', alart: "保存に失敗しました"
     end
@@ -47,9 +52,12 @@ class DonationsController < ApplicationController
 
   def confirmation
     if @donation.paid == true
-      redirect_to donation_path(@donation)
-    else
+      redirect_to donation_path(hash: donation_token(@donation), id: @donation.id)
+    end
+    if @donation.payment_intent_id.blank?
       create_paymentIntent(@donation, @user)
+    else
+      update_paymentIntent(@donation, @user)
     end
   end
 
@@ -62,13 +70,11 @@ class DonationsController < ApplicationController
 
 
 
-
-
 private
 
   def donation_params
     params.require(:donation).permit(
-      :uid, :nickname, :amount, :message, :name, :email, :phone, :zipcode, :pref, :city, :street, :bldg, :confirmation, :livehouse_id, :supporter_id, :stripeToken
+      :nickname, :amount, :message, :name, :email, :phone, :zipcode, :pref, :city, :street, :bldg, :confirmation, :livehouse_id, :supporter_id, :update_count, :stripeToken
       )
   end
 
@@ -89,10 +95,8 @@ private
     @livehouse = Livehouse.find(@donation.livehouse_id)
     @livehouse_id = @livehouse.id
     @user = User.find(@livehouse.user_id)
-
     @donation.reciever = @livehouse.user_id
-    @donation.paid = false
-
+    @donation.paid = false unless @donation.paid == true
     if user_signed_in?
       @donation.supporter_id = current_user.id
     end
@@ -109,10 +113,37 @@ private
         receipt_email: donation.email,
         description: @livehouse.livehouse_name.to_s + "への、ライブハウス緊急支援サイト「LOVE for Live House」を通じたご寄付 (支援ID: " + donation.id.to_s + ")",
         metadata: { donation_id: donation.id },
-      }, stripe_account: user.stripe_user_id)
+        },
+        stripe_account: user.stripe_user_id)
+      unless donation.payment_intent_id.present?
+        donation.payment_intent_id = @payment_intent.id
+        donation.save!
+      end
     rescue Stripe::InvalidRequestError => e
       flash.now[:error] = "決済(stripe)でエラーが発生しました（InvalidRequestError）#{e.message}"
       render :new
+    rescue
+      flash.now[:error] = "エラーが発生しました(code:512)"
+    end
+  end
+
+  def update_paymentIntent(donation, user)
+    begin
+      @payment_intent = Stripe::PaymentIntent.retrieve(donation.payment_intent_id, stripe_account: user.stripe_user_id)
+      unless @payment_intent.status == "succeeded"
+        @payment_intent = nil
+        @payment_intent = Stripe::PaymentIntent.update(donation.payment_intent_id, {
+          amount: donation.amount.to_i,
+          application_fee_amount: (donation.amount * Constants::SYSTEM_FEE).ceil.to_i,
+          receipt_email: donation.email,
+          },
+          stripe_account: user.stripe_user_id)
+      end
+    rescue Stripe::InvalidRequestError => e
+      flash.now[:error] = "決済(stripe)でエラーが発生しました（InvalidRequestError）#{e.message}"
+      render :new
+    rescue
+      flash.now[:error] = "エラーが発生しました(code:513)"
     end
   end
 

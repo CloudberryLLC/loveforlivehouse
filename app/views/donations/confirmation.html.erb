@@ -106,7 +106,6 @@
         const displayProcess = document.getElementById('card-process');
         displayProcess.textContent = '処理中です。この画面を閉じないでください。';
         if (result.paymentIntent.status === 'succeeded') {
-          toastr.success("ありがとうございます。お支払いが正常に行われました。");
           location.href = "<%= donation_payment_succeeded_path(hash: donation_token(@donation), id: @donation.id)%>";
         }
       }
