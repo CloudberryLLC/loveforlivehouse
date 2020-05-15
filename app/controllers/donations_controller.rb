@@ -5,7 +5,6 @@ class DonationsController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :admin_only, only: [:index]
   before_action :set_data, only: [:show, :edit, :update, :confirmation, :charge]
-  skip_before_action :verify_authenticity_token, only: [:stripe_webhook]
 
   def index
   end
@@ -34,9 +33,7 @@ class DonationsController < ApplicationController
   end
 
   def edit
-    unless params[:hash] == donation_token(@donation)
-      head :internal_server_error #500
-    end
+    head :internal_server_error unless params[:hash] == donation_token(@donation) #500
   end
 
   def update
@@ -50,11 +47,8 @@ class DonationsController < ApplicationController
   def confirmation
     if @donation.paid == true
       redirect_to donation_path(@donation)
-    end
-    if @donation.save
-      create_paymentIntent(@donation, @user)
     else
-      render 'new', alart: "エラーが発生しました。繰り返し発生する場合はサポートにお尋ねください。"
+      create_paymentIntent(@donation, @user)
     end
   end
 
@@ -137,8 +131,8 @@ private
       @donation = Donation.find(event['data']['object']['metadata']['donation_id'])
       @donation.paid = true
       if @donation.save
-        render 'show'
         head :OK
+        redirect_to donation_path(@donation), notice: 'ありがとうございます。お支払いが正常に行われました。'
       end
     end
   end
