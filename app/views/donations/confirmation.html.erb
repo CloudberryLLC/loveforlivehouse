@@ -3,6 +3,10 @@
     <div class="col-lg-1"></div>
     <div class="col-lg-10">
 
+      <h3 class="title"><%= @livehouse.livehouse_name %>に寄付を行う</h3>
+      <p class="annotation red">ブラウザの更新ボタンは押さないでください。</p>
+      <hr>
+
       <%= render 'confirmation_view' %>
 
       <div class="button__area center">
@@ -20,16 +24,17 @@
       <script src="https://js.stripe.com/v3/"></script>
 
       <form id="payment-form">
-        <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token">
         <div id="card-element" class="margin__vertical__2em"></div>
         <div id="card-process" role="alert"></div>
         <div id="card-errors" role="alert"></div>
-        <button id="submit" class="btn btn-success" data-secret="<%= @payment_intent.client_secret %>">規約に同意して支払いを実行する</button>
+        <div class="button__area center">
+          <button id="submit" class= "btn btn-success" data-secret="<%= @payment_intent.client_secret %>">規約に同意して支払いを実行する</button>
+        </div>
       </form>
+
     </div>
   </div>
 </div>
-
 
 <%= javascript_tag do %>
   var stripe = Stripe('<%= Rails.configuration.stripe[:publishable_key] %>', {
@@ -101,13 +106,8 @@
         const displayProcess = document.getElementById('card-process');
         displayProcess.textContent = '処理中です。この画面を閉じないでください。';
         if (result.paymentIntent.status === 'succeeded') {
-          displayProcess.textContent = '処理を完了しています。';
           toastr.success("ありがとうございます。お支払いが正常に行われました。");
-          // Show a success message to your customer
-          // There's a risk of the customer closing the window before callback
-          // execution. Set up a webhook or plugin to listen for the
-          // payment_intent.succeeded event that handles any business critical
-          // post-payment actions.
+          location.href = "<%= donation_payment_succeeded_path(hash: donation_token(@donation), id: @donation.id)%>";
         }
       }
     });

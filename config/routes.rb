@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   get '/search/livehouse', to: 'searchs#index', as: 'livehouse_search'
 	get '/stripe/connect/oauth/', to: 'profiles#stripe_connect_oauth', as:'stripe_connect'
 	get '/donations/confirmation/:id', to: 'donations#confirmation', as: 'donation_confirmation'
+	get '/donations/:id/payment_succeeded', to: 'donations#payment_succeeded', as: 'donation_payment_succeeded'
 
 #	post '/donations/confirmation', to: 'donations#confirmation', as: 'donation_confirmation'
   post '/user/:id/livehouses/new' => 'livehouses#create'

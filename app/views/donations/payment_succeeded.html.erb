@@ -1,0 +1,27 @@
+<div class="container pagetop">
+  <div class="row justify_content_center">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+
+      <h4 class="title">ありがとうございます。お支払いが正常に完了しました。</h4>
+      <hr>
+      <h5 class="title">ご支援(寄付)の内容</h5>
+      <div id="public_post">
+        <p>支援したライブハウス: <%= @livehouse.livehouse_name %></p>
+        <p>支援金額: <%= @donation.amount.to_s(:delimited) %>円<br></p>
+      </div>
+      <hr>
+      <h5 class="title">領収書について</h5>
+      <div id="supporter_info">
+        <p>
+          領収証はメールアドレス"<%= @donation.email %>"あてに、ライブハウス運営者のStripeアカウントから届きますのでご確認ください。<br>
+          <br>
+          お客様からの支援金はライブハウス運営者が直接受領しているため、領収証は各ライブハウス運営者からの発行となります。
+        </p>
+      </div>
+      <div class="button__area center">
+        <%= link_to 'トップへ戻る', root_path, class:"btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

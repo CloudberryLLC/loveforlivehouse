@@ -2,9 +2,10 @@ class DonationsController < ApplicationController
 
   include ApplicationHelper, DonationsHelper
 
+  skip_before_action :verify_authenticity_token, only: [:stripe_webhook]
   before_action :authenticate_user!, only: [:index]
   before_action :admin_only, only: [:index]
-  before_action :set_data, only: [:show, :edit, :update, :confirmation, :charge]
+  before_action :set_data, only: [:show, :edit, :update, :confirmation, :payment_succeeded]
 
   def index
   end
@@ -50,6 +51,9 @@ class DonationsController < ApplicationController
     else
       create_paymentIntent(@donation, @user)
     end
+  end
+
+  def payment_succeeded
   end
 
   def stripe_webhook
@@ -103,7 +107,7 @@ private
         currency: "jpy",
         application_fee_amount: (donation.amount * Constants::SYSTEM_FEE).ceil.to_i,
         receipt_email: donation.email,
-        description: "ライブハウス緊急支援サイト「LOVE for Live House」を通じたご寄付 (支援ID: " + donation.id.to_s + ")",
+        description: @livehouse.livehouse_name.to_s + "への、ライブハウス緊急支援サイト「LOVE for Live House」を通じたご寄付 (支援ID: " + donation.id.to_s + ")",
         metadata: { donation_id: donation.id },
       }, stripe_account: user.stripe_user_id)
     rescue Stripe::InvalidRequestError => e
@@ -132,7 +136,6 @@ private
       @donation.paid = true
       if @donation.save
         head :OK
-        redirect_to donation_path(@donation), notice: 'ありがとうございます。お支払いが正常に行われました。'
       end
     end
   end
