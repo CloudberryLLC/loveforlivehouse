@@ -39,13 +39,15 @@
     ライブハウスID: <%= @livehouse.id %><br>
     ライブハウス名: <%= @livehouse.livehouse_name.to_s %><br>
     <br>
-    1人あたりの基本演奏料: <%= @livehouse.required_amount.to_s(:delimited) %><br>
+    月間目標金額: <%= @livehouse.required_amount.to_s(:delimited) %><br>
     ジャンル: <%= @livehouse.genre.to_s %><br>
     地域: <%= @livehouse.area.to_s %><br>
+    キャパシティ: <%= simple_format(@livehouse.capacity) %><br>
     プロフィール(見出し): <%= simple_format(@livehouse.profile_short) %><br>
     プロフィール(詳細): <%= simple_format(@livehouse.profile_long) %><br>
-    演奏に関する条件・制約: <%= simple_format(@livehouse.capacity) %><br>
-    演奏に関する条件・制約(詳細): <%= simple_format(@livehouse.conditions_detail) %><br>
+    支援金の利用目的: <%= simple_format(@livehouse.purpose) %><br>
+    存続できなかった場合の対応: <%= simple_format(@livehouse.case_of_surrender) %><br>
+    備考: <%= simple_format(@livehouse.conditions_detail) %><br>
     <br>
     サンプル動画URL1: <%= @livehouse.sample_movie_url1.to_s %><br>
     サンプル動画URL2: <%= @livehouse.sample_movie_url2.to_s %><br>
