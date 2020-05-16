@@ -47,7 +47,17 @@
                 </div>
                 <div class="form-group">
                   <%= p.label :profile_long %>
+                  <span class="required"> *  </span><br>
                   <%= p.text_area :profile_long, rows: 7, maxlength: 1000, class: "form-control", placeholder: "1000文字以内", autofocus: true %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :purpose %>
+                  <span class="required"> *  </span><br>
+                  <%= p.text_area :purpose, rows: 7, maxlength: 1000, class: "form-control", placeholder: "1000文字以内", autofocus: true %>
+                </div>
+                <div class="form-group">
+                  <%= p.label :case_of_surrender %>
+                  <%= p.text_area :case_of_surrender, rows: 7, maxlength: 1000, class: "form-control", placeholder: "1000文字以内", autofocus: true %>
                 </div>
               <hr>
 

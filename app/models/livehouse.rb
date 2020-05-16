@@ -8,7 +8,7 @@ class Livehouse < ApplicationRecord
   acts_as_ordered_taggable
   acts_as_ordered_taggable_on :instruments, :music_genres
 
-  validates :required_amount, :livehouse_name, :profile_short, :profile_long, :zipcode, :pref, :city, :street, :shop_email, :shop_phone, :shop_url, :company, :owner, :manager, on: :update, presence: true
+  validates :required_amount, :livehouse_name, :profile_short, :profile_long, :zipcode, :pref, :city, :street, :shop_email, :shop_phone, :shop_url, :company, :owner, :manager, :purpose, :case_of_surrender, on: :update, presence: true
   validates :required_amount, on: :update, numericality: { only_integer: true, allow_blank: true, message: "は、半角数字で入力してください" }
 
 	validates :shop_url, on: :update,

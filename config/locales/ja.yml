@@ -273,6 +273,8 @@ ja:
         cover_photo: "カバー写真"
         profile_short: "プロフィール（見出し）"
         profile_long: "プロフィール・メッセージ"
+        purpose: "支援金の使用目的"
+        case_of_surrender: "存続できなかった場合の対応について"
         sample_movie_url1: "動画URL1"
         sample_movie_url2: "動画URL2"
         sample_movie_url3: "動画URL3"

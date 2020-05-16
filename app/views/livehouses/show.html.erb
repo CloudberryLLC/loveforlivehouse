@@ -78,15 +78,56 @@
 
 <!--プロフィール詳細-->
 <div class="container">
-	<h4 class="title">プロフィール・メッセージ</h4>
+	<h4 class="title">プロフィール及びメッセージ</h4>
 	<div class="profile__textarea">
 		<%= description(@livehouse.profile_long) %>
 	</div>
 
-	<h4 class="title">備考</h4>
+	<h4 class="title">支援金の使用目的</h4>
+	<div class="profile__textarea">
+		<%= description(@livehouse.purpose) %>
+	</div>
+
+	<h4 class="title">継続できなかった場合の対応について</h4>
+	<div class="profile__textarea">
+		<%= description(@livehouse.case_of_surrender) %>
+	</div>
+
+	<h4 class="title">その他記載事項</h4>
 	<div class="profile__textarea">
 		<p><%= description(@livehouse.conditions_detail) %></p>
 	</div>
+
+	<h4 class="title">ライブハウスの情報</h4>
+	<table class="table left">
+		<tr>
+			<td>ライブハウス名</td>
+			<td><%= @livehouse.livehouse_name %></td>
+		</tr>
+		<tr>
+			<td>ホームページURL</td>
+			<td><%= link_to @livehouse.shop_url.to_s, @livehouse_url %></td>
+		</tr>
+		<tr>
+			<td>店舗所在地</td>
+			<td>
+				〒<%= @livehouse.zipcode %>&ensp;<%= @livehouse.pref %><%= @livehouse.city %>&ensp;<%= @livehouse.street.to_s %>&ensp;<%= @livehouse.bldg %>
+			</td>
+		</tr>
+		<tr>
+			<td>店舗電話番号</td>
+			<td><%= @livehouse.shop_phone %></td>
+		</tr>
+		<tr>
+			<td>運営会社</td>
+			<td><%= @livehouse.company %></td>
+		</tr>
+		<tr>
+			<td>運営責任者</td>
+			<td><%= @livehouse.manager %></td>
+		</tr>
+	</table>
+
 </div>
 
 <div class="container">
@@ -123,7 +164,7 @@
 <div class="container">
 	<div id="Belongs">
 		<h4 class="title">この運営者の他のライブハウス</h4>
-		<%= render partial: 'partial/livehouse_list', locals: { livehouses: @groups} %>
+		<%= render partial: 'partial/livehouse_list', locals: { livehouses: @groups } %>
 	</div>
 </div>
 

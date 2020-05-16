@@ -79,13 +79,13 @@ class LivehousesController < ApplicationController
     def user_params
       params.require(:user).permit(
         :_destroy, :id,
-        livehouses_attributes: [:user_id, :livehouse_name, :genre, :zipcode, :pref, :city, :street, :bldg, :shop_email, :shop_phone, :shop_url, :company, :owner, :manager, :music_genre_list, :area, :instrument_list, :profile_short, :profile_long, :required_amount, :capacity, :conditions_detail, :sample_movie_url1, :sample_movie_url2, :sample_movie_url3, :profile_photo, :cover_photo, :profile_photo_cache, :cover_photo_cache, :certified, :published, :_destroy, :id]
+        livehouses_attributes: [:user_id, :livehouse_name, :genre, :zipcode, :pref, :city, :street, :bldg, :shop_email, :shop_phone, :shop_url, :company, :owner, :manager, :music_genre_list, :area, :profile_short, :profile_long, :purpose, :case_of_surrender, :required_amount, :capacity, :conditions_detail, :sample_movie_url1, :sample_movie_url2, :sample_movie_url3, :profile_photo, :cover_photo, :profile_photo_cache, :cover_photo_cache, :certified, :published, :_destroy, :id]
         )
     end
 
     def livehouse_params
       params.require(:livehouse).permit(
-        :livehouse_name, :zipcode, :pref, :city, :street, :bldg, :shop_email, :shop_phone, :shop_url, :company, :owner, :manager, :genre, :music_genre_list, :area, :number_of_member, :instrument_list, :profile_short, :profile_long, :required_amount, :capacity, :conditions_detail, :sample_movie_url1, :sample_movie_url2, :sample_movie_url3, :profile_photo, :cover_photo, :profile_photo_cache, :cover_photo_cache, :certified, :published, :_destroy, :id,
+        :livehouse_name, :zipcode, :pref, :city, :street, :bldg, :shop_email, :shop_phone, :shop_url, :company, :owner, :manager, :genre, :music_genre_list, :area, :number_of_member, :profile_short, :profile_long, :purpose, :case_of_surrender,  :required_amount, :capacity, :conditions_detail, :sample_movie_url1, :sample_movie_url2, :sample_movie_url3, :profile_photo, :cover_photo, :profile_photo_cache, :cover_photo_cache, :certified, :published, :_destroy, :id,
       )
     end
 

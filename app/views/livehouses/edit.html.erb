@@ -148,6 +148,18 @@
         </div>
 
         <div class="form-group">
+          <%= p.label :purpose %>
+          <span class="required"> *  </span><br>
+          <%= p.text_area :purpose, rows: 7, maxlength: 1000, class: "form-control", placeholder: "1000文字以内", autofocus: true %>
+        </div>
+
+        <div class="form-group">
+          <%= p.label :case_of_surrender %>
+          <span class="required"> *  </span><br>
+          <%= p.text_area :case_of_surrender, rows: 7, maxlength: 1000, class: "form-control", placeholder: "1000文字以内", autofocus: true %>
+        </div>
+
+        <div class="form-group">
           <%= p.label :profile_photo %>
           <%= image_tag(@livehouse.profile_photo, class:"profile-64round") if @livehouse.profile_photo.attached? %>
           <%= p.file_field :profile_photo, id: :livehouses_profile_photo, accept: 'image/jpg,image/jpeg,image/png,image/gif', class: "form-control" %>
