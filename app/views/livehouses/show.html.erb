@@ -51,7 +51,7 @@
 			<p class="center"><%= link_to "編集", edit_livehouse_path, class: "btn btn-info" %></p>
 		<% else %>
 			<p class="center"><%= link_to "このライブハウスを支援する", new_donation_path(hash: livehouse_hash(@livehouse), id: encode_livehouse_id(@livehouse.id)), class: "btn btn-success" %></p>
-			<p class="annotation red">※会員登録なしでもご支援いただけますが、領収証が必要な方は現在のところ会員登録が必要です。</p>
+			<p class="annotation red">※会員登録なしでご支援いただけます。</p>
 		<% end %>
 	</div>
 </div>
