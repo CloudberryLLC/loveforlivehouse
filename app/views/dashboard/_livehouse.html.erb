@@ -29,20 +29,24 @@
     <h5 class="title">ステップ2</h5>
     <h5 class="title">STRIPEアカウントの作成と接続を行います。</h5>
     <p>
-      支援金の受け取りには米国STRIPE社の提供する、STRIPEアカウントが必要になります。<br>
+      支援金の受け取りには米国Stripe社の提供する、STRIPEアカウントが必要になります。<br>
       登録は一切無料です。メールアドレスと本人確認書類(免許証等)、受取口座の情報をご準備ください。
     </p>
+    <div class="button__area center">
+      <%= link_to "Stripeアカウントの作成", "https://stripe.com/jp", class:"btn btn-primary", target:"blank" %>
+    </div>
     <div class="text__area">
       <p class="strong">支援金を受け取るまでの流れと手数料について</p>
       <p>
-        お客様にてSTRIPEアカウントを作成します。<br>
-        次に、当サービスのアカウントとお客様のSTRIPEアカウントの紐付けを行います。<br>
-        STRIPEアカウントを作成し、当サービスのアカウントに紐付けを行った後は、お客様のSTRIPEアカウント上で入金状況等をリアルタイムで確認することができます。<br>
-        また、STRIPE社の提供するスマートフォンアプリからもお客様のSTRIPEアカウントの状況を確認することが可能です。<br>
+        次に下のボタンをクリックし、LOVE for Live Houseのアカウントとお客様のSTRIPEアカウントの紐付けを行ってください。
       </p>
     </div>
     <div class="button__area center">
-      <%= link_to "STRIPEアカウント作成", "https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id="+Rails.configuration.stripe[:oauth_client_id]+"&scope=read_write&state="+user_token(current_user), class:"btn btn-primary", target:"blank" %>
+      <%= link_to "STRIPEアカウントの連携", "https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id="+Rails.configuration.stripe[:oauth_client_id]+"&scope=read_write&state="+user_token(current_user), class:"btn btn-primary", target:"blank" %>
+    </div>
+    <div class="text__area">
+      STRIPEアカウントを作成し、当サービスのアカウントに紐付けを行った後は、お客様のSTRIPEアカウント上で入金状況等をリアルタイムで確認することができます。<br>
+      また、STRIPE社の提供するスマートフォンアプリからもお客様のSTRIPEアカウントの状況を確認することが可能です。<br>
     </div>
     <hr>
   <% end %>
@@ -60,7 +64,7 @@
     </p>
     <% else %>
     <p class="annotation red">
-      ライブハウスは本人確認が完了した後に登録が可能になります。<br>
+      ただいまアカウントの審査待ちです。ライブハウスは審査が完了した後に登録が可能になります。
     </p>
     <% end %>
   <% else %>
