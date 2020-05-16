@@ -34,9 +34,10 @@
     </p>
     <div class="button__area center">
       <%= link_to "Stripeアカウントの作成", "https://stripe.com/jp", class:"btn btn-primary", target:"blank" %>
+      <p class="annotation red">※Stripeアカウントが凍結しないよう必要な情報は全て入力してください。</p>
     </div>
+
     <div class="text__area">
-      <p class="strong">支援金を受け取るまでの流れと手数料について</p>
       <p>
         次に下のボタンをクリックし、LOVE for Live Houseのアカウントとお客様のSTRIPEアカウントの紐付けを行ってください。
       </p>
@@ -45,8 +46,11 @@
       <%= link_to "STRIPEアカウントの連携", "https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id="+Rails.configuration.stripe[:oauth_client_id]+"&scope=read_write&state="+user_token(current_user), class:"btn btn-primary", target:"blank" %>
     </div>
     <div class="text__area">
-      STRIPEアカウントを作成し、当サービスのアカウントに紐付けを行った後は、お客様のSTRIPEアカウント上で入金状況等をリアルタイムで確認することができます。<br>
-      また、STRIPE社の提供するスマートフォンアプリからもお客様のSTRIPEアカウントの状況を確認することが可能です。<br>
+      <p class="strong">支援金を受け取るまでの流れ</p>
+      <p>
+        ここまでの作業が完了したら、お客様のSTRIPEアカウント上で入金状況等をリアルタイムで確認することができます。<br>
+        STRIPE社の提供するスマートフォンアプリからもお客様のSTRIPEアカウントの状況を確認することが可能です。<br>
+      </p>
     </div>
     <hr>
   <% end %>
