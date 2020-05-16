@@ -39,11 +39,11 @@
       ジャンル: <%= @livehouse.genre %><br>
       地域: <%= @livehouse.area %><br>
       キャパシティ: <%= @livehouse.capacity %><br>
-      プロフィール(見出し): <%= simple_format(@livehouse.profile_short) %><br>
+      プロフィール(見出し): <%= description(@livehouse.profile_short) %><br>
       プロフィール(詳細): <%= description(@livehouse.profile_long) %><br>
       支援金の利用目的: <%= description(@livehouse.purpose) %><br>
-      存続できなかった場合の対応: <%= description(@livehouse.case_of_surrender) %><br>
-      備考: description(<%= description(@livehouse.conditions_detail) %><br>
+      存続できなかった場合の対応: <%= simple_fdescriptionormat(@livehouse.case_of_surrender) %><br>
+      備考: <%= description(@livehouse.conditions_detail) %><br>
       サンプル動画URL1: <%= @livehouse.sample_movie_url1 %><br>
       サンプル動画URL2: <%= @livehouse.sample_movie_url2 %><br>
       サンプル動画URL3: <%= @livehouse.sample_movie_url3 %><br>

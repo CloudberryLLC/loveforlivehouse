@@ -165,6 +165,9 @@
 	<div id="Belongs">
 		<h4 class="title">この運営者の他のライブハウス</h4>
 		<%= render partial: 'partial/livehouse_list', locals: { livehouses: @groups } %>
+	  <% unless @groups.present? %>
+	    この運営者の他のライブハウスは登録されていません。
+	  <% end %>
 	</div>
 </div>
 
