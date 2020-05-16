@@ -13,10 +13,10 @@
     郵便番号: 〒<%= @user.basic.zipcode %><br>
     住所: <%= @user.basic.pref %><%= @user.basic.city %><%= @user.basic.street %> <%= @user.basic.bldg %><br>
     <p>本人確認書類:</p>
-    <%= image_tag(photo(@user.basic.id_front)) %><br>
+    <%= image_tag(photo(@user.basic.id_front)), class: "check_photo" %><br>
     <p>本人確認書類(裏面):</p>
     <% if @user.basic.id_back.present? %>
-      <%= image_tag(photo(@user.basic.id_back)) %><br>
+      <%= image_tag(photo(@user.basic.id_back)), class: "check_photo" %><br>
     <% end %>
   <hr>
   <div class="container">

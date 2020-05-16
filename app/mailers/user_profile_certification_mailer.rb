@@ -19,4 +19,8 @@ class UserProfileCertificationMailer < ApplicationMailer
     mail(to: @user.email, subject: 'ユーザー登録/変更申請が承認されました。')
   end
 
+  def stripe_connected
+    mail(to: @admin_email, subject: 'ユーザーがStripeアカウントの連携を行いました')
+  end
+
 end

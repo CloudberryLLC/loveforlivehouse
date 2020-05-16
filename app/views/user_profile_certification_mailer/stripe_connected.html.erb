@@ -1,0 +1,25 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+    ユーザーのアカウントがStripeに紐付けされました
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+    Stripeにアクセスし、Stripeアカウントが登録されているかご確認ください。
+  </td>
+</tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+    ユーザーID: <%= @user.id %><br>
+    お名前: <%= @user.basic.lastname %> <%= @user.basic.firstname %> 様<br>
+  </td>
+</tr>
+
+<%= render 'partial/mailer_footer' %>

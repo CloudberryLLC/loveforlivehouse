@@ -68,6 +68,7 @@ class ProfilesController < ApplicationController
       end
       @user.stripe_user_id = response.stripe_user_id
       if @user.save
+        UserProfileCertificationMailer.with(user: @user).stripe_connected.deliver_later
       else
         head :internal_server_error #500
         return {error: 'エラーが発生しました'}.to_json
