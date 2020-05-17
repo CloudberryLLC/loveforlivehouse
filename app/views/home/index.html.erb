@@ -20,16 +20,25 @@
   </div>
 </div>
 
+<div class="container">
+  <h3 class="title orange padding__vertical__2em center">
+    ライブハウス登録期間中です。<br>
+    支援金の受け入れ開始まで、<br>
+    いましばらくお待ち下さい。
+  </h3>
+</div>
+
+<div id="about">
+  <%= render 'about' %>
+</div>
+
+
 <div id="new__livehouses">
   <h3 class="title center">新着ライブハウス</h3>
   <%= render partial: 'partial/livehouse_list', locals: { livehouses: @new_livehouses} %>
 </div>
 
 <hr>
-
-<div id="about">
-  <%= render 'about' %>
-</div>
 
 <hr>
 
