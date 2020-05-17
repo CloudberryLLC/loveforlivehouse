@@ -42,7 +42,7 @@ table {
   margin-right: auto;
 }
 
-a, a:hover, a:visited .no_decoration {
+a.no_decoration, a:hover.no_decoration, a:visited.no_decoration {
   color: black;
   text-decoration: none;
 }
@@ -63,12 +63,14 @@ a, a:hover, a:visited .no_decoration {
 }
 
 #footer__copyright {
-  font-size: 0.9em;
+  font-size: 0.7em;
   text-align: center;
 }
 
 .footer__link {
   color: black;
+  margin-right: 0.7em;
+  font-size: 0.7em;
   text-decoration: underline;
 }
 

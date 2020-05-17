@@ -5,7 +5,7 @@
       <% livehouse = set_profile_card_instance(livehouse) %>
       <% unless livehouse.nil? %>
         <div class="swiper-slide">
-          <a href="<%= livehouse_path(livehouse.id) %>">
+          <a href="<%= livehouse_path(livehouse.id) %>" class="no_decoration">
           <div class="card shadow">
             <%= image_tag thumbnail(livehouse.profile_photo), class:"card-img-top card_photo_top"  %>
             <div class="card-body profile_card__text_wrapper">
