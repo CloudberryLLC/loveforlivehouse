@@ -82,6 +82,17 @@ private
   def set_new_donation
     if livehouse_hash(@livehouse) == params[:hash]
       @donation = Donation.new( :livehouse_id => @livehouse_id )
+      if user_signed_in? && current_user.basic.present?
+        user = current_user.basic
+        @donation.name = show_company(user.company) + user.lastname + " " + user.firstname
+        @donation.email = current_user.email
+        @donation.phone = user.phone
+        @donation.zipcode = user.zipcode
+        @donation.pref = user.pref
+        @donation.city = user.city
+        @donation.street = user.street
+        @donation.bldg = user.bldg
+      end
     else
       head :bad_request
     end
@@ -101,6 +112,10 @@ private
     if user_signed_in?
       @donation.supporter_id = current_user.id
     end
+  end
+
+  def show_company(company)
+    return "" if company == "なし"
   end
 
 #stripeの支払い
@@ -152,7 +167,6 @@ private
     endpoint_secret = Rails.application.credentials.STRIPE_WEBHOOK_ENDPOINT_SECRET
     payload = request.body.read
     event = nil
-
     sig_header = request.env['HTTP_STRIPE_SIGNATURE']
     begin
       event = Stripe::Webhook.construct_event(payload, sig_header, endpoint_secret)
@@ -172,12 +186,9 @@ private
 
   def update_paid_status(donation)
     @livehouse = Livehouse.find(donation.livehouse_id)
-
     collection_whole_period = Donation.where(livehouse_id: @livehouse.id, paid: true)
     collection_this_month = collection_whole_period.where(updated_at: DateTime.now.in_time_zone.all_month)
-
     donation.paid = true
-
     if donation.save
       @livehouse.donators_whole_period = collection_whole_period.count
       @livehouse.funded_whole_period = collection_whole_period.all.sum(:amount)

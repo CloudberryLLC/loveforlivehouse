@@ -1,7 +1,5 @@
 <% if @recent_viewed_livehouses.nil? %>
   <p class="center margin-1em">閲覧履歴はありません。</p>
-
 <% else %>
   <%= render partial: "partial/livehouse_list", locals: { livehouses: @recent_viewed_livehouses } %>
-
 <% end %>

@@ -5,7 +5,7 @@
   <tr>
     <th class="left">店舗名</th>
     <th class="right">人数</th>
-    <th class="right">支援総額(受取可能額)</th>
+    <th class="right">支援総額(全期間)</th>
   </tr>
   <% @user.livehouses.each do |group| %>
   <tr>
@@ -16,13 +16,13 @@
       </span>
     </td>
     <td class="dashboard__index middle_height right">
-      <%= show_reward(group)[0] %>人
+      <%= group.donators_whole_period.to_s(:delimited) %>人
     </td>
     <td class="dashboard__index middle_height right">
-      <%= show_reward(group)[1].to_s(:delimited) %>円<br>
+      <%= group.funded_whole_period.to_s(:delimited) %>円<br>
     </td>
   </tr>
   <% end %>
 </table>
 
-<p class="annotation">※受取可能額は既に当月にお引き出しされた金額も含まれますのでご了承ください。</p>
+<p class="annotation">※正確な金額についてはご登録いただいたStripeアカウントをご覧ください。</p>

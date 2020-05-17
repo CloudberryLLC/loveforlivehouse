@@ -49,6 +49,35 @@
       <%= basic.text_field :phone, maxlength: 11, class: "form-control", placeholder: "電話番号", autofocus: true, required: true %>
     </div>
 
+    <div class="form-group">
+      <%= basic.label :zipcode %>
+      <span class="required"> *</span><br>
+      <%= basic.text_field :zipcode, maxlength: 7, class: "form-control", placeholder: "ハイフンなし", autofocus: true, required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= basic.label :pref %>
+      <span class="required"> *</span><br>
+      <%= basic.text_field :pref, class: "form-control", placeholder: "都道府県", autofocus: true, required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= basic.label :city %>
+      <span class="required"> *</span><br>
+      <%= basic.text_field :city, class: "form-control", placeholder: "市区町村", autofocus: true, required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= basic.label :street %>
+      <span class="required"> *</span><br>
+      <%= basic.text_field :street, class: "form-control", placeholder: "番地", autofocus: true, required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= basic.label :bldg %>
+      <%= basic.text_field :bldg, class: "form-control", placeholder: "建物名", autofocus: true %>
+    </div>
+
     <hr>
 
     <p class="left padding__1em">写真</p>

@@ -23,10 +23,6 @@
           <li class="nav-item"><%= link_to "ダッシュボード", dashboard_path(current_user), class: "nav-link right" %></li>
 
           <% if current_user.certified == true %>
-            <% if supporter? %>
-              <li class="nav-item"><%= link_to "支援", donations_path(current_user), class: "nav-link right" %></li>
-              <li class="nav-item"><%= link_to "お気に入り", favorites_path(current_user), class: "nav-link right" %></li>
-            <% end %>
             <% if livehouse? %>
               <li class="nav-item"><%= link_to "ライブハウス", mygroups_path(current_user), class: "nav-link right" %></li>
             <% end %>

@@ -4,17 +4,19 @@
   <span>まだ支援を行っていません。</span>
 <% else %>
   <h5 class="title">支援総額: <%= @donations.all.sum(:amount).to_s(:delimited) %>円 </h5>
-  <table class="table">
+  <table class="table left">
     <tr>
       <th>日時</th>
       <th>ライブハウス</th>
       <th>支援金額</th>
+      <th></th>
     </tr>
     <% @donations.each do |donation| %>
       <tr>
         <td><%= donation.created_at.strftime("%m/%d %H:%M") %></td>
         <td><%= Livehouse.find(donation.livehouse_id).livehouse_name %></td>
         <td><%= donation.amount.to_s(:delimited) %>円</td>
+        <td><%= link_to '詳細', donation_path(hash: donation_token(donation), id: donation), class: "btn btn-info btn-sm" %></td>
       </tr>
     <% end %>
   </table>

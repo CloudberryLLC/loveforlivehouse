@@ -1,8 +1,64 @@
 <div class="container pagetop">
   <div class="row justify_content_center">
     <div class="col-lg-1"></div>
+
     <div class="col-lg-10">
-      <%= render 'confirmation_view' %>
+      <h3 class="title">ご支援ありがとうございました！</h3>
+      <hr>
+
+      <div id="outline">
+        <p>
+          <h5 class="title">概要</h5>
+          支援ID: <%= @donation.id %><br>
+          支援したライブハウス: <%= @livehouse.livehouse_name %><br>
+          金額: <%= @donation.amount.to_s(:delimited) %>円<br>
+          日時: <%= @donation.updated_at.strftime("%Y年%m月%d日 %H:%M") %>
+        </p>
+      </div>
+
+      <hr>
+
+      <div id="public_post">
+        <h5 class="title">ライブハウスページに投稿された内容</h5>
+        <p>お名前: <%= @donation.nickname %></p>
+        <p>支援金額: <%= @donation.amount.to_s(:delimited) %>円</p>
+        <p>メッセージ: <%= description(@donation.message) %></p>
+      </div>
+
+      <hr>
+
+      <h5 class="title">ご支援者様の情報</h5>
+      <div id="supporter_info">
+        <p>
+          ご支援者様本名: <%= @donation.name %> 様<br>
+          メールアドレス: <%= @donation.email %><br>
+          お電話番号: <%= @donation.phone %><br>
+          ご住所:<br>
+          <%= @donation.zipcode %> <%= @donation.pref %><%= @donation.city %><%= @donation.street %><br>
+          <%= @donation.bldg %>
+        </p>
+      </div>
+
+      <hr>
+
+      <h5 class="title">領収証について</h5>
+      <p>
+        領収証は支援完了時にライブハウス運営者のStripeアカウントより送信されておりますので今一度ご確認ください。<br>
+        領収証についてのお問い合わせは各ライブハウス運営者にお願い致します。<br>
+        <br>
+        ライブハウス連絡先:<br>
+        <%= @livehouse.shop_email %><br>
+        ご担当: <%= @livehouse.manager %>様<br>
+        URL: <%= link_to @livehouse.shop_url, @livehouse.shop_url %><br>
+        <br>
+        <span class="annotation">※支援ID:<%= @donation.id %>をライブハウス運営者へお伝えください。</span>
+      </p>
+
+      <hr>
+      <h5 class="title">お問い合わせ</h5>
+      <p>
+        領収証以外のお問い合わせについては<%= link_to 'ヘルプ', helps_path %>よりご確認ください。
+      </p>
     </div>
   </div>
 </div>
