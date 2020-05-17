@@ -31,7 +31,7 @@
 			    <tr>
 			      <td colspan="2" class="left">
 							月間目標金額：<strong><%= @livehouse.required_amount.to_s(:delimited) %>円</strong><br>
-							集まった金額：<strong><%= @donators.all.sum(:amount).to_s(:delimited) %>円</strong><br>
+							集まった金額：<strong><%= @livehouse.funded_this_month.to_s(:delimited) %>円</strong><br>
 							<div class="graph">
 							  <span class="bar" style="width:<%= @percentage %>%;"><%= @percentage %>%</span>
 							</div>
@@ -166,7 +166,7 @@
 		<h4 class="title">この運営者の他のライブハウス</h4>
 		<%= render partial: 'partial/livehouse_list', locals: { livehouses: @groups } %>
 	  <% unless @groups.present? %>
-	    この運営者の他のライブハウスは登録されていません。
+	    他のライブハウスは登録されていません。
 	  <% end %>
 	</div>
 </div>

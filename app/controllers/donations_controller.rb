@@ -5,7 +5,7 @@ class DonationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:stripe_webhook]
   before_action :authenticate_user!, only: [:index]
   before_action :admin_only, only: [:index]
-  before_action :set_data, only: [:show, :edit, :update, :confirmation, :payment_succeeded]
+  before_action :set_data, only: [:show, :edit, :update, :confirmation]
 
   def index
   end
@@ -42,7 +42,6 @@ class DonationsController < ApplicationController
 
   def update
     @donation.update_count += 1
-    @intent = params[:carrionshine]
     if @donation.update(donation_params)
       redirect_to donation_confirmation_path(hash: donation_token(@donation), id: @donation.id)
     else
@@ -62,6 +61,8 @@ class DonationsController < ApplicationController
   end
 
   def payment_succeeded
+    @donation = Donation.find(params[:id])
+    update_paid_status(@donation)
   end
 
   def stripe_webhook
@@ -164,10 +165,25 @@ private
     end
     if event['type'] == 'payment_intent.succeeded'
       @donation = Donation.find(event['data']['object']['metadata']['donation_id'])
-      @donation.paid = true
-      if @donation.save
-        head :OK
-      end
+      update_paid_status(@donation)
+      head :ok
+    end
+  end
+
+  def update_paid_status(donation)
+    @livehouse = Livehouse.find(donation.livehouse_id)
+
+    collection_whole_period = Donation.where(livehouse_id: @livehouse.id, paid: true)
+    collection_this_month = collection_whole_period.where(updated_at: DateTime.now.in_time_zone.all_month)
+
+    donation.paid = true
+
+    if donation.save
+      @livehouse.donators_whole_period = collection_whole_period.count
+      @livehouse.funded_whole_period = collection_whole_period.all.sum(:amount)
+      @livehouse.donators_this_month = collection_this_month.count
+      @livehouse.funded_this_month = collection_this_month.all.sum(:amount)
+      @livehouse.save!
     end
   end
 

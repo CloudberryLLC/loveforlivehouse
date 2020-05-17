@@ -118,7 +118,6 @@
           <%= fa_icon "question-circle", class:'gray' %> <br>
           </span>
           <%= p.text_field :genre, id: "genre", class: "form-control", placeholder: "例：ジャズ ロック フォークなど", autofocus: true, "data-role" => "tagsinput" %>
-          <%= p.hidden_field :music_genre_list , id:"genre-tag" %>
         </div>
 
         <div class="form-group">
@@ -225,26 +224,6 @@ $(document).on('turbolinks:load', function() {
     $('#livehouse_published').bootstrapToggle();
   });
 
-//時間があるときにnewアクション時のものと共通部品化する
-  $(function(){
-    //タグが登録されている場合、何もせずフォームが保存されるとカンマ抜きで登録されるので、その対処
-    $("#genre-tag").val($("#genre-tag").val().replace(/\s+/g, ","));
-    $("#instrument-tag").val($("#instrument-tag").val().replace(/\s+/g, ","));
-
-    //ジャンルと楽器編成の隠しフォーム(タグ用)へフォームの内容をうつす
-    $("#genre").on('load click keyup',function(){
-      genreTags = $("#genre").val();
-      $("#genre-tag").val(genreTags);
-    });
-
-    $("#set-of-instruments").on('load click keyup',function(){
-      instrumentTags = $("#set-of-instruments").val();
-      $("#instrument-tag").val(instrumentTags);
-    });
-  });
-
- });
-
   function copyToClipboard() {
     var copyTarget = document.getElementById("copyTarget");
     copyTarget.select();
@@ -252,14 +231,14 @@ $(document).on('turbolinks:load', function() {
     alert("リンクをクリップボードにコピーしました");
   }
 
-$(function() {
-  return $("#livehouse_zipcode").jpostal({
-    postcode: ["#livehouse_zipcode"],
-    address: {
-      "#livehouse_pref": "%3",
-      "#livehouse_city": "%4",
-      "#livehouse_street": "%5"
-    }
+  $(function() {
+    return $("#livehouse_zipcode").jpostal({
+      postcode: ["#livehouse_zipcode"],
+      address: {
+        "#livehouse_pref": "%3",
+        "#livehouse_city": "%4",
+        "#livehouse_street": "%5"
+      }
+    });
   });
-});
 </script>

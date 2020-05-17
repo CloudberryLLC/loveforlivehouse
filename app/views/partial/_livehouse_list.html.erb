@@ -1,33 +1,29 @@
 <div class="swiper-container">
   <div class="swiper-wrapper">
+
     <% livehouses.each do |livehouse| %>
       <% livehouse = set_profile_card_instance(livehouse) %>
       <% unless livehouse.nil? %>
         <div class="swiper-slide">
-          <div class="card profile_card shadow-sm">
-            <div class="row no-gutters">
-              <div class="col-4 profile_card__photo">
-                <%= image_tag thumbnail(livehouse.profile_photo), size: "96x96"  %>
-              </div>
-              <div class="col-8">
-                <div class="card-body profile_card__textarea">
-                  <h5 class="card-title"><%= livehouse.livehouse_name%></h5>
-                  <p>
-                    <span class="card-text"><%=livehouse.area %></span><br>
-                    <span class="card-text"><%= livehouse.genre %></span><br>
-                    <span class="card-text">
-                      月間目標金額: <%= livehouse.required_amount.to_s(:delimited) %>円
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="profile_card__link_button">
-                <span class="center"><%= link_to '詳細を見る', livehouse_path(livehouse.id), class:'btn btn-sm btn-primary stretched-link' %></span>
+          <a href="<%= livehouse_path(livehouse.id) %>">
+          <div class="card shadow">
+            <%= image_tag thumbnail(livehouse.profile_photo), class:"card-img-top card_photo_top"  %>
+            <div class="card-body profile_card__text_wrapper">
+              <h5 class="card-title"><%= livehouse.livehouse_name%></h5>
+                <p class="card-text">
+                  <span><%=livehouse.area %></span><br>
+                  <span><%= livehouse.genre %></span><br>
+                  <span>今月の支援総額：<%= livehouse.funded_this_month.to_s(:delimited) %>円</span><br>
+    							<div class="graph">
+    							  <span class="bar" style="width:<%= (100 * livehouse.funded_this_month / livehouse.required_amount) %>%;"><%= (100 * livehouse.funded_this_month / livehouse.required_amount).to_i %>%</span>
+    							</div>
+                </p>
             </div>
           </div>
+          </a>
         </div>
       <% end %>
     <% end %>
+
   </div>
 </div>

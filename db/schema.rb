@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_002012) do
+ActiveRecord::Schema.define(version: 2020_05_17_041340) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -178,6 +178,10 @@ ActiveRecord::Schema.define(version: 2020_05_16_002012) do
     t.string "manager"
     t.text "purpose"
     t.text "case_of_surrender"
+    t.integer "funded_whole_period", default: 0
+    t.integer "funded_this_month", default: 0
+    t.integer "donators_whole_period", default: 0
+    t.integer "donators_this_month", default: 0
     t.index ["user_id"], name: "index_livehouses_on_user_id"
   end
 

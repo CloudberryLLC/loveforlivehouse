@@ -15,10 +15,7 @@ class User < ApplicationRecord
   has_many :offers, dependent: :destroy
   has_many :favorite_livehouses, dependent: :destroy
 
-  accepts_nested_attributes_for :basic, :bank, :livehouses, :contacts, :chat_messages, :offers, :favorite_livehouses
-
-  acts_as_ordered_taggable
-  acts_as_ordered_taggable_on :instruments
+  accepts_nested_attributes_for :basic, :bank, :livehouses, :contacts, :chat_messages, :favorite_livehouses
 
   validate :rule_confirmation_valid?
   validate :user_type_valid?

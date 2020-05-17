@@ -28,8 +28,8 @@ class LivehousesController < ApplicationController
 
     def show
       @groups = Livehouse.where(user_id: @livehouse.user_id).where(certified: true, published: true).where.not(id: @livehouse.id)
-      @donators = Donation.where(livehouse_id: @livehouse.id, paid: true).limit(100)
-      @percentage = (100 * @donators.all.sum(:amount) / @livehouse.required_amount).to_i
+      @donators = Donation.where(livehouse_id: @livehouse.id, paid: true).limit(30)
+      @percentage = (100 * @livehouse.funded_this_month / @livehouse.required_amount).to_i
       write_recently_viewed_livehouse_cookies(@livehouse)
     end
 
@@ -76,25 +76,90 @@ class LivehousesController < ApplicationController
       @livehouse = Livehouse.find(params[:id])
     end
 
-    def user_params
-      params.require(:user).permit(
-        :_destroy, :id,
-        livehouses_attributes: [:user_id, :livehouse_name, :genre, :zipcode, :pref, :city, :street, :bldg, :shop_email, :shop_phone, :shop_url, :company, :owner, :manager, :music_genre_list, :area, :profile_short, :profile_long, :purpose, :case_of_surrender, :required_amount, :capacity, :conditions_detail, :sample_movie_url1, :sample_movie_url2, :sample_movie_url3, :profile_photo, :cover_photo, :profile_photo_cache, :cover_photo_cache, :certified, :published, :_destroy, :id]
-        )
-    end
-
-    def livehouse_params
-      params.require(:livehouse).permit(
-        :livehouse_name, :zipcode, :pref, :city, :street, :bldg, :shop_email, :shop_phone, :shop_url, :company, :owner, :manager, :genre, :music_genre_list, :area, :number_of_member, :profile_short, :profile_long, :purpose, :case_of_surrender,  :required_amount, :capacity, :conditions_detail, :sample_movie_url1, :sample_movie_url2, :sample_movie_url3, :profile_photo, :cover_photo, :profile_photo_cache, :cover_photo_cache, :certified, :published, :_destroy, :id,
-      )
-    end
-
     def write_recently_viewed_livehouse_cookies(livehouse)
       #クッキーを配列に保存
         cookies[:recently_viewed_livehouses] ||= [].push(livehouse.id).join(',')
         recently_viewed_livehouses_array = cookies[:recently_viewed_livehouses].split(',').unshift(livehouse.id).map!(&:to_i).uniq
         recently_viewed_livehouses_array.pop if recently_viewed_livehouses_array.length > 10
         cookies[:recently_viewed_livehouses] = recently_viewed_livehouses_array.join(',')
+    end
+
+    def user_params
+      params.require(:user).permit(
+        :_destroy, :id,
+        livehouses_attributes: [
+          :user_id,
+          :livehouse_name,
+          :area,
+          :genre,
+          :zipcode,
+          :pref,
+          :city,
+          :street,
+          :bldg,
+          :shop_email,
+          :shop_phone,
+          :shop_url,
+          :company,
+          :owner,
+          :manager,
+          :profile_short,
+          :profile_long,
+          :purpose,
+          :case_of_surrender,
+          :required_amount,
+          :capacity,
+          :conditions_detail,
+          :sample_movie_url1,
+          :sample_movie_url2,
+          :sample_movie_url3,
+          :profile_photo,
+          :cover_photo,
+          :profile_photo_cache,
+          :cover_photo_cache,
+          :certified,
+          :published,
+          :_destroy,
+          :id
+        ])
+    end
+
+    def livehouse_params
+      params.require(:livehouse).permit(
+        :user_id,
+        :livehouse_name,
+        :area,
+        :genre,
+        :zipcode,
+        :pref,
+        :city,
+        :street,
+        :bldg,
+        :shop_email,
+        :shop_phone,
+        :shop_url,
+        :company,
+        :owner,
+        :manager,
+        :profile_short,
+        :profile_long,
+        :purpose,
+        :case_of_surrender,
+        :required_amount,
+        :capacity,
+        :conditions_detail,
+        :sample_movie_url1,
+        :sample_movie_url2,
+        :sample_movie_url3,
+        :profile_photo,
+        :cover_photo,
+        :profile_photo_cache,
+        :cover_photo_cache,
+        :certified,
+        :published,
+        :_destroy,
+        :id
+      )
     end
 
 end

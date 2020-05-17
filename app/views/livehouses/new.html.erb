@@ -35,7 +35,6 @@
                 <div class="form-group">
                   <%= p.label :genre %>
                   <%= p.text_field :genre, id: "genre", class: "form-control", placeholder: "例：クラシック、ジャズ、ポップス", autofocus: true %>
-                  <%= p.hidden_field :music_genre_list , id:"genre-tag" %>
                 </div>
                 <div class="form-group">
                   <%= p.label :area %>
@@ -106,23 +105,6 @@
 </div>
 
 <script>
-  $(function(){
-    //タグが登録されている場合、何もせずフォームが保存されるとカンマ抜きで登録されるので、その対処
-    $("#genre-tag").val($("#genre-tag").val().replace(/\s+/g, ","));
-    $("#instrument-tag").val($("#instrument-tag").val().replace(/\s+/g, ","));
-
-    //ジャンルと楽器編成の隠しフォーム(タグ用)へフォームの内容をうつす
-    $("#genre").on('load click keyup',function(){
-      genreTags = $("#genre").val();
-      $("#genre-tag").val(genreTags);
-    });
-
-    $("#set-of-instruments").on('load click keyup',function(){
-      instrumentTags = $("#set-of-instruments").val();
-      $("#instrument-tag").val(instrumentTags);
-    });
-  });
-
   $(function () {
     $('[data-toggle="popover"]').popover()
   })
