@@ -298,7 +298,7 @@ ja:
         content: "お問い合わせ内容(1000文字以内)"
       donation:
         nickname: "ニックネーム"
-        amount: "寄付金額"
+        amount: "支援金額"
         message: "メッセージ"
         name: "支援者様の実名(法人名可)"
         email: "メールアドレス"

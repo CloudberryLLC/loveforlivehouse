@@ -127,7 +127,7 @@ private
         currency: "jpy",
         application_fee_amount: (donation.amount * Constants::SYSTEM_FEE).ceil.to_i,
         receipt_email: donation.email,
-        description: @livehouse.livehouse_name.to_s + "への、ライブハウス緊急支援サイト「LOVE for Live House」を通じたご寄付 (支援ID: " + donation.id.to_s + ")",
+        description: @livehouse.livehouse_name.to_s + "への、ライブハウス緊急支援サイト「LOVE for Live House」を通じたご支援 (支援ID: " + donation.id.to_s + ")",
         metadata: { donation_id: donation.id },
         },
         stripe_account: user.stripe_user_id)

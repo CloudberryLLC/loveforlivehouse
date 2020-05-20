@@ -1,4 +1,4 @@
-<h3 class="title"><%= @livehouse.livehouse_name %>に支援(寄付)を行う</h3>
+<h3 class="title"><%= @livehouse.livehouse_name %>に支援を行う</h3>
 
 <hr>
 
@@ -19,7 +19,7 @@
 
   <div class="form-group">
     <%= form.label :nickname %><span class="required"> ※</span>
-    <%= form.text_field :nickname, class:"form-control", autofocus: true %>
+    <%= form.text_field :nickname, class:"form-control", placeholder: "ウェブに掲載するお名前", autofocus: true %>
   </div>
 
   <div class="form-group">
@@ -37,13 +37,13 @@
   <h5 class="title">ご支援者様情報</h5>
 
   <p class="annotation">
-    <span class="red">支援金額(寄付金額)が5万円以上になる場合は必ず全てご記入ください。</span><br>
+    <span class="red">支援金額が5万円以上になる場合は必ず全てご記入ください。</span><br>
     <span>お名前とメールアドレスのみライブハウス運営者に共有される場合がありますが、その他は一切公開されません。</span>
   </p>
 
   <div class="form-group">
     <%= form.label :name %><span class="required"> ※</span><br>
-    <%= form.text_field :name, class:"form-control", placeholder: "寄付された方の本名(法人名可)", autofocus: true %>
+    <%= form.text_field :name, class:"form-control", placeholder: "支援される方の本名(法人名可)", autofocus: true %>
   </div>
 
   <div class="form-group">
