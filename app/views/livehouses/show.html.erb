@@ -50,10 +50,11 @@
 			<!--自分には依頼と問い合わせをできないようにする-->
 			<p class="center"><%= link_to "編集", edit_livehouse_path, class: "btn btn-info" %></p>
 		<% else %>
-			<p class="center"><%= link_to "このライブハウスを支援する", new_donation_path(hash: livehouse_hash(@livehouse), id: encode_livehouse_id(@livehouse.id)), class: "btn btn-success" %></p>
+			<p class="center"><%= link_to "このライブハウスを支援する", new_donation_path(hash: livehouse_hash(@livehouse), id: encode_livehouse_id(@livehouse.id)), class: "btn btn-success disabled" %></p>
 			<p class="strong red">
 				現在ライブハウス募集期間中です。<br>
-				支援金の受け入れ開始まで、今しばらくお待ち下さい。</p>
+				支援金の受け入れ開始まで、今しばらくお待ち下さい。
+			</p>
 		<% end %>
 	</div>
 </div>
