@@ -196,6 +196,18 @@ h6 {
   margin-left: 1em;
 }
 
+.margin__right__1em {
+  margin-right: 1em;
+}
+
+.margin__for__fa {
+  margin-top: 4px;
+}
+
+.margin__for__fa__first__icon {
+  margin-right: 4px;
+}
+
 .padding__1em {
   padding: 1em;
 }
@@ -230,6 +242,10 @@ h6 {
 
 .navbar-collapse {
   border-radius: 0.5em;
+}
+
+.navbar-color {
+  background-color: #e3f2fd !important;
 }
 
 .brand-logo {
@@ -478,6 +494,13 @@ h6 {
 .check_photo {
   width: 80%;
   max-width: 600px;
+}
+
+#top_page_screen {
+  display:flex;
+  justify-content: center;
+  padding:2em;
+  background-color: black;
 }
 
 

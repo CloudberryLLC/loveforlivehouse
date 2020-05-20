@@ -1,6 +1,6 @@
-<div class="navbar__area"></div>
+<div class="navbar__area style="background-color: #e3f2fd;""></div>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-color">
 
   <span id="brand-text">
     <%= link_to image_tag("brand_logo.png", alt: "LOVE for Live House", class: 'navbar-brand brand-logo'), '/' %>
@@ -11,11 +11,21 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse bg-light" id="navbarToggler">
+  <div class="collapse navbar-collapse bg-light navbar-color" id="navbarToggler">
 
     <ul class="navbar-nav mr-auto"></ul>
 
-    <ul class="navbar-nav">
+    <ul class="navbar-nav bg-light navbar-color">
+
+      <li class="nav-item right">
+        <%= link_to 'https://twitter.com/LOVEforLiveHou1' do %>
+          <i class="fa fa-twitter-square fa-2x margin__for__fa margin__for__fa__first__icon" aria-hidden="true"></i>
+        <% end %>
+        <%= link_to 'https://www.facebook.com/LOVE_for-Live-House-111405367245871/' do %>
+          <i class="fa fa-facebook-square fa-2x margin__for__fa" aria-hidden="true"></i>
+        <% end %>
+      </li>
+
       <li class="dropdown">
 
         <% if (user_signed_in?) %>
@@ -47,10 +57,11 @@
           <li class="nav-item"><%= link_to "よくある質問", helps_path, class: "nav-link right" %></li>
           <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link right" %></li>
         <% end %>
+
       </li>
     </ul>
 
-    <%= render 'partial/search_component' %>
+    <%# = render 'partial/search_component' %>
 
   </div>
 </nav>
