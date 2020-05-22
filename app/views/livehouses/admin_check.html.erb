@@ -54,7 +54,7 @@
     </p>
     <p>口座情報</p>
     <p>
-      <%= @livehouse.bank_name.to_s %> <%= @livehouse.bank_branch.to_s %> (店番: description(<%= @livehouse.bank_branch_code.to_s %>)) <br>
+      <%= @livehouse.bank_name.to_s %> <%= @livehouse.bank_branch.to_s %> (店番: <%= description(@livehouse.bank_branch_code) %>) <br>
       <%= @livehouse.bank_type.to_s %> <%= @livehouse.bank_number.to_s %> <br>
       口座名義人: <%= @livehouse.bank_owner.to_s %> (<%= @livehouse.bank_owner_kana.to_s %>) <br>
     </p>
