@@ -33,7 +33,7 @@
 							月間目標金額：<strong><%= @livehouse.required_amount.to_s(:delimited) %>円</strong><br>
 							集まった金額：<strong><%= @livehouse.funded_this_month.to_s(:delimited) %>円</strong><br>
 							<div class="graph">
-							  <span class="bar" style="width:<%= @percentage %>%;"><%= @percentage %>%</span>
+							  <span class="bar" style="width:<%= [ @percentage, 100 ].min %>%;"><%= @percentage %>%</span>
 							</div>
 						</td>
 			    </tr>

@@ -15,7 +15,7 @@
                   <span><%= livehouse.genre %></span><br>
                   <span>今月の支援総額：<%= livehouse.funded_this_month.to_s(:delimited) %>円</span><br>
     							<div class="graph">
-    							  <span class="bar" style="width:<%= (100 * livehouse.funded_this_month / livehouse.required_amount) %>%;"><%= (100 * livehouse.funded_this_month / livehouse.required_amount).to_i %>%</span>
+    							  <span class="bar" style="width:<%= [(100 * livehouse.funded_this_month / livehouse.required_amount), 100].min %>%;"><%= (100 * livehouse.funded_this_month / livehouse.required_amount).to_i %>%</span>
     							</div>
                 </p>
             </div>
