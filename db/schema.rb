@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_041340) do
+ActiveRecord::Schema.define(version: 2020_05_22_003705) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_041340) do
     t.string "street"
     t.string "bldg"
     t.text "message"
-    t.text "bank_address"
+    t.text "bank_account_of_supporter"
     t.boolean "confirmation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_041340) do
     t.integer "supporter_id"
     t.integer "update_count", default: 0
     t.string "payment_intent_id"
+    t.integer "payment_method"
   end
 
   create_table "favorite_livehouses", force: :cascade do |t|
@@ -182,6 +183,13 @@ ActiveRecord::Schema.define(version: 2020_05_17_041340) do
     t.integer "funded_this_month", default: 0
     t.integer "donators_whole_period", default: 0
     t.integer "donators_this_month", default: 0
+    t.string "bank_name"
+    t.string "bank_branch"
+    t.string "bank_branch_code"
+    t.string "bank_type"
+    t.string "bank_number"
+    t.string "bank_owner"
+    t.string "bank_owner_kana"
     t.index ["user_id"], name: "index_livehouses_on_user_id"
   end
 

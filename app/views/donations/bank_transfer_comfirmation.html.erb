@@ -1,0 +1,13 @@
+<div class="container pagetop">
+  <h3 class="title">ライブハウスへのお振込、ありがとうございました。</h3>
+
+  <p>以下をクリックまたはタップして、お手続きが完了となります。</p>
+
+  <%= form_with model: @donation, url: bank_transfer_completed_path, local:true do |f| %>
+    <%= f.hidden_field :confirmation, value: true %>
+    <div class="button__area">
+      <%= f.submit '振込完了をライブハウスに通知する', class:'btn btn-success' %>
+    </div>
+  <% end %>
+
+</div>

@@ -282,6 +282,13 @@ ja:
         capacity: "キャパシティ"
         conditions_detail: "備考"
         published: "公開設定"
+        bank_name: "金融機関名"
+        bank_branch: "支店名"
+        bank_branch_code: "支店コード（店番）"
+        bank_type: "口座種別"
+        bank_number: "口座番号"
+        bank_owner: "口座名義人"
+        bank_owner_kana: "口座名義人（カナ）※スペースなし"
       contact:
         livehouse_id: "演奏家ID"
         user1: "支援者"
@@ -308,3 +315,4 @@ ja:
         city: "市区町村"
         street: "番地"
         bldg: "建物名"
+        payment_method: "お支払い方法"

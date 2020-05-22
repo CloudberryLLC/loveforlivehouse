@@ -39,6 +39,9 @@ Rails.application.routes.draw do
 	get '/stripe/connect/oauth/', to: 'profiles#stripe_connect_oauth', as:'stripe_connect'
 	get '/donations/confirmation/:id', to: 'donations#confirmation', as: 'donation_confirmation'
 	get '/donations/:id/payment_succeeded', to: 'donations#payment_succeeded', as: 'donation_payment_succeeded'
+	get '/donations/:id/bank_transfer_choosen', to: 'donations#bank_transfer_choosen', as:'bank_transfer_choosen'
+	get '/dontaions/:id/bank_transfer_selected', to: 'donations#bank_transfer_selected', as: 'bank_transfer_selected'
+	get '/donations/:id/bank_transfer_comfirmation', to: 'donations#bank_transfer_comfirmation', as: 'bank_transfer_comfirmation'
 
 #	post '/donations/confirmation', to: 'donations#confirmation', as: 'donation_confirmation'
   post '/user/:id/livehouses/new' => 'livehouses#create'
@@ -50,6 +53,7 @@ Rails.application.routes.draw do
   patch '/user/:id/livehouses/new' => 'livehouses#create'
   patch '/livehouses/admincheck/:id', to: 'livehouses#admin_approval', as: 'admin_approval'
   patch '/profiles/admincheck/:id', to: 'profiles#admin_approval', as: 'user_approval'
+	patch '/donations/:id/bank_transfer_completed', to: 'donations#bank_transfer_completed', as: 'bank_transfer_completed'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

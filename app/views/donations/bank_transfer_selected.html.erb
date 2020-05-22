@@ -1,0 +1,9 @@
+<div class="container pagetop">
+  <h3 class="title">ご支援のお申し出、ありがとうございました。</h3>
+  <hr>
+  <p>
+    <%= @donation.email %>あてに振込先の情報を送信しましたのでご確認ください。<br>
+    お支払い期限: <%= 3.business_days.after(@donation.updated_at).strftime("%Y年%m月%d日") %>
+  </p>
+
+</div>

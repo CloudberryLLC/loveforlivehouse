@@ -1,0 +1,22 @@
+<div class="container pagetop">
+  <div class="row justify_content_center">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+
+      <h3 class="title"><%= @livehouse.livehouse_name %>に支援を行う</h3>
+
+      <hr>
+
+      <%= render 'confirmation_view' %>
+
+      <div class="button__area center">
+        <%= link_to '支援内容を確定する', bank_transfer_selected_path(hash: donation_token(@donation), id: @donation), class: "btn btn-success"%>
+        <%= link_to '修正する', edit_donation_path(hash: donation_token(@donation), id: @donation), class: "btn btn-info" %>
+      </div>
+      <p class="annotation">「支援内容を確定する」をクリックすると、上記メールアドレスにライブハウスの口座情報等が送信されます。</p>
+
+      <hr>
+
+    </div>
+  </div>
+</div>

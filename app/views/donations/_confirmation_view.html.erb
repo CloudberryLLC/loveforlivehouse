@@ -22,3 +22,8 @@
     <%= @donation.bldg %>
   </p>
 </div>
+
+<h5 class="title">お支払い方法</h5>
+<div id="supporter_info">
+  <p><%= show_payment_method(@donation.payment_method) %></p>
+</div>

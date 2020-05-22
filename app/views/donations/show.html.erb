@@ -12,7 +12,8 @@
           支援ID: <%= @donation.id %><br>
           支援したライブハウス: <%= @livehouse.livehouse_name %><br>
           金額: <%= @donation.amount.to_s(:delimited) %>円<br>
-          日時: <%= @donation.updated_at.strftime("%Y年%m月%d日 %H:%M") %>
+          日時: <%= @donation.updated_at.strftime("%Y年%m月%d日 %H:%M") %><br>
+          お支払い方法: <%= show_payment_method(@donation.payment_method) %>
         </p>
       </div>
 
@@ -43,7 +44,11 @@
 
       <h5 class="title">領収証について</h5>
       <p>
-        領収証は支援完了時にライブハウス運営者のStripeアカウントより送信されておりますので今一度ご確認ください。<br>
+        <% if @donation.payment_method == 1 %>
+          領収証は支援完了時にライブハウス運営者のStripeアカウントより送信されておりますので今一度ご確認ください。<br>
+        <% elsif @donation.payment_method == 2 %>
+          領収証はライブハウス運営者より原則メールにて発送されます。到着まで少々お待ち下さい。<br>
+        <% end %>
         領収証についてのお問い合わせは各ライブハウス運営者にお願い致します。<br>
         <br>
         ライブハウス連絡先:<br>
@@ -59,6 +64,11 @@
       <p>
         領収証以外のお問い合わせについては<%= link_to 'ヘルプ', helps_path %>よりご確認ください。
       </p>
+
+      <div class="button__area center">
+        <%= link_to 'ライブハウスページへ戻る', livehouse_path(@livehouse), class: "btn btn-primary" %>
+      </div>
+
     </div>
   </div>
 </div>

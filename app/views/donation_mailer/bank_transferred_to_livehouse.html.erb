@@ -1,0 +1,61 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+		<%= @donation.name %>様から銀行振込で支援が届きました！<br>
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+    領収証の発行とサンクスメールのご対応をお願い致します<br>
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em 1em;"></td></tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+	  ご支援内容<br>
+	  <br>
+	  支援者様お名前: <%= @donation.name.to_s %> (公開名: <%= @donation.nickname.to_s %>) <br>
+	  ご支援金額: <%= @donation.amount.to_s(:delimited) %>円 <br>
+	  ライブハウスへのメッセージ:<br>
+    <%= description(@donation.message) %><br>
+    <br>
+	  支払い方法: 銀行振込 <br>
+	  お支払い完了日: <%= @donation.updated_at.strftime("%Y年%m月%d日") %> <br>
+    <br>
+    ご支援者様の連絡先<br>
+    メール: <%= @donation.email.to_s %><br>
+    電話番号: <%= @donation.phone.to_s %><br>
+    領収証送付先(支援者が郵送ご希望の場合):<br>
+    〒<%= @donation.zipcode.to_s %><br>
+    <%= @donation.pref.to_s %><%= @donation.city.to_s %> <%= @donation.street.to_s %><br>
+    <%= @donation.bldg.to_s %>
+  </td>
+</tr>
+
+<tr>
+  <td style="padding:1em;">
+    領収証の発行について<br>
+    <br>
+    領収証については支援者様に本プロジェクト側から、原則メールになる旨をお伝えしています。<br>
+    郵送だと数が多くなればなるほど負担が発生しますので原則メールにてご対応ください。<br>
+    金額が大きく収入印紙が必要な場合など、支援者様からご希望がある場合はライブハウスご担当者様宛にお問い合わせが来ますのでご対応ください。<br>
+    大変お手数をおかけいたしますがよろしくお願い申し上げます<br>
+  </td>
+</tr>
+
+<!--リンクパネル-->
+<tr>
+  <td style="padding:1em;background-color:#eeeeee;">
+		ご不明な点がある場合、<%= link_to 'サポート', new_inquiry_url %>までお知らせください。<br>
+		今後ともLOVE for Live Houseをよろしくお願いいたします。<br>
+  </td>
+</tr>
+
+<%= render 'partial/mailer_footer' %>

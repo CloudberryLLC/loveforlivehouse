@@ -5,7 +5,8 @@ class DonationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:stripe_webhook]
   before_action :authenticate_user!, only: [:index]
   before_action :admin_only, only: [:index]
-  before_action :set_data, only: [:show, :edit, :update, :confirmation]
+  before_action :set_data, except: [:index, :new, :create, :payment_succeeded, :stripe_webhook]
+
 
   def index
   end
@@ -29,7 +30,7 @@ class DonationsController < ApplicationController
     @donation.update_count = 1
     set_subdata
     if @donation.save
-      redirect_to donation_confirmation_path(id: @donation.id, hash: donation_token(@donation))
+      redirect_by_payment_method(@donation)
     else
       render 'new', alart: "保存に失敗しました"
     end
@@ -43,7 +44,7 @@ class DonationsController < ApplicationController
   def update
     @donation.update_count += 1
     if @donation.update(donation_params)
-      redirect_to donation_confirmation_path(hash: donation_token(@donation), id: @donation.id)
+      redirect_by_payment_method(@donation)
     else
       render 'edit', alart: "保存に失敗しました"
     end
@@ -60,6 +61,27 @@ class DonationsController < ApplicationController
     end
   end
 
+  def bank_transfer_choosen
+  end
+
+  def bank_transfer_selected
+    DonationMailer.with(donation: @donation, hash: donation_token(@donation)).bank_transfer_info.deliver_later
+  end
+
+  def bank_transfer_comfirmation
+  end
+
+  def bank_transfer_completed
+    @donation.update_count += 1
+    @donation.paid = true
+    if update_paid_status(@donation)
+      DonationMailer.with(donation: @donation, hash: donation_token(@donation)).bank_transfer_completed.deliver_later
+      DonationMailer.with(donation: @donation, hash: donation_token(@donation)).bank_transferred_to_livehouse.deliver_later
+      redirect_to donation_path(hash: donation_token(@donation), id: @donation.id), notice: "ご支援ありがとうございます。手続きが完了しました"
+    end
+  end
+
+
   def payment_succeeded
     @donation = Donation.find(params[:id])
     update_paid_status(@donation)
@@ -75,7 +97,20 @@ private
 
   def donation_params
     params.require(:donation).permit(
-      :nickname, :amount, :message, :name, :email, :phone, :zipcode, :pref, :city, :street, :bldg, :confirmation, :livehouse_id, :supporter_id, :update_count, :stripeToken
+      :nickname,
+      :amount,
+      :message,
+      :name,
+      :email,
+      :phone,
+      :zipcode, :pref, :city, :street, :bldg,
+      :payment_method,
+      :confirmation,
+      :livehouse_id,
+      :supporter_id,
+      :update_count,
+      :paid,
+      :stripeToken
       )
   end
 
@@ -195,6 +230,17 @@ private
       @livehouse.donators_this_month = collection_this_month.count
       @livehouse.funded_this_month = collection_this_month.all.sum(:amount)
       @livehouse.save!
+    end
+  end
+
+  def redirect_by_payment_method(donation)
+    case donation.payment_method
+    when 1
+      redirect_to donation_confirmation_path(id: donation.id, hash: donation_token(donation))
+    when 2
+      redirect_to bank_transfer_choosen_path(id: donation.id, hash: donation_token(donation))
+    else
+      redirect_to edit_donation_path(donation), alart: "支払い方法が選択されていません"
     end
   end
 

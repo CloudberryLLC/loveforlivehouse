@@ -28,7 +28,7 @@ class LivehousesController < ApplicationController
 
     def show
       @groups = Livehouse.where(user_id: @livehouse.user_id).where(certified: true, published: true).where.not(id: @livehouse.id)
-      @donators = Donation.where(livehouse_id: @livehouse.id, paid: true).limit(30).order("created_at DESC")
+      @donors = Donation.where(livehouse_id: @livehouse.id, paid: true).limit(30).order("created_at DESC")
       @percentage = (100 * @livehouse.funded_this_month / @livehouse.required_amount).to_i
       write_recently_viewed_livehouse_cookies(@livehouse)
     end
@@ -117,6 +117,13 @@ class LivehousesController < ApplicationController
           :cover_photo,
           :profile_photo_cache,
           :cover_photo_cache,
+          :bank_name,
+          :bank_branch,
+          :bank_branch_code,
+          :bank_type,
+          :bank_number,
+          :bank_owner,
+          :bank_owner_kana,
           :certified,
           :published,
           :_destroy,
@@ -155,6 +162,13 @@ class LivehousesController < ApplicationController
         :cover_photo,
         :profile_photo_cache,
         :cover_photo_cache,
+        :bank_name,
+        :bank_branch,
+        :bank_branch_code,
+        :bank_type,
+        :bank_number,
+        :bank_owner,
+        :bank_owner_kana,
         :certified,
         :published,
         :_destroy,

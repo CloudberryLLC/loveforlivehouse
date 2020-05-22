@@ -1,0 +1,67 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+		ご支援のお申し出、ありがとうございます。<br>
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+		LOVE for Live House運営事務局です。<br>
+		<br>
+	  以下にご支援先のライブハウスの口座情報をお送りいたします。<br>
+	  お振込み完了後、本メール下部の「振込完了」を<br>
+    クリックまたはタップして、お手続きが完了となります。<br>
+	  3営業日以内にお振込みをお願い致します。<br>
+  </td>
+</tr>
+
+<!--本文-->
+<tr>
+  <td style="padding:1em;font-weight:bold;">
+		支援先ライブハウス: <%= @livehouse.livehouse_name %><br>
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em 1em;"></td></tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+	  ライブハウスの銀行口座<br>
+	  <br>
+	  <%= @livehouse.bank_name.to_s %>
+	  <%= @livehouse.bank_branch.to_s %>
+	  (店番: <%= @livehouse.bank_branch_code.to_s %>) <br>
+	  <%= @livehouse.bank_type.to_s %>
+	  口座番号: <%= @livehouse.bank_number.to_s %> <br>
+	  口座名義人: <%= @livehouse.bank_owner.to_s %> <br>
+	  口座名義人(カナ): <%= @livehouse.bank_owner_kana.to_s %> <br>
+	  お振込期限: <%= 3.business_days.after(@donation.updated_at).strftime("%Y年%m月%d日") %><br>
+  </td>
+</tr>
+
+<tr>
+  <td style="padding:1em;">お振込みが完了したらこちらをタップしてください。</td>
+</tr>
+
+<tr>
+  <td style="padding:1em;font-size:1.5em;font-weight:bold;text-align:center;">
+    <%= link_to '振込完了', bank_transfer_comfirmation_url(hash: @hash, id: @donation.id) %>
+  </td>
+</tr>
+
+
+<!--リンクパネル-->
+<tr>
+  <td style="padding:1em;background-color:#eeeeee;">
+		ご不明な点がある場合、<%= link_to 'サポート', new_inquiry_url %>までお知らせください。<br>
+		今後ともLOVE for Live Houseをよろしくお願いいたします。<br>
+  </td>
+</tr>
+
+
+<%= render 'partial/mailer_footer' %>

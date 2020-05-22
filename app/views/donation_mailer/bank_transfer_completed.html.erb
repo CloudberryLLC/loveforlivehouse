@@ -1,0 +1,69 @@
+<!--タイトル-->
+<tr>
+  <td style="text-align:center;font-size:1.25em;text-decoration:underline;font-weight:bold;padding:1em;">
+		<%= @livehouse.livehouse_name %>へのご支援、ありがとうございました。<br>
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em;"></td></tr>
+
+<!--リード文-->
+<tr>
+  <td style="font-size:1.1em;padding:1em;">
+		LOVE for Live House運営事務局です。<br>
+		<br>
+    <%= @livehouse.livehouse_name %>にご支援完了が通じされ、手続きが完了しましたのでお知らせ致します。<br>
+  </td>
+</tr>
+
+<!--本文-->
+<tr>
+  <td style="padding:1em;font-weight:bold;">
+		支援先ライブハウス: <%= @livehouse.livehouse_name %><br>
+  </td>
+</tr>
+
+<tr><td style="padding:0.5em 1em;"></td></tr>
+
+<!-- ハイライト -->
+<tr>
+  <td style="padding:1em;background-color:#ecf8ff;">
+	  ご支援内容<br>
+	  <br>
+	  支援者様お名前: <%= @donation.name.to_s %> (公開名: <%= @donation.nickname.to_s %>) <br>
+	  ご支援金額: <%= @donation.amount.to_s(:delimited) %>円 <br>
+	  ライブハウスへのメッセージ:<br>
+    <%= description(@donation.message) %><br>
+    <br>
+	  支払い方法: 銀行振込 <br>
+	  お支払い完了日: <%= @donation.updated_at.strftime("%Y年%m月%d日") %> <br>
+    <br>
+    ライブハウス連絡先<br>
+    メール: <%= @livehouse.shop_email.to_s %><br>
+    電話番号: <%= @livehouse.shop_phone.to_s %><br>
+    会社名: <%= @livehouse.company.to_s %><br>
+    ご担当者: <%= @livehouse.manager.to_s %>
+  </td>
+</tr>
+
+<tr>
+  <td style="padding:1em;">
+    領収証の発行について<br>
+    <br>
+    <%= @donation.name.to_s %>様からのご支援は<%= @livehouse.livehouse_name %>が直接受領しています。<br>
+    そのため領収証の発行は<%= @livehouse.livehouse_name %>からになります。<br>
+    領収証の形式はライブハウス運営者に委ねていますが、ライブハウス側の負担軽減のために原則ライブハウスからメールでの送付となりますことをご了承ください。<br>
+    金額が大きく収入印紙が必要な場合など、ご不明な点がある場合はライブハウスご担当者様に直接お問い合わせください。<br>
+    大変お手数をおかけいたしますが何卒よろしくお願い申し上げます<br>
+  </td>
+</tr>
+
+<!--リンクパネル-->
+<tr>
+  <td style="padding:1em;background-color:#eeeeee;">
+		領収証以外の件でご不明な点がある場合、<%= link_to 'サポート', new_inquiry_url %>までお知らせください。<br>
+		今後ともLOVE for Live Houseをよろしくお願いいたします。<br>
+  </td>
+</tr>
+
+<%= render 'partial/mailer_footer' %>
