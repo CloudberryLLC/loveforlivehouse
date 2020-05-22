@@ -52,6 +52,12 @@
     登録日: <%= @livehouse.created_at %><br>
     更新日: <%= @livehouse.updated_at %><br>
     </p>
+    <p>口座情報</p>
+    <p>
+      <%= @livehouse.bank_name.to_s %> <%= @livehouse.bank_branch.to_s %> (店番: description(<%= @livehouse.bank_branch_code.to_s %>)) <br>
+      <%= @livehouse.bank_type.to_s %> <%= @livehouse.bank_number.to_s %> <br>
+      口座名義人: <%= @livehouse.bank_owner.to_s %> (<%= @livehouse.bank_owner_kana.to_s %>) <br>
+    </p>
   </div>
 
   <hr>
@@ -61,7 +67,7 @@
   </div>
 
   <div class="button__area center">
-    <%= form_with model: @livehouse, url: admin_approval_path do |f| %>
+    <%= form_with model: @livehouse, url: admin_approval_path, local: true do |f| %>
       <%= f.hidden_field :certified, value: true %>
       <%= f.submit "新規登録・変更を承認する", class: "btn btn-success" %>
     <% end %>

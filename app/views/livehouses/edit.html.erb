@@ -209,7 +209,7 @@
 
         <div class="form-group">
           <%= p.label :bank_branch_code %>
-          <%= p.text_field :bank_branch_code, class: "form-control", placeholder: "店番、支店コード（支店番号）", autofocus: true, required: true %>
+          <%= p.text_field :bank_branch_code, class: "form-control", placeholder: "店番、支店コード（支店番号）", autofocus: true %>
         </div>
 
         <div class="form-group">
@@ -233,7 +233,7 @@
         <div class="form-group">
           <%= p.label :bank_owner_kana %>
           <span class="required"> *</span><br>
-          <%= p.text_field :bank_owner_kana, class: "form-control", placeholder: "全角カタカナ、姓と名の間にスペースを入れないでください。", autofocus: true %>
+          <%= p.text_field :bank_owner_kana, class: "form-control", placeholder: "全角カタカナ、姓と名の間にスペースを入れないでください。", autofocus: true, required: true %>
         </div>
 
         <%= p.hidden_field :certified, value: false %>
