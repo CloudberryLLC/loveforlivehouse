@@ -1,7 +1,7 @@
 <div class="container">
   <p>ようこそ、<%= current_user.email %>さん。<br>
     <% if current_user.sign_in_count == 1 %>
-      この度は本サービスへご登録をくださり、ありがとうございます。<br>
+      この度は本プロジェクトへご登録をくださり、ありがとうございます。<br>
       以下の手順に沿って、ご利用開始の手続をお願い致します。<br>
     <% end %>
   </p>
@@ -32,7 +32,7 @@
 
     <% if supporter? %>
 
-      <h3>STEP2 サービスの利用準備ができました。
+      <h3>STEP2 本プロジェクトの利用準備ができました。
       <% if (current_user.basic.present? && current_user.bank.present?) %>
         <span style="font-size: 1.25em; color: #5cb85c;">
           <i class="tutorial-check"></i>
