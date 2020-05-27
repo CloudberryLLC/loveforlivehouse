@@ -5,13 +5,13 @@
     ユーザーID: <%= @user.id %><br>
     ユーザー区分: <%= show_user_type(@user) %><br>
   	メールアドレス: <%= @user.email %><br>
-    お名前: <%= @user.basic.lastname %> <%= @user.basic.firstname %> 様<br>
-    お名前フリガナ: <%= @user.basic.lastname_kana %> <%= @user.basic.firstname_kana %><br>
+    お名前: <%= @user.basic.lastname.to_s %> <%= @user.basic.firstname.to_s %> 様<br>
+    お名前フリガナ: <%= @user.basic.lastname_kana.to_s %> <%= @user.basic.firstname_kana.to_s %><br>
     会社名・所属団体: <%= @user.basic.company %><br>
-    所属部署: <%= @user.basic.department if @user.basic.department.present? %><br>
-    電話番号: <%= @user.basic.phone %><br>
-    郵便番号: 〒<%= @user.basic.zipcode %><br>
-    住所: <%= @user.basic.pref %><%= @user.basic.city %><%= @user.basic.street %> <%= @user.basic.bldg %><br>
+    所属部署: <%= @user.basic.department.to_s %><br>
+    電話番号: <%= @user.basic.phone.to_s %><br>
+    郵便番号: 〒<%= @user.basic.zipcode.to_s %><br>
+    住所: <%= @user.basic.pref.to_s %><%= @user.basic.city.to_s %><%= @user.basic.street.to_s %> <%= @user.basic.bldg.to_s %><br>
     <p>本人確認書類:</p>
     <%= image_tag(photo(@user.basic.id_front), class: "check_photo") %><br>
     <p>本人確認書類(裏面):</p>
