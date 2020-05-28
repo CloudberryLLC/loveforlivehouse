@@ -91,12 +91,17 @@
   <div class="form-group">
     <h5 class="title"><%= form.label :payment_method %></h5>
     <div id="registration__type__button_area" class="btn-group btn-group-toggle" data-toggle="buttons">
-      <label class="btn btn-outline-primary">
-        <%= form.radio_button :payment_method, 1 %> クレジットカード
-      </label>
-      <label class="btn btn-outline-primary">
-        <%= form.radio_button :payment_method, 2 %> 銀行振込
-      </label>
+      <% if @livehouse_owner.stripe_user_id.present? %>
+        <label class="btn btn-outline-primary">
+          <%= form.radio_button :payment_method, 1 %> クレジットカード
+        </label>
+        <label class="btn btn-outline-primary">
+          <%= form.radio_button :payment_method, 2 %> 銀行振込
+        </label>
+      <% else %>
+          <%= form.hidden_field :payment_method, value: 2 %>
+          このライブハウスは現在、銀行振込のみ対応しています。
+      <% end %>
     </div>
   </div>
 
@@ -110,7 +115,6 @@
   <div class="actions button__area center">
     <%= form.submit "確認画面へ進む", class: "btn btn-success" %>
   </div>
-  <p class="annotation red center">現時点ではクレジット・デビットカード決済と銀行振込がご利用可能です。</p>
 
 <% end %>
 

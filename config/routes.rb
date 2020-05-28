@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 	root to: 'home#index'
 
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount RailsAdmin::Engine => '/showadmin__d0g904jrdfjEH45r09SDKfhkjgt3y9gERUjhf65gdYhfdyjh5l3hEjSfu49edjkshRDhgd46lE3H5YEtr45JD0iekdlfgKD', as: 'rails_admin'
 	mount Resque::Server, :at => '/showresquedashboard_d0g904jrdfjEH45r09SDKfhkjgt3y9gERUjhf65gdYhfdyjh5l3hEjSfu49edjkshRDhgd46lE3H5YEtr4dMDsetL'
 
   devise_for :users, controllers: {

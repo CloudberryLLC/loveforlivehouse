@@ -25,13 +25,43 @@
       <hr>
   <% end %>
 
-  <% #ステップ2 - Stripeアカウントの登録 %>
-  <% unless current_user.stripe_user_id.present? %>
+  <% #ステップ2 - ライブハウス登録 %>
+  <% unless current_user.livehouses.present? %>
     <h5 class="title">ステップ2</h5>
+    <h5 class="title">ライブハウスを登録しましょう。</h5>
+    <p class="text__area">
+      運営・所有しているライブハウスを登録しましょう。<br>
+      最大<%= Constants::MAX_GROUPS %>店まで登録できます。<br>
+    <p>
+      下の「ライブハウスを登録する」をクリックして情報を入力しましょう。<br>
+      事前に支援金の受取口座情報のご準備をおすすめします。<br>
+    </p>
+    <% if current_user.certified? %>
+  	<p class="button__area center">
+      <%= link_to "ライブハウスを登録する", new_user_livehouse_path(current_user), class:"btn btn-success" %>
+    </p>
+    <% else %>
+    <p class="annotation red">
+      ただいまアカウントの審査待ちです。ライブハウスは審査が完了した後に登録が可能になります。
+    </p>
+    <% end %>
+  <% else %>
+    <%= render 'reward' %>
+  <% end %>
+
+  <hr>
+
+  <% #ステップ3 - Stripeアカウントの登録 %>
+  <% unless current_user.stripe_user_id.present? %>
+    <h5 class="title">ステップ3</h5>
     <h5 class="title">Stripeアカウントの作成と接続を行います。</h5>
     <p>
-      支援金の受け取りには米国Stripe社の提供する、Stripeアカウントが必要になります。<br>
-      登録は一切無料です。メールアドレスと本人確認書類(免許証等)、受取口座の情報をご準備ください。
+      クレジットカードでの支援金を受け入れるには、米国Stripe社の提供するStripeアカウントが必要になります(登録無料)。<br>
+      下の動画を参考にお手続きください。<br>
+      メールアドレスと本人確認書類(免許証等)、受取口座の情報をご準備をおすすめします。<br>
+      <br>
+      なおこのステップはスキップも可能ですが、その場合は銀行振込のみ受け入れ可能となります。<br>
+      一般的にネット決済の6〜7割がクレジット決済といわれていますので、設定をおすすめしています。<br>
     </p>
     <div class="button__area center">
       <%= link_to "Stripeアカウントの作成", "https://stripe.com/jp", class:"btn btn-primary", target:"blank" %>
@@ -47,34 +77,13 @@
       <%= link_to "Stripeアカウントの連携", "https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id="+Rails.configuration.stripe[:oauth_client_id]+"&scope=read_write&state="+user_token(current_user), class:"btn btn-primary", target:"blank" %>
     </div>
     <div class="text__area">
-      <p class="strong">支援金を受け取るまでの流れ</p>
       <p>
-        ここまでの作業が完了したら、お客様のStripeアカウント上で入金状況等をリアルタイムで確認することができます。<br>
+        ここまでの作業が完了すると、お客様のStripeアカウント上で入金状況等をリアルタイムで確認することができます。<br>
         Stripe社の提供するスマートフォンアプリからもお客様のStripeアカウントの状況を確認することが可能です。<br>
       </p>
     </div>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/Pqvsf2SC-bg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <hr>
-  <% end %>
-
-  <% unless current_user.livehouses.present? %>
-    <h5 class="title">ステップ3</h5>
-    <h5 class="title">ライブハウスを登録しましょう。</h5>
-    <p class="text__area">
-      運営・所有しているライブハウスを登録しましょう。<br>
-      最大<%= Constants::MAX_GROUPS %>店まで登録できます。<br>
-    <p>下の「ライブハウスを登録する」をクリックして情報を入力しましょう。</p>
-    <% if current_user.certified? && current_user.stripe_user_id.present?  %>
-  	<p class="button__area center">
-      <%= link_to "ライブハウスを登録する", new_user_livehouse_path(current_user), class:"btn btn-success" %>
-    </p>
-    <% else %>
-    <p class="annotation red">
-      ただいまアカウントの審査待ちです。ライブハウスは審査が完了した後に登録が可能になります。
-    </p>
-    <% end %>
-  <% else %>
-    <%= render 'reward' %>
   <% end %>
 
 </div>

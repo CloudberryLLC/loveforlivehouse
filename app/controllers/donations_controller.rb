@@ -19,6 +19,8 @@ class DonationsController < ApplicationController
     begin
       @livehouse_id = decode_livehouse_id(params[:id])
       @livehouse =  Livehouse.find(@livehouse_id)
+      @livehouse_owner = User.find(@livehouse.user_id)
+      p @livehouse_owner
       set_new_donation
     rescue
       head :internal_server_error #500
@@ -55,9 +57,9 @@ class DonationsController < ApplicationController
       redirect_to donation_path(hash: donation_token(@donation), id: @donation.id)
     end
     if @donation.payment_intent_id.blank?
-      create_paymentIntent(@donation, @user)
+      create_paymentIntent(@donation, @livehouse_owner)
     else
-      update_paymentIntent(@donation, @user)
+      update_paymentIntent(@donation, @livehouse_owner)
     end
   end
 
@@ -141,7 +143,7 @@ private
   def set_subdata
     @livehouse = Livehouse.find(@donation.livehouse_id)
     @livehouse_id = @livehouse.id
-    @user = User.find(@livehouse.user_id)
+    @livehouse_owner = User.find(@livehouse.user_id)
     @donation.reciever = @livehouse.user_id
     @donation.paid = false unless @donation.paid == true
     if user_signed_in?
@@ -154,7 +156,7 @@ private
   end
 
 #stripeの支払い
-  def create_paymentIntent(donation, user)
+  def create_paymentIntent(donation, livehouse_owner)
     begin
       @payment_intent = Stripe::PaymentIntent.create({
         payment_method_types: ["card"],
@@ -165,7 +167,7 @@ private
         description: @livehouse.livehouse_name.to_s + "への、ライブハウス緊急支援サイト「LOVE for Live House」を通じたご支援 (支援ID: " + donation.id.to_s + ")",
         metadata: { donation_id: donation.id },
         },
-        stripe_account: user.stripe_user_id)
+        stripe_account: livehouse_owner.stripe_user_id)
       unless donation.payment_intent_id.present?
         donation.payment_intent_id = @payment_intent.id
         donation.save!
@@ -178,9 +180,9 @@ private
     end
   end
 
-  def update_paymentIntent(donation, user)
+  def update_paymentIntent(donation, livehouse_owner)
     begin
-      @payment_intent = Stripe::PaymentIntent.retrieve(donation.payment_intent_id, stripe_account: user.stripe_user_id)
+      @payment_intent = Stripe::PaymentIntent.retrieve(donation.payment_intent_id, stripe_account: livehouse_owner.stripe_user_id)
       unless @payment_intent.status == "succeeded"
         @payment_intent = nil
         @payment_intent = Stripe::PaymentIntent.update(donation.payment_intent_id, {
@@ -188,7 +190,7 @@ private
           application_fee_amount: (donation.amount * Constants::SYSTEM_FEE).ceil.to_i,
           receipt_email: donation.email,
           },
-          stripe_account: user.stripe_user_id)
+          stripe_account: livehouse_owner.stripe_user_id)
       end
     rescue Stripe::InvalidRequestError => e
       flash.now[:error] = "決済(stripe)でエラーが発生しました（InvalidRequestError）#{e.message}"

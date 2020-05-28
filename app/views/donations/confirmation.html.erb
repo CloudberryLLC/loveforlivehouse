@@ -38,7 +38,7 @@
 
 <%= javascript_tag do %>
   var stripe = Stripe('<%= Rails.configuration.stripe[:publishable_key] %>', {
-  stripeAccount: '<%= @user.stripe_user_id %>'
+  stripeAccount: '<%= @livehouse_owner.stripe_user_id %>'
   });
 
   var elements = stripe.elements();
